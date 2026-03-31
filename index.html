@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lakeside Fulfillment — Austin, TX 3PL</title>
+<title>Lakeside Fulfillment — Same-Day 3PL · Austin, TX</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -22,8 +22,6 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px;}
 .nav-logo{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:10px;}
@@ -32,10 +30,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .nav-links{display:flex;align-items:center;gap:32px;}
 .nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:var(--navy);}
-.nav-cta{background:var(--blue);color:white;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;}
-.nav-cta:hover{background:var(--blue2);transform:translateY(-1px);}
-
-/* HERO */
+.nav-cta{background:var(--blue);color:white!important;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;}
+.nav-cta:hover{background:var(--blue2)!important;transform:translateY(-1px);}
 .hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;padding:100px 5% 80px;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,79,216,.4) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(56,189,248,.15) 0%,transparent 60%);pointer-events:none;}
 .hero-grid{position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
@@ -62,18 +58,31 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .hero-metric-val{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:white;}
 .hero-metric-val.green{color:#34d399;}
 .hero-metric-val.sky{color:var(--sky);}
+.hero-metric-val.yellow{color:#fbbf24;}
 .hero-card-footer{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.4);}
 .live-dot{width:6px;height:6px;border-radius:50%;background:#34d399;animation:pulse 2s infinite;flex-shrink:0;}
-
-/* SECTION COMMON */
+.sameday-banner{background:linear-gradient(135deg,#0f2040 0%,#1a4fd8 100%);padding:80px 5%;}
+.sameday-inner{max-width:1200px;margin:0 auto;}
+.sameday-headline{font-family:'Sora',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;color:white;text-align:center;margin-bottom:16px;letter-spacing:-.02em;}
+.sameday-headline em{color:var(--sky);font-style:normal;}
+.sameday-sub{font-size:17px;color:rgba(255,255,255,.65);text-align:center;max-width:600px;margin:0 auto 56px;}
+.sameday-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.sameday-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:28px 24px;text-align:center;transition:all .2s;}
+.sameday-card:hover{background:rgba(255,255,255,.1);transform:translateY(-3px);}
+.sameday-icon{font-size:36px;margin-bottom:16px;}
+.sameday-card h3{font-family:'Sora',sans-serif;font-size:16px;font-weight:700;color:white;margin-bottom:8px;}
+.sameday-card p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
+.sameday-cutoff{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:14px;padding:28px 32px;margin-top:32px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;}
+.cutoff-item{text-align:center;}
+.cutoff-time{font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:#fbbf24;}
+.cutoff-label{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px;}
+.cutoff-divider{width:1px;height:48px;background:rgba(255,255,255,.15);}
 section{padding:100px 5%;}
 .section-inner{max-width:1200px;margin:0 auto;}
 .section-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;}
 .section-title{font-family:'Sora',sans-serif;font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--navy);line-height:1.15;letter-spacing:-.02em;margin-bottom:16px;}
 .section-sub{font-size:17px;color:var(--muted);line-height:1.7;max-width:560px;}
 .section-header{margin-bottom:64px;}
-
-/* HOW IT WORKS */
 #how{background:var(--light);}
 .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;}
 .steps::before{content:'';position:absolute;top:36px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--blue),var(--sky));z-index:0;}
@@ -82,42 +91,39 @@ section{padding:100px 5%;}
 .step-icon{font-size:24px;margin-bottom:12px;}
 .step h3{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;}
 .step p{font-size:13px;color:var(--muted);line-height:1.6;}
-
-/* SERVICES */
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.service-card{background:white;border:1px solid var(--border);border-radius:16px;padding:32px;transition:all .25s;cursor:default;}
+.service-card{background:white;border:1px solid var(--border);border-radius:16px;padding:32px;transition:all .25s;}
 .service-card:hover{border-color:var(--blue);box-shadow:0 8px 32px rgba(26,79,216,.1);transform:translateY(-3px);}
 .service-icon{width:52px;height:52px;background:rgba(26,79,216,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;}
 .service-card h3{font-family:'Sora',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:10px;}
 .service-card p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:20px;}
 .service-tags{display:flex;flex-wrap:wrap;gap:6px;}
 .service-tag{background:rgba(26,79,216,.06);color:var(--blue);font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;}
-
-/* INDUSTRIES */
 #industries{background:var(--navy);color:white;}
 #industries .section-title{color:white;}
 #industries .section-sub{color:rgba(255,255,255,.6);}
 .industries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.industry-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px;transition:all .2s;cursor:default;}
+.industry-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px;transition:all .2s;}
 .industry-card:hover{background:rgba(255,255,255,.07);border-color:rgba(26,79,216,.5);}
 .industry-icon{font-size:28px;margin-bottom:14px;}
 .industry-card h3{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:white;margin-bottom:10px;}
 .industry-tags{display:flex;flex-direction:column;gap:6px;}
 .industry-tag{font-size:12px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:6px;}
 .industry-tag::before{content:'✓';color:#34d399;font-weight:700;font-size:11px;}
-
-/* TESTIMONIALS */
 #testimonials{background:var(--light);}
 .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
 .testimonial-card{background:white;border:1px solid var(--border);border-radius:16px;padding:32px;}
+.testimonial-card.placeholder{border:2px dashed var(--border);background:var(--light);}
 .stars{color:#f59e0b;font-size:14px;letter-spacing:2px;margin-bottom:16px;}
 .testimonial-quote{font-size:15px;color:var(--text);line-height:1.7;margin-bottom:24px;font-style:italic;}
 .testimonial-author{display:flex;align-items:center;gap:12px;}
 .author-avatar{width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;color:white;font-size:15px;flex-shrink:0;}
 .author-name{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--navy);}
 .author-title{font-size:12px;color:var(--muted);margin-top:2px;}
-
-/* QUOTE FORM */
+.review-placeholder{text-align:center;padding:20px 0;}
+.review-placeholder p{font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.6;}
+.review-btn{display:inline-block;background:var(--blue);color:white;padding:11px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;}
+.review-btn:hover{background:var(--blue2);transform:translateY(-1px);}
 #quote{background:white;}
 .quote-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
 .quote-left h2{font-family:'Sora',sans-serif;font-size:clamp(28px,3vw,40px);font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:16px;letter-spacing:-.02em;}
@@ -142,8 +148,6 @@ section{padding:100px 5%;}
 .form-success h3{font-family:'Sora',sans-serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:12px;}
 .form-success p{font-size:15px;color:var(--muted);}
 .success-icon{font-size:48px;margin-bottom:16px;}
-
-/* FOOTER */
 footer{background:var(--navy);padding:64px 5% 32px;}
 .footer-inner{max-width:1200px;margin:0 auto;}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
@@ -152,15 +156,12 @@ footer{background:var(--navy);padding:64px 5% 32px;}
 .footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:10px;transition:color .2s;}
 .footer-col a:hover{color:white;}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.35);}
-
-/* SCROLL ANIMATIONS */
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-delay-1{transition-delay:.1s;}
 .reveal-delay-2{transition-delay:.2s;}
 .reveal-delay-3{transition-delay:.3s;}
 .reveal-delay-4{transition-delay:.4s;}
-
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr;}
   .hero-card{display:none;}
@@ -170,9 +171,11 @@ footer{background:var(--navy);padding:64px 5% 32px;}
   .quote-wrap{grid-template-columns:1fr;}
   .footer-top{grid-template-columns:1fr 1fr;}
   .nav-links{display:none;}
+  .sameday-grid{grid-template-columns:1fr 1fr;}
+  .cutoff-divider{display:none;}
 }
 @media(max-width:600px){
-  .services-grid,.industries-grid,.testimonials-grid,.steps{grid-template-columns:1fr;}
+  .services-grid,.industries-grid,.testimonials-grid,.steps,.sameday-grid{grid-template-columns:1fr;}
   .form-grid{grid-template-columns:1fr;}
   .hero-stats{gap:24px;}
 }
@@ -183,9 +186,7 @@ footer{background:var(--navy);padding:64px 5% 32px;}
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-mark">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-      </div>
+      <div class="nav-logo-mark"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
       Lakeside Fulfillment
     </a>
     <div class="nav-links">
@@ -193,7 +194,7 @@ footer{background:var(--navy);padding:64px 5% 32px;}
       <a href="#services">Services</a>
       <a href="#industries">Industries</a>
       <a href="#testimonials">Reviews</a>
-      <a href="mailto:contact@lakesidefulfillment.com">Contact</a>
+      <a href="/cdn-cgi/l/email-protection#5d3e3233293c3e291d313c36382e3439383b28313b34313130383329733e3230">Contact</a>
       <a href="#quote" class="nav-cta">Get a Quote</a>
     </div>
   </div>
@@ -204,62 +205,70 @@ footer{background:var(--navy);padding:64px 5% 32px;}
   <div class="hero-grid"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-badge"><span class="hero-badge-dot"></span>Austin, TX — 3PL Fulfillment</div>
-      <h1>Your Brand Ships.<br><em>We Handle</em><br>the Rest.</h1>
-      <p class="hero-sub">Lakeside Fulfillment receives, stores, picks, packs, and ships your entire inventory at scale — thousands of orders daily, fulfilled with precision from the heart of Texas.</p>
+      <div class="hero-badge"><span class="hero-badge-dot"></span>Austin, TX — Same-Day 3PL Fulfillment</div>
+      <h1>Order In.<br><em>Shipped Out</em><br>Same Day.</h1>
+      <p class="hero-sub">Lakeside Fulfillment is a DTC-specialized 3PL in the heart of Texas. We receive, store, pick, pack, and ship your orders the same day — with 3–5 day delivery across the U.S.</p>
       <div class="hero-actions">
-        <a href="#quote" class="btn-primary">
-          Get Free Quote
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <a href="#quote" class="btn-primary">Get Free Quote <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <a href="#how" class="btn-ghost">See How It Works</a>
       </div>
       <div class="hero-stats">
-        <div>
-          <div class="hero-stat-num">99.97%</div>
-          <div class="hero-stat-label">Order Accuracy</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">1.8d</div>
-          <div class="hero-stat-label">Avg Ship Time</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">2-Day</div>
-          <div class="hero-stat-label">Nationwide Delivery</div>
-        </div>
+        <div><div class="hero-stat-num">Same Day</div><div class="hero-stat-label">Order Processing</div></div>
+        <div><div class="hero-stat-num">3–5 Day</div><div class="hero-stat-label">U.S. Delivery</div></div>
+        <div><div class="hero-stat-num">Central</div><div class="hero-stat-label">U.S. Location</div></div>
       </div>
     </div>
     <div>
       <div class="hero-card">
-        <div class="hero-card-title">Live Operations Dashboard</div>
-        <div class="hero-metric">
-          <span class="hero-metric-label">Orders Shipped Today</span>
-          <span class="hero-metric-val green">2,341</span>
-        </div>
-        <div class="hero-metric">
-          <span class="hero-metric-label">Items Picked</span>
-          <span class="hero-metric-val sky">3,892</span>
-        </div>
-        <div class="hero-metric">
-          <span class="hero-metric-label">Avg Ship Time</span>
-          <span class="hero-metric-val">1.8 days</span>
-        </div>
-        <div class="hero-metric">
-          <span class="hero-metric-label">On-Time Rate</span>
-          <span class="hero-metric-val green">98.4%</span>
-        </div>
-        <div class="hero-metric">
-          <span class="hero-metric-label">Order Accuracy</span>
-          <span class="hero-metric-val green">99.97%</span>
-        </div>
-        <div class="hero-card-footer">
-          <span class="live-dot"></span>
-          Live data · Updated every 5 minutes
-        </div>
+        <div class="hero-card-title">Today's Fulfillment Schedule</div>
+        <div class="hero-metric"><span class="hero-metric-label">Same-Day Cutoff</span><span class="hero-metric-val yellow">4:00 PM CST</span></div>
+        <div class="hero-metric"><span class="hero-metric-label">Postal Truck Pickup</span><span class="hero-metric-val sky">2:00 PM CST</span></div>
+        <div class="hero-metric"><span class="hero-metric-label">U.S. Delivery Window</span><span class="hero-metric-val green">3–5 Days</span></div>
+        <div class="hero-metric"><span class="hero-metric-label">Warehouse Location</span><span class="hero-metric-val">Austin, TX</span></div>
+        <div class="hero-metric"><span class="hero-metric-label">Specialization</span><span class="hero-metric-val green">DTC Brands</span></div>
+        <div class="hero-card-footer"><span class="live-dot"></span>Postal pickup at 2 PM CST · Orders processed until 4 PM</div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- SAME DAY SECTION -->
+<div class="sameday-banner">
+  <div class="sameday-inner">
+    <div class="section-label" style="color:var(--sky);text-align:center;margin-bottom:12px;">Our #1 Priority</div>
+    <h2 class="sameday-headline"><em>Same-Day Fulfillment.</em> Every Day.</h2>
+    <p class="sameday-sub">Orders placed before 4 PM CST ship out the same day — no exceptions, no delays. From Austin, Texas to your customer's door in 3–5 days.</p>
+    <div class="sameday-grid">
+      <div class="sameday-card reveal reveal-delay-1">
+        <div class="sameday-icon">⚡</div>
+        <h3>Same-Day Processing</h3>
+        <p>Every order placed before 4 PM CST is picked, packed, and out the door the same day.</p>
+      </div>
+      <div class="sameday-card reveal reveal-delay-2">
+        <div class="sameday-icon">📍</div>
+        <h3>Central U.S. Location</h3>
+        <p>Austin, TX sits at the geographic heart of the country — giving you faster delivery times coast to coast.</p>
+      </div>
+      <div class="sameday-card reveal reveal-delay-3">
+        <div class="sameday-icon">🎯</div>
+        <h3>DTC Specialized</h3>
+        <p>We're built specifically for direct-to-consumer brands. Your customers get a premium unboxing experience every time.</p>
+      </div>
+      <div class="sameday-card reveal reveal-delay-4">
+        <div class="sameday-icon">🎁</div>
+        <h3>Custom Packaging</h3>
+        <p>Branded inserts, custom packaging, and personalized touches that make your brand stand out.</p>
+      </div>
+    </div>
+    <div class="sameday-cutoff reveal">
+      <div class="cutoff-item"><div class="cutoff-time">2:00 PM</div><div class="cutoff-label">Postal Truck Pickup · CST</div></div>
+      <div class="cutoff-divider"></div>
+      <div class="cutoff-item"><div class="cutoff-time">4:00 PM</div><div class="cutoff-label">Same-Day Order Cutoff · CST</div></div>
+      <div class="cutoff-divider"></div>
+      <div class="cutoff-item"><div class="cutoff-time">3–5 Days</div><div class="cutoff-label">Nationwide Delivery</div></div>
+    </div>
+  </div>
+</div>
 
 <!-- HOW IT WORKS -->
 <section id="how">
@@ -270,36 +279,11 @@ footer{background:var(--navy);padding:64px 5% 32px;}
       <p class="section-sub">We handle every step of fulfillment so you can focus on growing your brand. Simple onboarding, seamless execution.</p>
     </div>
     <div class="steps">
-      <div class="step reveal reveal-delay-1">
-        <div class="step-num">1</div>
-        <div class="step-icon">📥</div>
-        <h3>Receive</h3>
-        <p>Ship your inventory to our Austin facility. We receive, inspect, and log every item with precision.</p>
-      </div>
-      <div class="step reveal reveal-delay-2">
-        <div class="step-num">2</div>
-        <div class="step-icon">🏗️</div>
-        <h3>Store</h3>
-        <p>Products are organized in our climate-controlled warehouse for instant retrieval and FEFO rotation.</p>
-      </div>
-      <div class="step reveal reveal-delay-3">
-        <div class="step-num">3</div>
-        <div class="step-icon">🎯</div>
-        <h3>Pick & Pack</h3>
-        <p>Orders picked with precision, packed with care — including custom inserts and branded packaging.</p>
-      </div>
-      <div class="step reveal reveal-delay-4">
-        <div class="step-num">4</div>
-        <div class="step-icon">🚚</div>
-        <h3>Ship</h3>
-        <p>We negotiate the best carrier rates and ship fast, reaching most of the U.S. in under 2 days.</p>
-      </div>
-      <div class="step reveal reveal-delay-4">
-        <div class="step-num">5</div>
-        <div class="step-icon">📊</div>
-        <h3>Track</h3>
-        <p>Real-time visibility into inventory, orders, and shipments through your dedicated dashboard.</p>
-      </div>
+      <div class="step reveal reveal-delay-1"><div class="step-num">1</div><div class="step-icon">📥</div><h3>Receive</h3><p>Ship your inventory to our Austin facility. We receive, inspect, and log every item.</p></div>
+      <div class="step reveal reveal-delay-2"><div class="step-num">2</div><div class="step-icon">🏗️</div><h3>Store</h3><p>Products are organized in our warehouse for instant retrieval and efficient rotation.</p></div>
+      <div class="step reveal reveal-delay-3"><div class="step-num">3</div><div class="step-icon">🎯</div><h3>Pick & Pack</h3><p>Orders picked with precision, packed with care — including custom inserts and branded packaging.</p></div>
+      <div class="step reveal reveal-delay-4"><div class="step-num">4</div><div class="step-icon">🚚</div><h3>Ship Same Day</h3><p>Orders placed before 4 PM CST ship out the same day, reaching most of the U.S. in 3–5 days.</p></div>
+      <div class="step reveal reveal-delay-4"><div class="step-num">5</div><div class="step-icon">📊</div><h3>Track</h3><p>Real-time visibility into inventory, orders, and shipments through your dedicated client dashboard.</p></div>
     </div>
   </div>
 </section>
@@ -316,62 +300,38 @@ footer{background:var(--navy);padding:64px 5% 32px;}
       <div class="service-card reveal reveal-delay-1">
         <div class="service-icon">📦</div>
         <h3>DTC Fulfillment</h3>
-        <p>Direct-to-consumer order fulfillment with fast shipping, custom packaging, and real-time tracking at scale.</p>
-        <div class="service-tags">
-          <span class="service-tag">Same-day Processing</span>
-          <span class="service-tag">Custom Packaging</span>
-          <span class="service-tag">Auto Order Sync</span>
-        </div>
+        <p>Direct-to-consumer order fulfillment with same-day processing, custom packaging, and real-time tracking.</p>
+        <div class="service-tags"><span class="service-tag">Same-Day Processing</span><span class="service-tag">Custom Packaging</span><span class="service-tag">Branded Inserts</span></div>
       </div>
       <div class="service-card reveal reveal-delay-2">
         <div class="service-icon">🏬</div>
         <h3>B2B & Wholesale</h3>
-        <p>Bulk order fulfillment with retail-compliant packaging, EDI integration, and routing guide adherence.</p>
-        <div class="service-tags">
-          <span class="service-tag">Retail Palletization</span>
-          <span class="service-tag">EDI Integration</span>
-          <span class="service-tag">Compliance Labels</span>
-        </div>
+        <p>Bulk order fulfillment with retail-compliant packaging and routing guide adherence.</p>
+        <div class="service-tags"><span class="service-tag">Retail Palletization</span><span class="service-tag">Compliance Labels</span><span class="service-tag">Bulk Shipping</span></div>
       </div>
       <div class="service-card reveal reveal-delay-3">
         <div class="service-icon">📋</div>
         <h3>Inventory Management</h3>
-        <p>24/7 cloud-based inventory platform with real-time tracking, reorder alerts, and demand forecasting.</p>
-        <div class="service-tags">
-          <span class="service-tag">Live Stock Levels</span>
-          <span class="service-tag">Lot Tracking</span>
-          <span class="service-tag">Demand Forecast</span>
-        </div>
+        <p>Cloud-based inventory platform with real-time tracking, reorder alerts, and demand forecasting through your client dashboard.</p>
+        <div class="service-tags"><span class="service-tag">Live Stock Levels</span><span class="service-tag">Reorder Alerts</span><span class="service-tag">Demand Forecast</span></div>
       </div>
       <div class="service-card reveal reveal-delay-1">
         <div class="service-icon">🔄</div>
         <h3>Returns Processing</h3>
-        <p>Hassle-free returns management with quality inspection, restocking workflows, and return analytics.</p>
-        <div class="service-tags">
-          <span class="service-tag">Quality Inspection</span>
-          <span class="service-tag">Restock Workflows</span>
-          <span class="service-tag">Return Analytics</span>
-        </div>
+        <p>Hassle-free returns management with quality inspection and restocking workflows.</p>
+        <div class="service-tags"><span class="service-tag">Quality Inspection</span><span class="service-tag">Restock Workflows</span><span class="service-tag">Return Tracking</span></div>
       </div>
       <div class="service-card reveal reveal-delay-2">
         <div class="service-icon">🎁</div>
         <h3>Subscription Boxes</h3>
         <p>Kitting, assembly, and subscription fulfillment with flexible configurations and recurring scheduling.</p>
-        <div class="service-tags">
-          <span class="service-tag">Custom Kitting</span>
-          <span class="service-tag">Flexible Cadences</span>
-          <span class="service-tag">Gift Messaging</span>
-        </div>
+        <div class="service-tags"><span class="service-tag">Custom Kitting</span><span class="service-tag">Flexible Cadences</span><span class="service-tag">Gift Messaging</span></div>
       </div>
       <div class="service-card reveal reveal-delay-3">
         <div class="service-icon">🌎</div>
-        <h3>Freight & Drayage</h3>
+        <h3>Freight & Receiving</h3>
         <p>Inbound container receiving, drayage coordination, and freight management from port to warehouse shelf.</p>
-        <div class="service-tags">
-          <span class="service-tag">Container Unloading</span>
-          <span class="service-tag">Cross-Dock</span>
-          <span class="service-tag">Freight Brokerage</span>
-        </div>
+        <div class="service-tags"><span class="service-tag">Container Unloading</span><span class="service-tag">Cross-Dock</span><span class="service-tag">Freight Coordination</span></div>
       </div>
     </div>
   </div>
@@ -382,90 +342,18 @@ footer{background:var(--navy);padding:64px 5% 32px;}
   <div class="section-inner">
     <div class="section-header reveal">
       <div class="section-label" style="color:var(--sky)">Industries We Serve</div>
-      <h2 class="section-title">Specialized Fulfillment for Every Category</h2>
-      <p class="section-sub">From supplements to sneakers, we have the expertise and certifications to handle your products right.</p>
+      <h2 class="section-title">Fulfillment for Every Category</h2>
+      <p class="section-sub">From supplements to skincare, we have the infrastructure and expertise to handle your products right.</p>
     </div>
     <div class="industries-grid">
-      <div class="industry-card reveal reveal-delay-1">
-        <div class="industry-icon">💊</div>
-        <h3>Health & Wellness</h3>
-        <div class="industry-tags">
-          <span class="industry-tag">GMP Certified</span>
-          <span class="industry-tag">Lot Tracking</span>
-          <span class="industry-tag">Temp Controlled</span>
-          <span class="industry-tag">FEFO Rotation</span>
-        </div>
-      </div>
-      <div class="industry-card reveal reveal-delay-2">
-        <div class="industry-icon">💄</div>
-        <h3>Beauty & Personal Care</h3>
-        <div class="industry-tags">
-          <span class="industry-tag">Custom Packaging</span>
-          <span class="industry-tag">Fragile Handling</span>
-          <span class="industry-tag">Climate Controlled</span>
-          <span class="industry-tag">Gift-Ready Options</span>
-        </div>
-      </div>
-      <div class="industry-card reveal reveal-delay-3">
-        <div class="industry-icon">🍽️</div>
-        <h3>Food & Beverage</h3>
-        <div class="industry-tags">
-          <span class="industry-tag">GFSI Certified</span>
-          <span class="industry-tag">SQF Compliant</span>
-          <span class="industry-tag">Expiration Tracking</span>
-          <span class="industry-tag">FDA Ready</span>
-        </div>
-      </div>
-      <div class="industry-card reveal reveal-delay-4">
-        <div class="industry-icon">👕</div>
-        <h3>Apparel & Accessories</h3>
-        <div class="industry-tags">
-          <span class="industry-tag">Hanging Storage</span>
-          <span class="industry-tag">SKU Management</span>
-          <span class="industry-tag">Poly Bagging</span>
-          <span class="industry-tag">Branded Inserts</span>
-        </div>
-      </div>
-      <div class="industry-card reveal reveal-delay-1">
-        <div class="industry-icon">🐾</div>
-        <h3>Pets</h3>
-        <div class="industry-tags">
-          <span class="industry-tag">Subscription Ready</span>
-          <span class="industry-tag">Heavy Item Handling</span>
-          <span class="industry-tag">GMP for Consumables</span>
-          <span class="industry-tag">Custom Packaging</span>
-        </div>
-      </div>
-      <div class="industry-card reveal reveal-delay-2">
-        <div class="industry-icon">🏠</div>
-        <h3>Home Goods</h3>
-        <div class="industry-tags">
-          <span class="industry-tag">Fragile Packaging</span>
-          <span class="industry-tag">Oversize Handling</span>
-          <span class="industry-tag">Assembly Kitting</span>
-          <span class="industry-tag">Freight Options</span>
-        </div>
-      </div>
-      <div class="industry-card reveal reveal-delay-3">
-        <div class="industry-icon">⚽</div>
-        <h3>Sports, Toys & Games</h3>
-        <div class="industry-tags">
-          <span class="industry-tag">Peak Season Surge</span>
-          <span class="industry-tag">Bundling & Kitting</span>
-          <span class="industry-tag">Retail Compliant</span>
-          <span class="industry-tag">Gift Wrapping</span>
-        </div>
-      </div>
-      <div class="industry-card reveal reveal-delay-4">
-        <div class="industry-icon">💻</div>
-        <h3>Electronics & Tech</h3>
-        <div class="industry-tags">
-          <span class="industry-tag">ESD Safe Handling</span>
-          <span class="industry-tag">Serial Tracking</span>
-          <span class="industry-tag">Secure Storage</span>
-          <span class="industry-tag">Retail Packaging</span>
-        </div>
-      </div>
+      <div class="industry-card reveal reveal-delay-1"><div class="industry-icon">💊</div><h3>Health & Wellness</h3><div class="industry-tags"><span class="industry-tag">Supplements & Vitamins</span><span class="industry-tag">FEFO Rotation</span><span class="industry-tag">Expiration Tracking</span><span class="industry-tag">Secure Storage</span></div></div>
+      <div class="industry-card reveal reveal-delay-2"><div class="industry-icon">💄</div><h3>Beauty & Personal Care</h3><div class="industry-tags"><span class="industry-tag">Custom Packaging</span><span class="industry-tag">Fragile Handling</span><span class="industry-tag">Climate Controlled</span><span class="industry-tag">Gift-Ready Options</span></div></div>
+      <div class="industry-card reveal reveal-delay-3"><div class="industry-icon">🍽️</div><h3>Food & Beverage</h3><div class="industry-tags"><span class="industry-tag">Expiration Tracking</span><span class="industry-tag">FEFO Rotation</span><span class="industry-tag">Secure Storage</span><span class="industry-tag">Same-Day Shipping</span></div></div>
+      <div class="industry-card reveal reveal-delay-4"><div class="industry-icon">👕</div><h3>Apparel & Accessories</h3><div class="industry-tags"><span class="industry-tag">SKU Management</span><span class="industry-tag">Poly Bagging</span><span class="industry-tag">Branded Inserts</span><span class="industry-tag">Hanging Storage</span></div></div>
+      <div class="industry-card reveal reveal-delay-1"><div class="industry-icon">🐾</div><h3>Pets</h3><div class="industry-tags"><span class="industry-tag">Subscription Ready</span><span class="industry-tag">Heavy Item Handling</span><span class="industry-tag">Custom Packaging</span><span class="industry-tag">Same-Day Shipping</span></div></div>
+      <div class="industry-card reveal reveal-delay-2"><div class="industry-icon">🏠</div><h3>Home Goods</h3><div class="industry-tags"><span class="industry-tag">Fragile Packaging</span><span class="industry-tag">Oversize Handling</span><span class="industry-tag">Assembly Kitting</span><span class="industry-tag">Freight Options</span></div></div>
+      <div class="industry-card reveal reveal-delay-3"><div class="industry-icon">⚽</div><h3>Sports, Toys & Games</h3><div class="industry-tags"><span class="industry-tag">Peak Season Surge</span><span class="industry-tag">Bundling & Kitting</span><span class="industry-tag">Retail Compliant</span><span class="industry-tag">Gift Wrapping</span></div></div>
+      <div class="industry-card reveal reveal-delay-4"><div class="industry-icon">📚</div><h3>Books & Media</h3><div class="industry-tags"><span class="industry-tag">Multi-Unit Kitting</span><span class="industry-tag">Poly Bagging</span><span class="industry-tag">Branded Inserts</span><span class="industry-tag">Same-Day Shipping</span></div></div>
     </div>
   </div>
 </section>
@@ -474,41 +362,31 @@ footer{background:var(--navy);padding:64px 5% 32px;}
 <section id="testimonials">
   <div class="section-inner">
     <div class="section-header reveal">
-      <div class="section-label">Social Proof</div>
-      <h2 class="section-title">Trusted by Brands That Refuse to Settle</h2>
+      <div class="section-label">Client Reviews</div>
+      <h2 class="section-title">What Our Clients Say</h2>
     </div>
     <div class="testimonials-grid">
       <div class="testimonial-card reveal reveal-delay-1">
         <div class="stars">★★★★★</div>
-        <p class="testimonial-quote">"We were shipping 200 orders a day from our garage. Lakeside took over and within a month we scaled to 2,000 per day without a single hiccup. The visibility into our inventory is unreal."</p>
+        <p class="testimonial-quote">"Very convenient plug and play setup. Have had no issues so far! Shipping and handling is very streamlined and they are very helpful with any questions or concerns I have."</p>
         <div class="testimonial-author">
-          <div class="author-avatar">JR</div>
-          <div>
-            <div class="author-name">Jake Reeves</div>
-            <div class="author-title">Founder, PawBox</div>
-          </div>
+          <div class="author-avatar" style="background:var(--navy2);">★</div>
+          <div><div class="author-name">Verified Client</div><div class="author-title">Supplement Brand</div></div>
         </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-2">
         <div class="stars">★★★★★</div>
-        <p class="testimonial-quote">"Our Target launch was massive, and Lakeside didn't flinch. They handled the retail compliance, palletization, and routing flawlessly. Zero chargebacks on our first PO."</p>
+        <p class="testimonial-quote">"Working with Lakeside has been the easiest fulfillment company I have ever worked with. Very competitive rates, never had a single unit go out a day late — everything ships same day. They handle our logistics, help us forecast inventory, and anything that comes up they get it handled fast."</p>
         <div class="testimonial-author">
-          <div class="author-avatar">SM</div>
-          <div>
-            <div class="author-name">Sarah Mitchell</div>
-            <div class="author-title">VP Operations, Glow Co.</div>
-          </div>
+          <div class="author-avatar" style="background:var(--navy2);">★</div>
+          <div><div class="author-name">Verified Client</div><div class="author-title">Supplement Brand</div></div>
         </div>
       </div>
-      <div class="testimonial-card reveal reveal-delay-3">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-quote">"Switching to Lakeside cut our shipping costs by 35% and our average delivery time dropped to 1.8 days. The ROI was immediate and the team is incredibly responsive."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">DL</div>
-          <div>
-            <div class="author-name">David Liu</div>
-            <div class="author-title">CEO, FreshFit Supplements</div>
-          </div>
+      <div class="testimonial-card placeholder reveal reveal-delay-3">
+        <div class="review-placeholder">
+          <div style="font-size:32px;margin-bottom:16px">⭐</div>
+          <p>Working with Lakeside? We'd love to feature your experience here.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSenGO7fmb72tJkM8x6o81GaAl1Ic8IctPUCqahVb4ky-nECEw/viewform" target="_blank" class="review-btn">Leave a Review</a>
         </div>
       </div>
     </div>
@@ -524,6 +402,7 @@ footer{background:var(--navy);padding:64px 5% 32px;}
         <h2>Get Your Free Fulfillment Quote</h2>
         <p>Tell us about your business and we'll put together a custom pricing plan within 24 hours.</p>
         <div class="quote-promise">
+          <div class="promise-item"><span class="promise-check">✓</span>Same-day fulfillment on all orders</div>
           <div class="promise-item"><span class="promise-check">✓</span>Custom pricing based on your volume</div>
           <div class="promise-item"><span class="promise-check">✓</span>Response within 24 hours</div>
           <div class="promise-item"><span class="promise-check">✓</span>No commitment required</div>
@@ -535,46 +414,19 @@ footer{background:var(--navy);padding:64px 5% 32px;}
           <input type="hidden" name="form-name" value="quote-request">
           <p style="display:none"><input name="bot-field"></p>
           <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label">First Name</label>
-              <input type="text" name="first-name" class="form-input" placeholder="Jake" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Last Name</label>
-              <input type="text" name="last-name" class="form-input" placeholder="Reeves">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Business Email</label>
-              <input type="email" name="business-email" class="form-input" placeholder="jake@yourbrand.com" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Company Name</label>
-              <input type="text" name="company-name" class="form-input" placeholder="PawBox Inc.">
-            </div>
+            <div class="form-group"><label class="form-label">First Name</label><input type="text" name="first-name" class="form-input" placeholder="Jake" required></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input type="text" name="last-name" class="form-input" placeholder="Reeves"></div>
+            <div class="form-group"><label class="form-label">Business Email</label><input type="email" name="business-email" class="form-input" placeholder="jake@yourbrand.com" required></div>
+            <div class="form-group"><label class="form-label">Company Name</label><input type="text" name="company-name" class="form-input" placeholder="Your Brand"></div>
             <div class="form-group">
               <label class="form-label">Monthly Orders</label>
-              <select name="monthly-orders" class="form-select">
-                <option value="">Select range...</option>
-                <option>0 – 500</option>
-                <option>500 – 2,000</option>
-                <option>2,000 – 10,000</option>
-                <option>10,000+</option>
-              </select>
+              <select name="monthly-orders" class="form-select"><option value="">Select range...</option><option>0 – 500</option><option>500 – 2,000</option><option>2,000 – 10,000</option><option>10,000+</option></select>
             </div>
             <div class="form-group">
               <label class="form-label">Fulfillment Type</label>
-              <select name="fulfillment-type" class="form-select">
-                <option value="">Select type...</option>
-                <option>DTC Fulfillment</option>
-                <option>B2B / Wholesale</option>
-                <option>Subscription Boxes</option>
-                <option>All of the Above</option>
-              </select>
+              <select name="fulfillment-type" class="form-select"><option value="">Select type...</option><option>DTC Fulfillment</option><option>B2B / Wholesale</option><option>Subscription Boxes</option><option>All of the Above</option></select>
             </div>
-            <div class="form-group full">
-              <label class="form-label">What do you sell?</label>
-              <input type="text" name="what-you-sell" class="form-input" placeholder="Health supplements, apparel, pet products...">
-            </div>
+            <div class="form-group full"><label class="form-label">What do you sell?</label><input type="text" name="what-you-sell" class="form-input" placeholder="Health supplements, apparel, pet products..."></div>
           </div>
           <button type="submit" class="form-submit" id="submit-btn">Get My Free Quote →</button>
           <p class="form-note">No spam. No commitment. Just a custom quote within 24 hours.</p>
@@ -598,7 +450,7 @@ footer{background:var(--navy);padding:64px 5% 32px;}
           <div class="nav-logo-mark"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
           Lakeside Fulfillment
         </a>
-        <p>Austin, Texas based 3PL fulfillment center helping ecommerce brands receive, store, pick, pack, and ship thousands of orders daily.</p>
+        <p>Austin, Texas based 3PL fulfillment center specializing in same-day DTC fulfillment. Orders in by 4 PM CST ship today.</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
@@ -619,27 +471,24 @@ footer{background:var(--navy);padding:64px 5% 32px;}
       <div class="footer-col">
         <h4>Company</h4>
         <a href="#">About Us</a>
-        <a href="#">Careers</a>
-        <a href="#">Blog</a>
-        <a href="#quote">Contact</a>
+        <a href="#quote">Get a Quote</a>
+        <a href="/cdn-cgi/l/email-protection#a4c7cbcad0c5c7d0e4c8c5cfc1d7cdc0c1c2d1c8c2cdc8c8c9c1cad08ac7cbc9">Contact</a>
         <a href="#">Privacy Policy</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Lakeside Fulfillment. All rights reserved. · Austin, TX</span>
-      <span>(512) 555-0200 · contact@lakesidefulfillment.com</span>
+      <span>(737) 343-2348 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="14777b7a607577605478757f71677d7071726178727d787879717a603a777b79">[email&#160;protected]</a></span>
     </div>
   </div>
 </footer>
 
-<script>
-// Scroll reveal
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Form submit — posts to Netlify, shows success state without page reload
 async function submitForm(e) {
   e.preventDefault();
   const form = document.getElementById('quote-form');
@@ -648,11 +497,7 @@ async function submitForm(e) {
   btn.textContent = 'Sending...';
   try {
     const data = new FormData(form);
-    await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(data).toString()
-    });
+    await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() });
     form.style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
   } catch(err) {
@@ -662,26 +507,10 @@ async function submitForm(e) {
   }
 }
 
-// Nav active state on scroll
 const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   sections.forEach(s => {
     const offset = s.offsetTop - 100;
     const height = s.offsetHeight;
-    const id = s.getAttribute('id');
-    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
-    if(link) {
-      if(scrollY >= offset && scrollY < offset + height) {
-        link.style.color = 'var(--navy)';
-        link.style.fontWeight = '600';
-      } else {
-        link.style.color = '';
-        link.style.fontWeight = '';
-      }
-    }
-  });
-});
-</script>
-</body>
-</html>
+    cons
