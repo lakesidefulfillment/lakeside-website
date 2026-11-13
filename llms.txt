@@ -41,5 +41,3 @@ Lakeside receives, stores, picks, packs and ships orders for direct-to-consumer 
 - [Supplement fulfillment](https://lakesidefulfillment.com/supplement-fulfillment/): same-day DTC shipping, expiration-date rotation, Amazon FBA prep, subscriptions and wholesale for supplement brands
 - [Kitting, assembly and labeling](https://lakesidefulfillment.com/kitting-assembly/): bundles, subscription boxes, product labeling, inserts, Amazon FBA prep and retail prep
 - [Get a quote](https://lakesidefulfillment.com/quote/): three questions; custom pricing within 24 hours, no commitment
-
-<!-- TODO(Nick): add business hours, holiday shipping days and the Google Business Profile link once confirmed; add the street address under Key facts only if it is public on Maps. -->
