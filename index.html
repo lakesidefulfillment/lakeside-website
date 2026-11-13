@@ -1,18 +1,36 @@
 <!DOCTYPE html>
+<!--
+  CARRIER CUTOFF HOOKS (confirmed by KD 11-13: USPS 2 PM CT, UPS 6 PM CT, Monday to Friday, no weekend shipping):
+  data-cutoff="usps"      every element that states the USPS same-day cutoff (2 PM CT).
+  data-cutoff="ups"       every element that states the UPS same-day cutoff (6 PM CT).
+  data-cutoff="usps ups"  elements that state both (meta tags, the masthead, the map label).
+  The script constants CUTOFFS = [{carrier:'USPS', h:14}, {carrier:'UPS', h:18}] and SHIP_DAYS = [1..5] drive
+  every countdown, the day-arc markers, ticks, drop lines and labels, the hero clock and the dashboard chart.
+  Change the copy under the hooks and the constants together. No pickup clock times are stated anywhere:
+  which cutoff applies depends on the carrier an order ships with.
+-->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lakeside Fulfillment — Same-Day 3PL · Austin, TX</title>
-<meta name="description" content="Lakeside Fulfillment is a same-day 3PL in Austin, TX for DTC brands: supplements, research peptides, apparel and more. Orders in by 2 PM CST ship today, with 3-5 day U.S. delivery.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lakeside Fulfillment — Same-day 3PL in Austin, Texas</title>
+<meta name="description" data-cutoff="usps ups" content="DTC-specialized 3PL in Austin, Texas. Same-day shipping Mon–Fri: USPS cutoff 2 PM CT, UPS cutoff 6 PM CT. 3–5 day U.S. delivery. Custom quote in 24 hours.">
 <link rel="canonical" href="https://lakesidefulfillment.com/">
+<meta name="theme-color" content="#f4f2ec">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/lakeside-wave-64.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/lakeside-wave-192.png">
+<link rel="apple-touch-icon" href="assets/lakeside-wave-192.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lakeside Fulfillment">
-<meta property="og:title" content="Lakeside Fulfillment — Same-Day 3PL · Austin, TX">
-<meta property="og:description" content="Lakeside Fulfillment is a same-day 3PL in Austin, TX for DTC brands: supplements, research peptides, apparel and more. Orders in by 2 PM CST ship today, with 3-5 day U.S. delivery.">
+<meta property="og:title" content="Lakeside Fulfillment — Same-day 3PL in Austin, Texas">
+<meta property="og:description" data-cutoff="usps ups" content="Same-day shipping from Austin, Monday to Friday. USPS cutoff 2 PM CT, UPS cutoff 6 PM CT, and 3–5 day delivery across the U.S.">
 <meta property="og:url" content="https://lakesidefulfillment.com/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "Lakeside Fulfillment", "url": "https://lakesidefulfillment.com/", "telephone": "+1-737-343-2348", "description": "Lakeside Fulfillment is a same-day 3PL in Austin, TX for DTC brands: supplements, research peptides, apparel and more. Orders in by 2 PM CST ship today, with 3-5 day U.S. delivery.", "address": {"@type": "PostalAddress", "streetAddress": "3100 Scott Dr, STE 201", "addressLocality": "Austin", "addressRegion": "TX", "postalCode": "78734", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsAbout": ["Third-party logistics", "E-commerce order fulfillment", "Peptide fulfillment", "Supplement fulfillment", "Kitting and assembly", "Amazon FBA prep"]}</script>
-<!-- Google tag (gtag.js) -->
+<meta property="og:image" content="https://lakesidefulfillment.com/assets/lakeside-wave-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lakeside Fulfillment — Same-day 3PL in Austin, Texas">
+<meta name="twitter:description" data-cutoff="usps ups" content="Same-day shipping from Austin, Monday to Friday. USPS cutoff 2 PM CT, UPS cutoff 6 PM CT, and 3–5 day delivery across the U.S.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "Lakeside Fulfillment", "url": "https://lakesidefulfillment.com/", "telephone": "+1-737-343-2348", "email": "inboundleads@lakesidefulfillment.com", "description": "DTC-specialized 3PL in Austin, Texas. Same-day shipping Mon–Fri: USPS cutoff 2 PM CT, UPS cutoff 6 PM CT. 3–5 day U.S. delivery. Custom quote in 24 hours.", "address": {"@type": "PostalAddress", "streetAddress": "3100 Scott Dr, STE 201", "addressLocality": "Austin", "addressRegion": "TX", "postalCode": "78734", "addressCountry": "US"}, "areaServed": {"@type": "Country", "name": "United States"}, "knowsAbout": ["Third-party logistics", "E-commerce order fulfillment", "Supplement fulfillment", "Kitting and assembly", "Amazon FBA prep"]}</script>
+<!-- Google tag (gtag.js): GA4 G-BYE6PHLJ33 (Nick, 11-12), on every page -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYE6PHLJ33"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -20,619 +38,884 @@
   gtag('js', new Date());
   gtag('config', 'G-BYE6PHLJ33');
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --navy: #0a1628;
-  --navy2: #0f2040;
-  --blue: #1a4fd8;
-  --blue2: #2563eb;
-  --sky: #38bdf8;
-  --text: #0f172a;
-  --muted: #64748b;
-  --light: #f8fafc;
-  --border: #e2e8f0;
-  --white: #ffffff;
-  --green: #10b981;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px;}
-.nav-logo{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:10px;}
-.nav-logo-mark{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;}
-.nav-logo-mark svg{width:18px;height:18px;color:white;}
-.nav-links{display:flex;align-items:center;gap:32px;}
-.nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s;}
-.nav-links a:hover{color:var(--navy);}
-.nav-cta{background:var(--blue);color:white!important;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;}
-.nav-cta:hover{background:var(--blue2)!important;transform:translateY(-1px);}
-.hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;padding:100px 5% 80px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,79,216,.4) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(56,189,248,.15) 0%,transparent 60%);pointer-events:none;}
-.hero-grid{position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
-.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,79,216,.2);border:1px solid rgba(26,79,216,.4);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;color:var(--sky);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px;}
-.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--sky);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
-.hero h1{font-family:'Sora',sans-serif;font-size:clamp(38px,5vw,62px);font-weight:800;color:white;line-height:1.1;margin-bottom:24px;letter-spacing:-.02em;}
-.hero h1 em{color:var(--sky);font-style:normal;}
-.hero-sub{font-size:17px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:40px;max-width:480px;}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
-.btn-primary{background:var(--blue);color:white;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;}
-.btn-primary:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,79,216,.4);}
-.btn-ghost{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.2);padding:14px 28px;border-radius:10px;font-size:15px;font-weight:500;text-decoration:none;transition:all .2s;}
-.btn-ghost:hover{background:rgba(255,255,255,.12);}
-.hero-stats{display:flex;gap:40px;margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.1);}
-.hero-stat-num{font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:white;}
-.hero-stat-label{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px;}
-.hero-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:28px;backdrop-filter:blur(10px);}
-.hero-card-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;}
-.hero-metric{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);}
-.hero-metric:last-child{border-bottom:none;}
-.hero-metric-label{font-size:13px;color:rgba(255,255,255,.6);}
-.hero-metric-val{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:white;}
-.hero-metric-val.green{color:#34d399;}
-.hero-metric-val.sky{color:var(--sky);}
-.hero-metric-val.yellow{color:var(--sky);}
-.hero-card-footer{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.4);}
-.live-dot{width:6px;height:6px;border-radius:50%;background:#34d399;animation:pulse 2s infinite;flex-shrink:0;}
-.sameday-banner{background:linear-gradient(135deg,#0f2040 0%,#1a4fd8 100%);padding:80px 5%;}
-.sameday-inner{max-width:1200px;margin:0 auto;}
-.sameday-headline{font-family:'Sora',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;color:white;text-align:center;margin-bottom:16px;letter-spacing:-.02em;}
-.sameday-headline em{color:var(--sky);font-style:normal;}
-.sameday-sub{font-size:17px;color:rgba(255,255,255,.65);text-align:center;max-width:600px;margin:0 auto 56px;}
-.sameday-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-.sameday-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:28px 24px;text-align:center;transition:all .2s;}
-.sameday-card:hover{background:rgba(255,255,255,.1);transform:translateY(-3px);}
-.sameday-icon{font-size:36px;margin-bottom:16px;}
-.sameday-card h3{font-family:'Sora',sans-serif;font-size:16px;font-weight:700;color:white;margin-bottom:8px;}
-.sameday-card p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
-.sameday-cutoff{background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.25);border-radius:14px;padding:28px 32px;margin-top:32px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;}
-.cutoff-item{text-align:center;}
-.cutoff-time{font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:var(--sky);}
-.cutoff-label{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px;}
-.cutoff-divider{width:1px;height:48px;background:rgba(255,255,255,.15);}
-section{padding:100px 5%;}
-.section-inner{max-width:1200px;margin:0 auto;}
-.section-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;}
-.section-title{font-family:'Sora',sans-serif;font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--navy);line-height:1.15;letter-spacing:-.02em;margin-bottom:16px;}
-.section-sub{font-size:17px;color:var(--muted);line-height:1.7;max-width:560px;}
-.section-header{margin-bottom:64px;}
-#how{background:var(--light);}
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;}
-.steps::before{content:'';position:absolute;top:36px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--blue),var(--sky));z-index:0;}
-.step{text-align:center;position:relative;z-index:1;padding:0 12px;}
-.step-num{width:72px;height:72px;border-radius:50%;background:white;border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:var(--blue);box-shadow:0 4px 20px rgba(26,79,216,.15);position:relative;}
-.step-icon{font-size:24px;margin-bottom:12px;}
-.step h3{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;}
-.step p{font-size:13px;color:var(--muted);line-height:1.6;}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.service-card{background:white;border:1px solid var(--border);border-radius:16px;padding:32px;transition:all .25s;}
-.service-card:hover{border-color:var(--blue);box-shadow:0 8px 32px rgba(26,79,216,.1);transform:translateY(-3px);}
-.service-icon{width:52px;height:52px;background:rgba(26,79,216,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;}
-.service-card h3{font-family:'Sora',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:10px;}
-.service-card p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:20px;}
-.service-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.service-tag{background:rgba(26,79,216,.06);color:var(--blue);font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;}
-#industries{background:var(--navy);color:white;}
-#industries .section-title{color:white;}
-#industries .section-sub{color:rgba(255,255,255,.6);}
-.industries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.industry-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px;transition:all .2s;}
-.industry-card:hover{background:rgba(255,255,255,.07);border-color:rgba(26,79,216,.5);}
-.industry-icon{font-size:28px;margin-bottom:14px;}
-.industry-card h3{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:white;margin-bottom:10px;}
-.industry-tags{display:flex;flex-direction:column;gap:6px;}
-.industry-tag{font-size:12px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:6px;}
-.industry-tag::before{content:'✓';color:#34d399;font-weight:700;font-size:11px;}
-#testimonials{background:var(--light);}
-.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.testimonial-card{background:white;border:1px solid var(--border);border-radius:16px;padding:32px;}
-.testimonial-card.placeholder{border:2px dashed var(--border);background:var(--light);}
-.stars{color:#f59e0b;font-size:14px;letter-spacing:2px;margin-bottom:16px;}
-.testimonial-quote{font-size:15px;color:var(--text);line-height:1.7;margin-bottom:24px;font-style:italic;}
-.testimonial-author{display:flex;align-items:center;gap:12px;}
-.author-avatar{width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;color:white;font-size:15px;flex-shrink:0;}
-.author-name{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--navy);}
-.author-title{font-size:12px;color:var(--muted);margin-top:2px;}
-.review-placeholder{text-align:center;padding:20px 0;}
-.review-placeholder p{font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.6;}
-.review-btn{display:inline-block;background:var(--blue);color:white;padding:11px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;}
-.review-btn:hover{background:var(--blue2);transform:translateY(-1px);}
-#quote{background:white;}
-.quote-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
-.quote-left h2{font-family:'Sora',sans-serif;font-size:clamp(28px,3vw,40px);font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:16px;letter-spacing:-.02em;}
-.quote-left p{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:32px;}
-.quote-promise{display:flex;flex-direction:column;gap:14px;}
-.promise-item{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text);}
-.promise-check{width:24px;height:24px;background:rgba(16,185,129,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--green);font-size:12px;font-weight:700;flex-shrink:0;}
-.quote-form{background:var(--light);border:1px solid var(--border);border-radius:20px;padding:40px;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.form-group{display:flex;flex-direction:column;gap:6px;}
-.form-group.full{grid-column:1/-1;}
-.form-label{font-size:13px;font-weight:600;color:var(--navy);}
-.form-input{background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--text);outline:none;transition:border .2s;font-family:'DM Sans',sans-serif;width:100%;}
-.form-input:focus{border-color:var(--blue);}
-.form-select{background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--text);outline:none;width:100%;font-family:'DM Sans',sans-serif;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%2364748b' stroke-width='2' d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
-.form-input::placeholder{color:#94a3b8;}
-.form-submit{width:100%;background:var(--blue);color:white;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;margin-top:8px;}
-.form-submit:hover{background:var(--blue2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,79,216,.3);}
-.form-submit:disabled{opacity:.7;cursor:not-allowed;transform:none;}
-.form-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px;}
-.form-success{display:none;text-align:center;padding:40px 20px;}
-.form-success h3{font-family:'Sora',sans-serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:12px;}
-.form-success p{font-size:15px;color:var(--muted);}
-.success-icon{font-size:48px;margin-bottom:16px;}
-/* --- multi-step quote flow (3 questions) --- */
-.qf-rail{height:3px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:10px;}
-.qf-rail-fill{height:100%;width:0;background:var(--blue);border-radius:3px;transition:width .3s ease;}
-.qf-meta{display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:26px;}
-.qf-step{display:none;}
-.qf-step.on{display:block;animation:qfIn .28s ease both;}
-@keyframes qfIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-.qf-q{font-family:'Sora',sans-serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1.25;letter-spacing:-.01em;margin-bottom:8px;}
-.qf-sub{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:22px;}
-.qf-choices{display:grid;grid-template-columns:1fr;gap:10px;}
-.qf-choices.two{grid-template-columns:1fr 1fr;}
-.qf-choice{display:flex;align-items:center;gap:12px;text-align:left;background:white;border:1px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--navy);transition:border .18s,box-shadow .18s,transform .18s;min-width:0;}
-.qf-choice:hover{border-color:var(--blue);box-shadow:0 4px 14px rgba(26,79,216,.1);transform:translateY(-1px);}
-.qf-choice[aria-pressed="true"]{border-color:var(--blue);background:rgba(26,79,216,.05);}
-.qf-ic{font-size:18px;flex:none;line-height:1;}
-.qf-lbl{display:flex;flex-direction:column;gap:2px;min-width:0;}
-.qf-lbl small{font-size:12px;font-weight:400;color:var(--muted);}
-.qf-back{background:none;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;padding:12px 0 0;}
-.qf-back:hover{color:var(--blue);}
-.qf-hint{font-size:12px;color:var(--muted);text-align:center;margin-top:18px;}
-.qf-opt{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-left:6px;}
-@media(max-width:600px){.qf-choices.two{grid-template-columns:1fr;}}
-footer{background:var(--navy);padding:64px 5% 32px;}
-.footer-inner{max-width:1200px;margin:0 auto;}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
-.footer-brand p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-top:16px;max-width:280px;}
-.footer-col h4{font-family:'Sora',sans-serif;font-size:13px;font-weight:700;color:white;margin-bottom:16px;letter-spacing:.05em;}
-.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:10px;transition:color .2s;}
-.footer-col a:hover{color:white;}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.35);}
-.reveal{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease;}
-.reveal.hidden{opacity:0;transform:translateY(30px);}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-delay-1{transition-delay:.1s;}
-.reveal-delay-2{transition-delay:.2s;}
-.reveal-delay-3{transition-delay:.3s;}
-.reveal-delay-4{transition-delay:.4s;}
-@media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;}
-  .hero-card{display:none;}
-  .steps{grid-template-columns:1fr 1fr;gap:24px;}
-  .steps::before{display:none;}
-  .services-grid,.industries-grid,.testimonials-grid{grid-template-columns:1fr 1fr;}
-  .quote-wrap{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr 1fr;}
-  .nav-links{display:none;}
-  .sameday-grid{grid-template-columns:1fr 1fr;}
-  .cutoff-divider{display:none;}
-}
-@media(max-width:600px){
-  .services-grid,.industries-grid,.testimonials-grid,.steps,.sameday-grid{grid-template-columns:1fr;}
-  .form-grid{grid-template-columns:1fr;}
-  .hero-stats{gap:24px;}
-}
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-mark"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
-      Lakeside Fulfillment
+<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <linearGradient id="wave-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f9dfd"/><stop offset="1" stop-color="#2fa8e0"/></linearGradient>
+    <symbol id="wave" viewBox="72 134 370 242"><path fill="url(#wave-g)" d="M80 357C128 342 166 296 200 246C242 186 288 143 350 142C385 142 408 155 414 170C416 176 410 180 402 183C372 195 348 225 347 262C346 300 372 322 410 326C425 328 434 330 432 338C426 352 398 362 368 360C325 357 296 330 295 288C294 262 300 240 310 218C292 230 272 255 250 285C215 333 180 368 128 368C108 368 92 364 80 357Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.6 4.4-2.2 1.4a11 11 0 0 0 5.8 5.8l1.4-2.2 4.4 1.6v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-receive" viewBox="0 0 32 32"><path d="M16 4v13M11 12l5 5 5-5M5 17v9h22v-9M5 21h6l1.5 2h7l1.5-2h6"/></symbol>
+    <symbol id="i-store" viewBox="0 0 32 32"><path d="M5 4v24M27 4v24M5 11h22M5 19h22M5 27h22M8 7h6v4H8zM17 14h7v5h-7zM9 22h5v5H9z"/></symbol>
+    <symbol id="i-pack" viewBox="0 0 32 32"><path d="M4 10 16 5l12 5-12 5zM4 10v12l12 6 12-6V10M16 15v13M10 7.5l12 5v4"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 32 32"><path d="M3 8h16v14H3zM19 12h5l4 5v5h-9M7 25.5a2.5 2.5 0 1 0 0-.01M22 25.5a2.5 2.5 0 1 0 0-.01"/></symbol>
+    <symbol id="i-track" viewBox="0 0 32 32"><path d="M4 5v22h24M8 20l5-6 4 4 7-9"/><circle cx="24" cy="9" r="1.6"/></symbol>
+    <symbol id="c-bottle" viewBox="0 0 24 24"><path d="M7.5 2.5h9v3.5h-9zM6.5 6h11v13.5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2zM6.5 10.5h11v6h-11"/></symbol>
+    <symbol id="c-beauty" viewBox="0 0 24 24"><path d="M10.5 2.5h3v4h-3zM9 6.5h6l1 3v10.5a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 8 20V9.5zM8 13h8"/></symbol>
+    <symbol id="c-food" viewBox="0 0 24 24"><path d="M6 6h12l-1.4 14a1.5 1.5 0 0 1-1.5 1.4H8.9a1.5 1.5 0 0 1-1.5-1.4zM6.4 10h11.2M9 2.5c0 1.2 1 1.3 1 2.5M13 2.5c0 1.2 1 1.3 1 2.5"/></symbol>
+    <symbol id="c-apparel" viewBox="0 0 24 24"><path d="M9 3.5 3.5 6.5l2 4 2.5-1.2V20.5h8V9.3l2.5 1.2 2-4L15 3.5a3 3 0 0 1-6 0z"/></symbol>
+    <symbol id="c-pet" viewBox="0 0 24 24"><path d="M8 16.5c0-2.4 1.8-4.5 4-4.5s4 2.1 4 4.5-1.8 4-4 4-4-1.6-4-4z"/><circle cx="5.5" cy="11" r="1.8"/><circle cx="9.2" cy="6.5" r="1.8"/><circle cx="14.8" cy="6.5" r="1.8"/><circle cx="18.5" cy="11" r="1.8"/></symbol>
+    <symbol id="c-other" viewBox="0 0 24 24"><path d="m12 3 8.5 4.5v9L12 21l-8.5-4.5v-9zM3.5 7.5 12 12l8.5-4.5M12 12v9"/></symbol>
+    <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9.5 4.5 12 6l2.5-1.5M9.5 19.5 12 18l2.5 1.5"/></symbol>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#top" aria-label="Lakeside Fulfillment — back to top">
+      <svg class="mark" width="44" height="29" aria-hidden="true"><use href="#wave"/></svg>
+      <span class="wm"><span class="wm-1">Lakeside</span><span class="wm-2">Fulfillment</span></span>
     </a>
-    <div class="nav-links">
-      <a href="#how">How It Works</a>
-      <a href="#services">Services</a>
-      <a href="#industries">Industries</a>
-      <a href="#testimonials">Reviews</a>
-      <a href="/pricing/">Pricing</a>
-      <a href="#quote">Contact</a>
-      <a href="#quote" class="nav-cta">Get a Quote</a>
-    </div>
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="#promise">Same-day</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#visibility">Dashboard</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="/pricing/">Pricing</a></li>
+      </ul>
+    </nav>
+    <a class="hdr-tel" href="tel:+17373432348"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>(737) 343-2348</a>
+    <a class="btn btn-ink btn-sm hdr-cta" href="/quote/">Get a quote<span class="chip" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span></a>
+    <a class="menu-btn" id="menu-btn" href="#site-map" aria-controls="sheet" aria-expanded="false"><span>Menu</span><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></a>
   </div>
-</nav>
+</header>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-grid"></div>
-  <div class="hero-inner">
-    <div>
-      <div class="hero-badge"><span class="hero-badge-dot"></span>Austin, TX — Same-Day 3PL Fulfillment</div>
-      <h1>Order In.<br><em>Shipped Out</em><br>Same Day.</h1>
-      <p class="hero-sub">Lakeside Fulfillment is a DTC-specialized 3PL in the heart of Texas. We receive, store, pick, pack, and ship your orders the same day — with 3–5 day delivery across the U.S.</p>
-      <div class="hero-actions">
-        <a href="#quote" class="btn-primary">Get Free Quote <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#how" class="btn-ghost">See How It Works</a>
-      </div>
-      <div class="hero-stats">
-        <div><div class="hero-stat-num">Same Day</div><div class="hero-stat-label">Order Processing</div></div>
-        <div><div class="hero-stat-num">3–5 Day</div><div class="hero-stat-label">U.S. Delivery</div></div>
-        <div><div class="hero-stat-num">Central</div><div class="hero-stat-label">U.S. Location</div></div>
-      </div>
-    </div>
-    <div>
-      <div class="hero-card">
-        <div class="hero-card-title">Today's Fulfillment Schedule</div>
-        <div class="hero-metric"><span class="hero-metric-label">Same-Day Cutoff</span><span class="hero-metric-val sky">2:00 PM CST</span></div>
-        <div class="hero-metric"><span class="hero-metric-label">Postal Truck Pickup</span><span class="hero-metric-val sky">2:00 PM CST</span></div>
-        <div class="hero-metric"><span class="hero-metric-label">U.S. Delivery Window</span><span class="hero-metric-val green">3–5 Days</span></div>
-        <div class="hero-metric"><span class="hero-metric-label">Warehouse Location</span><span class="hero-metric-val">Austin, TX</span></div>
-        <div class="hero-metric"><span class="hero-metric-label">Specialization</span><span class="hero-metric-val green">DTC Brands</span></div>
-        <div class="hero-card-footer"><span class="live-dot"></span>Orders in by 2 PM CST ship today</div>
-      </div>
-    </div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+  <div class="sheet-top">
+    <a class="brand" href="#top" data-close><svg class="mark" width="44" height="29" aria-hidden="true"><use href="#wave"/></svg><span class="wm"><span class="wm-1">Lakeside</span><span class="wm-2">Fulfillment</span></span></a>
+    <button class="sheet-x" type="button" data-close aria-label="Close menu"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
   </div>
-</section>
-
-<!-- SAME DAY SECTION -->
-<div class="sameday-banner">
-  <div class="sameday-inner">
-    <div class="section-label" style="color:var(--sky);text-align:center;margin-bottom:12px;">Our #1 Priority</div>
-    <h2 class="sameday-headline"><em>Same-Day Fulfillment.</em> Every Day.</h2>
-    <p class="sameday-sub">Orders placed before 2 PM CST ship out the same day — no exceptions, no delays. From Austin, Texas to your customer's door in 3–5 days.</p>
-    <div class="sameday-grid">
-      <div class="sameday-card reveal reveal-delay-1">
-        <div class="sameday-icon">⚡</div>
-        <h3>Same-Day Processing</h3>
-        <p>Every order placed before 2 PM CST is picked, packed, and out the door the same day.</p>
-      </div>
-      <div class="sameday-card reveal reveal-delay-2">
-        <div class="sameday-icon">📍</div>
-        <h3>Central U.S. Location</h3>
-        <p>Austin, TX sits at the geographic heart of the country — giving you faster delivery times coast to coast.</p>
-      </div>
-      <div class="sameday-card reveal reveal-delay-3">
-        <div class="sameday-icon">🎯</div>
-        <h3>DTC Specialized</h3>
-        <p>We're built specifically for direct-to-consumer brands. Your customers get a premium unboxing experience every time.</p>
-      </div>
-      <div class="sameday-card reveal reveal-delay-4">
-        <div class="sameday-icon">🎁</div>
-        <h3>Custom Packaging</h3>
-        <p>Branded inserts, custom packaging, and personalized touches that make your brand stand out.</p>
-      </div>
+  <nav aria-label="Menu">
+  <ol class="sheet-nav">
+    <li style="--i:0"><a href="#promise" data-close><span>01</span>Same-day promise</a></li>
+    <li style="--i:1"><a href="#how" data-close><span>02</span>How it works</a></li>
+    <li style="--i:2"><a href="#services" data-close><span>03</span>Services</a></li>
+    <li style="--i:3"><a href="#industries" data-close><span>04</span>Industries</a></li>
+    <li style="--i:4"><a href="#visibility" data-close><span>05</span>Dashboard</a></li>
+    <li style="--i:5"><a href="#reviews" data-close><span>06</span>Reviews</a></li>
+    <li style="--i:6"><a href="#faq" data-close><span>07</span>FAQ</a></li>
+    <li style="--i:7"><a href="/pricing/" data-close><span>08</span>Pricing</a></li>
+  </ol>
+  </nav>
+  <div class="sheet-foot">
+    <a class="btn btn-ink btn-block" href="/quote/" data-close>Get a custom quote<span class="chip" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span></a>
+    <div class="sheet-contact">
+      <a href="tel:+17373432348"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>(737) 343-2348</a>
+      <a href="mailto:inboundleads@lakesidefulfillment.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>inboundleads@<wbr>lakesidefulfillment.com</span></a>
     </div>
-    <div class="sameday-cutoff reveal">
-      <div class="cutoff-item"><div class="cutoff-time">2:00 PM</div><div class="cutoff-label">Postal Truck Pickup · CST</div></div>
-      <div class="cutoff-divider"></div>
-      <div class="cutoff-item"><div class="cutoff-time">2:00 PM</div><div class="cutoff-label">Same-Day Fulfillment Cutoff · CST</div></div>
-      <div class="cutoff-divider"></div>
-      <div class="cutoff-item"><div class="cutoff-time">3–5 Days</div><div class="cutoff-label">U.S. Delivery</div></div>
-    </div>
+    <p class="mono-s">Same-day 3PL · Austin, Texas</p>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="section-inner">
-    <div class="section-header reveal">
-      <div class="section-label">The Process</div>
-      <h2 class="section-title">From Your Warehouse to Their Doorstep</h2>
-      <p class="section-sub">We handle every step of fulfillment so you can focus on growing your brand. Simple onboarding, seamless execution.</p>
+<main id="main">
+
+<!-- ============================================================ HERO -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="guides" aria-hidden="true"><div class="wrap"></div></div>
+  <div class="wrap">
+    <div class="masthead">
+      <span class="mh-a">Same-day 3PL fulfillment</span>
+      <span class="mh-b">Austin, Texas · Central Time</span>
+      <span class="mh-c" id="austin-now" data-cutoff="usps ups">Cutoffs · <span data-cutoff="usps">USPS 2&nbsp;PM</span> · <span data-cutoff="ups">UPS 6&nbsp;PM</span>&nbsp;CT · <span class="nowrap">Mon–Fri</span></span>
     </div>
-    <div class="steps">
-      <div class="step reveal reveal-delay-1"><div class="step-num">1</div><div class="step-icon">📥</div><h3>Receive</h3><p>Ship your inventory to our Austin facility. We receive, inspect, and log every item.</p></div>
-      <div class="step reveal reveal-delay-2"><div class="step-num">2</div><div class="step-icon">🏗️</div><h3>Store</h3><p>Products are organized in our warehouse for instant retrieval and efficient rotation.</p></div>
-      <div class="step reveal reveal-delay-3"><div class="step-num">3</div><div class="step-icon">🎯</div><h3>Pick & Pack</h3><p>Orders picked with precision, packed with care — including custom inserts and branded packaging.</p></div>
-      <div class="step reveal reveal-delay-4"><div class="step-num">4</div><div class="step-icon">🚚</div><h3>Ship Same Day</h3><p>Orders placed before 2 PM CST ship out the same day, reaching most of the U.S. in 3–5 days.</p></div>
-      <div class="step reveal reveal-delay-4"><div class="step-num">5</div><div class="step-icon">📊</div><h3>Track</h3><p>Real-time visibility into inventory, orders, and shipments through your dedicated client dashboard.</p></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 id="h1">
+          <span class="h1-kicker">A DTC-specialized 3PL in Austin, Texas</span><span class="sr">: </span>
+          <span class="h1-main"><span class="ln"><span>Same-day <br class="br-m">shipping,</span></span> <span class="ln"><span><em>every weekday.</em></span></span></span>
+        </h1>
+        <ul class="cuts" aria-label="Same-day shipping cutoffs, Central Time">
+          <li data-cutoff="usps"><span class="cuts-k"><i aria-hidden="true"></i>USPS cutoff</span><b>2 PM <small>CT</small></b></li>
+          <li data-cutoff="ups"><span class="cuts-k"><i aria-hidden="true"></i>UPS cutoff</span><b>6 PM <small>CT</small></b></li>
+          <li><span class="cuts-k">Ships</span><b>Mon–Fri</b></li>
+        </ul>
+        <p class="lede">We receive, store, pick, pack and ship your orders from the middle of the map. Make your carrier’s cutoff and the order leaves the same day, reaching doorsteps across the U.S. in <span class="nowrap">3–5 days</span>.</p>
+        <div class="cta-row">
+          <a class="btn btn-ink" href="/quote/">Get a custom quote<span class="chip" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span></a>
+          <a class="tlink" href="#promise"><span>How same-day shipping works</span></a>
+        </div>
+        <p class="cta-note">No commitment · Custom pricing based on your volume</p>
+      </div>
+      <figure class="hero-art" aria-labelledby="fig1" data-play>
+        <div class="art-stage" id="art-stage">
+          <svg class="ha" viewBox="30 18 612 462" width="660" height="490" role="img" aria-label="Illustration of one order's journey through the Lakeside warehouse: a pallet is received, cartons are shelved, the order is packed at a table, and it ships out the same day.">
+            <g class="lake"><path class="rip r1" d="M65.8 222.4C71.6 225.6 89.7 235.7 100.5 241.3C111.3 246.9 120 249.2 130.8 255.9C141.6 262.6 154.6 275.4 165.4 281.7C176.2 288 185 287.8 195.8 293.7C206.6 299.6 219.6 309.9 230.4 316.8C241.2 323.8 249.9 329.8 260.7 335.4C271.5 341 284.5 344.2 295.3 350.6C306.1 357 314.9 367.5 325.7 373.9C336.5 380.3 349.5 383.7 360.3 389.3C371.1 394.9 379.8 400.7 390.6 407.6C401.4 414.5 419.4 427 425.2 430.9"/><path class="rip r1" d="M608 324.5C603.7 327.8 590.7 339.1 582 344.2C573.3 349.3 564.7 351.2 556 355.2C547.3 359.2 537.9 363.3 530 368.4C522.1 373.5 516.3 380.3 508.4 385.6C500.5 390.9 491.1 395.9 482.4 400C473.7 404.1 465.1 405.4 456.4 410.3C447.7 415.2 434.7 426.1 430.4 429.3"/><path class="rip r2" d="M50.3 233.2C55.4 235.3 69.8 240 80.6 245.7C91.4 251.5 104.4 260.8 115.2 267.7C126 274.6 135.4 282 145.5 287.3C155.6 292.6 165.7 293.6 175.8 299.3C185.9 305.1 195.3 315.1 206.1 321.8C216.9 328.6 230 334.2 240.8 339.8C251.6 345.4 261 348.8 271.1 355.2C281.2 361.6 291.3 372.3 301.4 378.2C311.5 384.1 320.9 385 331.7 390.7C342.5 396.5 355.6 405.8 366.4 412.7C377.2 419.6 386.6 427 396.7 432.3C406.8 437.6 422 442.3 427 444.3"/><path class="rip r2" d="M623.6 338.2C619.3 340 607 344.4 597.6 349C588.2 353.6 576.7 359.7 567.3 365.8C557.9 371.9 550.7 380.3 541.3 385.7C531.9 391.1 520.4 393.8 511 398.4C501.6 403 494.4 406.8 485 413C475.6 419.2 464.1 430.2 454.7 435.7C445.3 441.2 433 444.5 428.7 446.2"/><path class="rip r3" d="M34.7 241C40.5 243.5 58.5 249.6 69.3 256C80.1 262.4 88.8 272.8 99.6 279.3C110.4 285.8 123.5 289.3 134.3 294.9C145.1 300.5 153.8 306 164.6 312.9C175.4 319.8 188.4 330.6 199.2 336.5C210 342.4 218.7 342.2 229.5 348.4C240.3 354.6 253.4 367.1 264.2 373.9C275 380.7 283.7 383.5 294.5 389.1C305.3 394.7 318.3 400.5 329.1 407.3C339.9 414.1 348.6 423.7 359.4 429.7C370.2 435.8 383.3 437.7 394.1 443.6C404.9 449.5 419.4 461.4 424.4 464.9"/><path class="rip r3" d="M639.2 342.9C634.1 345.8 618.9 353.5 608.8 360C598.7 366.5 588.6 376.4 578.5 382.1C568.4 387.8 557.6 389.3 548.2 394C538.8 398.8 531.6 404.3 522.2 410.6C512.8 416.9 502 426.4 491.9 431.9C481.8 437.4 471.7 438.1 461.6 443.6C451.5 449.1 436.4 461.3 431.3 464.8"/></g><g class="slab"><polygon class="fl" points="46.8,190 427.8,410 427.8,400 46.8,180"/><polygon class="fr" points="601.1,310 427.8,410 427.8,400 601.1,300"/><polygon class="ft" points="220,80 601.1,300 427.8,400 46.8,180"/><line class="grid" x1="254.6" y1="100" x2="81.4" y2="200"/><line class="grid" x1="289.3" y1="120" x2="116.1" y2="220"/><line class="grid" x1="323.9" y1="140" x2="150.7" y2="240"/><line class="grid" x1="358.6" y1="160" x2="185.4" y2="260"/><line class="grid" x1="393.2" y1="180" x2="220" y2="280"/><line class="grid" x1="427.8" y1="200" x2="254.6" y2="300"/><line class="grid" x1="462.5" y1="220" x2="289.3" y2="320"/><line class="grid" x1="497.1" y1="240" x2="323.9" y2="340"/><line class="grid" x1="531.8" y1="260" x2="358.6" y2="360"/><line class="grid" x1="566.4" y1="280" x2="393.2" y2="380"/><line class="grid" x1="185.4" y1="100" x2="566.4" y2="320"/><line class="grid" x1="150.7" y1="120" x2="531.8" y2="340"/><line class="grid" x1="116.1" y1="140" x2="497.1" y2="360"/><line class="grid" x1="81.4" y1="160" x2="462.5" y2="380"/></g><path class="route" d="M175 161.6L272 217.6L306.6 197.6L362 229.6L306.6 261.6L360.3 292.6L346.4 300.6L358.6 307.6"/><g class="st st1" style="--i:0"><polygon class="wl" points="157.6,136 220,172 220,165.6 157.6,129.6"/><polygon class="wr" points="275.4,140 220,172 220,165.6 275.4,133.6"/><polygon class="wt" points="213.1,97.6 275.4,133.6 220,165.6 157.6,129.6"/><polygon class="kl" points="187.1,114.6 216.5,131.6 216.5,106.6 187.1,89.6"/><polygon class="kr" points="242.5,116.6 216.5,131.6 216.5,106.6 242.5,91.6"/><polygon class="kt" points="213.1,74.6 242.5,91.6 216.5,106.6 187.1,89.6"/><line class="tape" x1="227.8" y1="83.1" x2="201.8" y2="98.1"/><polygon class="kl" points="217.4,132.1 246,148.6 246,123.6 217.4,107.1"/><polygon class="kr" points="272,133.6 246,148.6 246,123.6 272,108.6"/><polygon class="kt" points="243.4,92.1 272,108.6 246,123.6 217.4,107.1"/><line class="tape" x1="257.7" y1="100.4" x2="231.7" y2="115.4"/><polygon class="kl" points="161.1,129.6 190.6,146.6 190.6,121.6 161.1,104.6"/><polygon class="kr" points="215.7,132.1 190.6,146.6 190.6,121.6 215.7,107.1"/><polygon class="kt" points="186.2,90.1 215.7,107.1 190.6,121.6 161.1,104.6"/><line class="tape" x1="200.9" y1="98.6" x2="175.8" y2="113.1"/><polygon class="kl" points="191.4,147.1 220,163.6 220,138.6 191.4,122.1"/><polygon class="kr" points="245.1,149.1 220,163.6 220,138.6 245.1,124.1"/><polygon class="kt" points="216.5,107.6 245.1,124.1 220,138.6 191.4,122.1"/><line class="tape" x1="230.8" y1="115.9" x2="205.7" y2="130.4"/><polygon class="kl" points="187.1,89.6 216.5,106.6 216.5,83.6 187.1,66.6"/><polygon class="kr" points="242.5,91.6 216.5,106.6 216.5,83.6 242.5,68.6"/><polygon class="kt" points="213.1,51.6 242.5,68.6 216.5,83.6 187.1,66.6"/><line class="tape" x1="227.8" y1="60.1" x2="201.8" y2="75.1"/><polygon class="kl" points="217.4,107.1 246,123.6 246,100.6 217.4,84.1"/><polygon class="kr" points="272,108.6 246,123.6 246,100.6 272,85.6"/><polygon class="kt" points="243.4,69.1 272,85.6 246,100.6 217.4,84.1"/><line class="tape" x1="257.7" y1="77.4" x2="231.7" y2="92.4"/><polygon class="kl" points="161.1,104.6 190.6,121.6 190.6,98.6 161.1,81.6"/><polygon class="kr" points="215.7,107.1 190.6,121.6 190.6,98.6 215.7,84.1"/><polygon class="kt" points="186.2,67.1 215.7,84.1 190.6,98.6 161.1,81.6"/><line class="tape" x1="200.9" y1="75.6" x2="175.8" y2="90.1"/></g><g class="st st2" style="--i:1"><line class="post" x1="313.5" y1="146" x2="313.5" y2="38"/><line class="post" x1="403.6" y1="198" x2="403.6" y2="90"/><polygon class="wl" points="278.9,159 369,211 369,208.2 278.9,156.2"/><polygon class="wr" points="403.6,191 369,211 369,208.2 403.6,188.2"/><polygon class="wt" points="313.5,136.2 403.6,188.2 369,208.2 278.9,156.2"/><polygon class="kl" points="288.4,155.7 310.9,168.7 310.9,147.7 288.4,134.7"/><polygon class="kr" points="336.9,153.7 310.9,168.7 310.9,147.7 336.9,132.7"/><polygon class="kt" points="314.4,119.7 336.9,132.7 310.9,147.7 288.4,134.7"/><line class="tape" x1="325.7" y1="126.2" x2="299.7" y2="141.2"/><polygon class="kl" points="313.5,170.2 339.5,185.2 339.5,161.2 313.5,146.2"/><polygon class="kr" points="365.5,170.2 339.5,185.2 339.5,161.2 365.5,146.2"/><polygon class="kt" points="339.5,131.2 365.5,146.2 339.5,161.2 313.5,146.2"/><line class="tape" x1="352.5" y1="138.7" x2="326.5" y2="153.7"/><polygon class="kl" points="343.8,186.7 369.8,201.7 369.8,183.7 343.8,168.7"/><polygon class="kr" points="394.1,187.7 369.8,201.7 369.8,183.7 394.1,169.7"/><polygon class="kt" points="368.1,154.7 394.1,169.7 369.8,183.7 343.8,168.7"/><line class="tape" x1="381.1" y1="162.2" x2="356.8" y2="176.2"/><polygon class="wl" points="278.9,125 369,177 369,174.2 278.9,122.2"/><polygon class="wr" points="403.6,157 369,177 369,174.2 403.6,154.2"/><polygon class="wt" points="313.5,102.2 403.6,154.2 369,174.2 278.9,122.2"/><polygon class="kl" points="289.3,122.2 310.1,134.2 310.1,110.2 289.3,98.2"/><polygon class="kr" points="336,119.2 310.1,134.2 310.1,110.2 336,95.2"/><polygon class="kt" points="315.3,83.2 336,95.2 310.1,110.2 289.3,98.2"/><line class="tape" x1="325.7" y1="89.2" x2="299.7" y2="104.2"/><polygon class="kl" points="312.7,135.7 333.4,147.7 333.4,130.7 312.7,118.7"/><polygon class="kr" points="359.4,132.7 333.4,147.7 333.4,130.7 359.4,115.7"/><polygon class="kt" points="338.6,103.7 359.4,115.7 333.4,130.7 312.7,118.7"/><line class="tape" x1="349" y1="109.7" x2="323.1" y2="124.7"/><polygon class="al" points="336,149.2 369,168.2 369,144.2 336,125.2"/><polygon class="ar" points="394.9,153.2 369,168.2 369,144.2 394.9,129.2"/><polygon class="at" points="362,110.2 394.9,129.2 369,144.2 336,125.2"/><polygon class="wl" points="278.9,91 369,143 369,140.2 278.9,88.2"/><polygon class="wr" points="403.6,123 369,143 369,140.2 403.6,120.2"/><polygon class="wt" points="313.5,68.2 403.6,120.2 369,140.2 278.9,88.2"/><polygon class="kl" points="289.3,88.2 317,104.2 317,85.2 289.3,69.2"/><polygon class="kr" points="343,89.2 317,104.2 317,85.2 343,70.2"/><polygon class="kt" points="315.3,54.2 343,70.2 317,85.2 289.3,69.2"/><line class="tape" x1="329.1" y1="62.2" x2="303.1" y2="77.2"/><polygon class="kl" points="321.3,105.7 343,118.2 343,94.2 321.3,81.7"/><polygon class="kr" points="367.2,104.2 343,118.2 343,94.2 367.2,80.2"/><polygon class="kt" points="345.6,67.7 367.2,80.2 343,94.2 321.3,81.7"/><line class="tape" x1="356.4" y1="74" x2="332.2" y2="88"/><polygon class="kl" points="345.6,120.7 369,134.2 369,114.2 345.6,100.7"/><polygon class="kr" points="394.9,119.2 369,134.2 369,114.2 394.9,99.2"/><polygon class="kt" points="371.6,85.7 394.9,99.2 369,114.2 345.6,100.7"/><line class="tape" x1="383.2" y1="92.5" x2="357.3" y2="107.5"/><polygon class="wl" points="278.9,60.4 369,112.4 369,110 278.9,58"/><polygon class="wr" points="403.6,92.4 369,112.4 369,110 403.6,90"/><polygon class="wt" points="313.5,38 403.6,90 369,110 278.9,58"/><line class="post" x1="278.9" y1="166" x2="278.9" y2="58"/><line class="post" x1="369" y1="218" x2="369" y2="110"/></g><g class="st st3" style="--i:2"><line class="post" x1="341.2" y1="254" x2="341.2" y2="216"/><line class="post" x1="431.3" y1="266" x2="431.3" y2="228"/><line class="post" x1="396.7" y1="286" x2="396.7" y2="248"/><polygon class="wl" points="334.3,216 396.7,252 396.7,248.8 334.3,212.8"/><polygon class="wr" points="438.2,228 396.7,252 396.7,248.8 438.2,224.8"/><polygon class="wt" points="375.9,188.8 438.2,224.8 396.7,248.8 334.3,212.8"/><polygon class="kr" points="376.8,176.3 406.2,193.3 406.2,212.3 376.8,195.3"/><polygon class="kin" points="376.8,176.3 350.8,191.3 350.8,210.3 376.8,195.3"/><polygon class="kt" points="376.8,176.3 406.2,193.3 415.7,176.8 386.3,159.8"/><polygon class="kt" points="376.8,176.3 350.8,191.3 341.2,175.8 367.2,160.8"/><polygon class="kl" points="350.8,210.3 380.2,227.3 380.2,208.3 350.8,191.3"/><polygon class="kr" points="406.2,212.3 380.2,227.3 380.2,208.3 406.2,193.3"/><polygon class="kt" points="380.2,208.3 371.6,203.3 342.1,186.3 350.8,191.3"/><polygon class="kl" points="381.1,232.8 398.4,242.8 398.4,228.8 381.1,218.8"/><polygon class="kr" points="415.7,232.8 398.4,242.8 398.4,228.8 415.7,218.8"/><polygon class="kt" points="398.4,208.8 415.7,218.8 398.4,228.8 381.1,218.8"/><polygon class="lab" points="383.7,231.3 394.9,237.8 394.9,230.4 383.7,223.9"/><line class="post hid" x1="375.9" y1="234" x2="375.9" y2="196"/></g><g class="parcel" transform="translate(175 162)"><g class="parcel-in"><polygon class="al" points="-15.6,0 0,9 0,-5 -15.6,-14"/><polygon class="ar" points="15.6,0 0,9 0,-5 15.6,-14"/><polygon class="at" points="0,-23 15.6,-14 0,-5 -15.6,-14"/></g></g><g class="st st4" style="--i:3"><polygon class="wl" points="336,302 412.3,346 412.3,288 336,244"/><polygon class="wr" points="452.1,323 412.3,346 412.3,288 452.1,265"/><polygon class="wt" points="375.9,221 452.1,265 412.3,288 336,244"/><polygon class="stripe" points="341.2,281 407.1,319 407.1,313 341.2,275"/><polygon class="wl" points="415.7,346 448.6,365 448.6,339 437.4,316.5 415.7,304"/><polygon class="wr" points="485,344 448.6,365 448.6,339 485,318"/><polygon class="glass" points="485,318 448.6,339 437.4,316.5 473.7,295.5"/><polygon class="wt" points="452.1,283 473.7,295.5 437.4,316.5 415.7,304"/><polygon class="win" points="420.1,329.5 435.6,338.5 435.6,321.5 420.1,312.5"/><path class="wheel" d="M360.6 321.4C360.4 319.3 359.6 315.6 358.2 313.2C356.8 310.8 354.3 308.1 352.3 307C350.3 305.9 347.7 305.2 346.4 306.4C345.1 307.6 344 311.7 344.3 314.4C344.6 317.1 346.5 320.4 348.2 322.5C349.9 324.6 352.6 326.6 354.5 327.1C356.4 327.6 358.5 326.6 359.5 325.6C360.5 324.7 360.8 323.5 360.6 321.4Z"/><path class="wheel" d="M401.3 344.9C401.1 342.8 400.3 339.1 398.9 336.7C397.5 334.3 395 331.6 393 330.5C391.1 329.4 388.5 328.7 387.2 329.9C385.9 331.1 384.7 335.2 385 337.9C385.3 340.6 387.2 343.9 388.9 346C390.6 348.1 393.3 350.1 395.2 350.6C397.1 351.1 399.2 350.1 400.2 349.1C401.2 348.2 401.5 347 401.3 344.9Z"/><path class="wheel" d="M442.9 366.9C442.7 364.8 441.9 361.1 440.5 358.7C439.1 356.3 436.6 353.6 434.6 352.5C432.6 351.4 430 350.7 428.7 351.9C427.4 353.1 426.3 357.2 426.6 359.9C426.9 362.6 428.7 365.9 430.4 368C432.1 370.1 434.9 372.1 436.8 372.6C438.7 373.1 440.8 372.1 441.8 371.1C442.8 370.2 443.1 369 442.9 366.9Z"/></g><g class="clock"><line class="lead" x1="446.9" y1="239" x2="410.5" y2="232"/><circle class="lead-dot" cx="410.5" cy="232" r="2.4"/><circle class="clock-face" cx="471.1" cy="225" r="28"/><line class="tick" x1="471.1" y1="205" x2="471.1" y2="199.5"/><line class="tick" x1="482.6" y1="205.1" x2="483.9" y2="202.9"/><line class="tick" x1="491.1" y1="213.5" x2="493.2" y2="212.3"/><line class="tick" x1="491.1" y1="225" x2="496.6" y2="225"/><line class="tick" x1="491.1" y1="236.5" x2="493.2" y2="237.8"/><line class="tick" x1="482.6" y1="244.9" x2="483.9" y2="247.1"/><line class="tick" x1="471.1" y1="245" x2="471.1" y2="250.5"/><line class="tick" x1="459.6" y1="244.9" x2="458.4" y2="247.1"/><line class="tick" x1="451.2" y1="236.5" x2="449.1" y2="237.8"/><line class="tick" x1="451.1" y1="225" x2="445.6" y2="225"/><line class="tick" x1="451.2" y1="213.5" x2="449.1" y2="212.3"/><line class="tick" x1="459.6" y1="205.1" x2="458.4" y2="202.9"/><circle class="cut-dot" data-cutoff="usps" cx="490.2" cy="214" r="2.8"/><circle class="cut-dot" data-cutoff="ups" cx="471.1" cy="247" r="2.8"/><g class="hand-h" style="transform-origin:471.1px 225px"><line class="hand" x1="471.1" y1="225" x2="460.5" y2="217.5"/></g><g class="hand-m" style="transform-origin:471.1px 225px"><line class="hand thin" x1="471.1" y1="225" x2="487.6" y2="215.5"/></g><circle class="hub" cx="471.1" cy="225" r="2.6"/></g>
+          </svg>
+          <span class="pin" aria-hidden="true" style="left:30.3%;top:12.4%">01</span>
+          <span class="pin" aria-hidden="true" style="left:50.9%;top:9.7%">02</span>
+          <span class="pin" aria-hidden="true" style="left:56.8%;top:35.7%">03</span>
+          <span class="pin pin-hot" aria-hidden="true" style="left:68%;top:39.8%">04</span>
+          <div class="track" aria-hidden="true">
+            <div class="track-top"><span class="pin pin-in">05</span><span>Sample order</span><i class="live"></i></div>
+            <div class="track-line"><b style="--w:100%"></b></div>
+            <div class="track-steps"><span class="on">Packed</span><span class="on">On truck</span><span>Delivered</span></div>
+          </div>
+        </div>
+        <figcaption id="fig1" class="figcap"><span class="fig-n">Fig. 1</span>
+          <ol class="legend"><li><b>01</b> Receive</li><li><b>02</b> Store</li><li><b>03</b> Pick &amp; pack</li><li><b>04</b> Ship same day</li><li><b>05</b> Track</li></ol>
+        </figcaption>
+      </figure>
+    </div>
+    <dl class="facts">
+      <div><dt>Delivery across the U.S.</dt><dd>3–5 <small>days</small></dd></div>
+      <div><dt>Custom quote turnaround</dt><dd>24 <small>hours</small></dd></div>
+      <div><dt>Onboarding in as little as</dt><dd>2 <small>weeks</small></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- dusk: day into night -->
+<div class="sky dusk" data-edge=".1" aria-hidden="true" data-play><div class="s-sky"></div><div class="s-dark"></div><div class="s-glow"></div><svg class="s-stars" viewBox="0 0 1440 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><circle cx="20.1" cy="142.7" r="0.9"/><circle class="st-tw" cx="314.8" cy="107.5" r="1.2"/><circle cx="481" cy="111.6" r="1.4"/><circle class="st-tw" cx="780" cy="99.6" r="1.3"/><circle cx="1163.5" cy="31.7" r="1"/><circle class="st-tw" cx="1011.1" cy="102" r="0.7"/><circle cx="977.5" cy="63.9" r="1.6"/><circle class="st-tw" cx="1150.4" cy="17.8" r="1.2"/><circle cx="1312.4" cy="100.3" r="1.3"/><circle class="st-tw" cx="828.4" cy="141.1" r="1.6"/><circle cx="541.1" cy="44.2" r="1.5"/><circle class="st-tw" cx="485.2" cy="21" r="0.9"/><circle cx="619.9" cy="38.7" r="1.6"/><circle class="st-tw" cx="800.3" cy="107.5" r="1.6"/><circle cx="102.1" cy="35.8" r="1.2"/><circle class="st-tw" cx="732.3" cy="56.8" r="0.8"/><circle cx="1292.6" cy="11.4" r="1"/><circle class="st-tw" cx="501.8" cy="96.2" r="1.6"/><circle cx="740.8" cy="22.5" r="1"/><circle class="st-tw" cx="417" cy="48.4" r="1.1"/><circle cx="485.6" cy="74" r="1.3"/><circle class="st-tw" cx="346.5" cy="140" r="1.1"/><circle cx="1228.2" cy="91.1" r="1.3"/><circle class="st-tw" cx="742.7" cy="69.7" r="1.4"/><circle cx="1335.4" cy="53.1" r="1.4"/><circle class="st-tw" cx="371.6" cy="83" r="1"/><circle cx="482.8" cy="52.3" r="1.5"/><circle class="st-tw" cx="1248.6" cy="16.6" r="1.5"/><circle cx="128.8" cy="54.6" r="0.8"/><circle class="st-tw" cx="129" cy="157.3" r="0.8"/><circle cx="905.3" cy="20.1" r="1.1"/><circle class="st-tw" cx="850.1" cy="19.4" r="1.6"/><circle cx="1258.4" cy="137" r="1.6"/><circle class="st-tw" cx="1290.9" cy="113.2" r="0.9"/></svg><div class="s-sun"></div><svg class="s-hills" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="s-far" d="M-20 42C1.7 40.3 65 35.7 110 32C155 28.3 205 20.8 250 20C295 19.2 335 24.3 380 27C425 29.7 473.3 36.5 520 36C566.7 35.5 613.3 28 660 24C706.7 20 755 12.3 800 12C845 11.7 888.3 18 930 22C971.7 26 1013.3 33 1050 36C1086.7 39 1116.7 41 1150 40C1183.3 39 1216.7 33.5 1250 30C1283.3 26.5 1315 19.3 1350 19C1385 18.7 1441.7 26.5 1460 28L1460 61H-20Z"/><path class="s-near" d="M-20 52C8.3 51 91.7 46.2 150 46C208.3 45.8 268.3 51.2 330 51C391.7 50.8 458.3 45.2 520 45C581.7 44.8 640 49.8 700 50C760 50.2 823.3 45.5 880 46C936.7 46.5 986.7 52.7 1040 53C1093.3 53.3 1130 48.3 1200 48C1270 47.7 1416.7 50.5 1460 51L1460 61H-20Z"/></svg><div class="s-lake"></div><div class="s-ref"></div><svg class="s-rips" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="s-rip" d="M-40 15.6C-24.2 16 23.3 18 55 18.1C86.7 18.1 118.3 16.9 150 15.9C181.7 15 213.3 13 245 12.4C276.7 11.9 308.3 12 340 12.5C371.7 13 403.3 14.9 435 15.5C466.7 16.2 498.3 16.8 530 16.4C561.7 16 593.3 14.2 625 13.1C656.7 12 688.3 10.2 720 9.9C751.7 9.6 783.3 10.4 815 11.3C846.7 12.2 878.3 14.4 910 15.3C941.7 16.1 973.3 16.7 1005 16.5C1036.7 16.2 1068.3 14.6 1100 13.8C1131.7 13 1163.3 11.8 1195 11.9C1226.7 11.9 1258.3 13.2 1290 14.1C1321.7 15.1 1353.3 17.1 1385 17.6C1416.7 18.1 1464.2 17.3 1480 17.2"/><path class="s-rip" d="M-40 51.6C-24.2 50.9 23.3 48.9 55 47.5C86.7 46 118.3 43.4 150 42.8C181.7 42.2 213.3 42.9 245 43.9C276.7 44.9 308.3 47.9 340 49.1C371.7 50.3 403.3 51.4 435 51.2C466.7 51 498.3 48.9 530 47.9C561.7 46.9 593.3 45 625 45C656.7 45 688.3 46.4 720 47.6C751.7 48.9 783.3 51.7 815 52.6C846.7 53.4 878.3 53.6 910 52.8C941.7 51.9 973.3 49.1 1005 47.7C1036.7 46.2 1068.3 44.3 1100 44C1131.7 43.8 1163.3 45.3 1195 46.3C1226.7 47.3 1258.3 49.7 1290 50.1C1321.7 50.6 1353.3 50.2 1385 49.3C1416.7 48.3 1464.2 45.4 1480 44.6"/><path class="s-rip" d="M-40 82.3C-24.2 81.5 23.3 78.1 55 77.7C86.7 77.2 118.3 78 150 79.5C181.7 80.9 213.3 84.6 245 86.2C276.7 87.7 308.3 89.2 340 88.8C371.7 88.5 403.3 85.7 435 83.9C466.7 82.2 498.3 79.1 530 78.4C561.7 77.7 593.3 78.5 625 79.6C656.7 80.6 688.3 83.7 720 84.6C751.7 85.5 783.3 85.9 815 84.9C846.7 84 878.3 80.7 910 79.1C941.7 77.4 973.3 75.1 1005 75.1C1036.7 75.1 1068.3 77.2 1100 78.9C1131.7 80.6 1163.3 84.3 1195 85.5C1226.7 86.8 1258.3 87.1 1290 86.4C1321.7 85.7 1353.3 82.6 1385 81.4C1416.7 80.1 1464.2 79.3 1480 78.9"/></svg></div>
+
+<!-- ============================================================ THE PROMISE (night band 1) -->
+<section class="night promise" id="promise" aria-labelledby="promise-h">
+  <div class="wrap">
+    <div class="runhead" data-fx="rule"><span>01</span><span>The same-day promise</span><span class="rh-r">Austin, Texas · Central Time</span></div>
+    <div class="pr-top">
+      <div class="pr-copy">
+        <h2 id="promise-h" class="display" data-fx="title"><span class="ln"><span>Every weekday is built</span></span> <span class="ln"><span>around <em>two cutoffs.</em></span></span></h2>
+        <p class="lede" data-fx="rise">Monday to Friday, USPS orders in by <span data-cutoff="usps">2&nbsp;PM&nbsp;CT</span> and UPS orders in by <span data-cutoff="ups">6&nbsp;PM&nbsp;CT</span> are picked, packed with your inserts, labeled and handed to the carrier the same day. Anything later ships the next business day.</p>
+        <div class="pr-act">
+          <p class="cd" id="cd" data-fx="rise" role="timer" data-cutoff="usps ups" data-play><span class="cd-l" id="cd-l">Same-day cutoffs · Mon–Fri</span><span class="cd-t" id="cd-t"></span><span class="cd-cuts" id="cd-cuts"><span data-cutoff="usps">USPS 2 PM CT</span><span data-cutoff="ups">UPS 6 PM CT</span></span><span class="cd-sub" id="cd-sub">Weekend orders ship the next business day</span></p>
+          <a class="btn btn-ice" href="/quote/">Get a custom quote<span class="chip" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span></a>
+        </div>
+      </div>
+      <p class="pr-num pr-pair" aria-hidden="true" data-fx="rise"><span class="pr-c" data-cutoff="usps"><span class="pr-2">2</span><span class="pr-pm"><i>PM</i><small>USPS</small></span></span><span class="pr-c" data-cutoff="ups"><span class="pr-2">6</span><span class="pr-pm"><i>PM</i><small>UPS</small></span></span></p>
+    </div>
+    <figure class="arc" id="arc" aria-labelledby="arc-cap">
+      <svg class="arc-w" viewBox="0 0 1200 470" width="1200" height="470" aria-hidden="true" data-cx="600" data-cy="400" data-r="330"><defs><linearGradient id="litw" x1="0" x2="1"><stop offset="0" stop-color="#8fd8ff" stop-opacity=".25"/><stop offset=".55" stop-color="#8fd8ff"/><stop offset="1" stop-color="#4f9dfd"/></linearGradient><radialGradient id="sunw"><stop offset="0" stop-color="#8fd8ff" stop-opacity=".5"/><stop offset=".35" stop-color="#8fd8ff" stop-opacity=".15"/><stop offset="1" stop-color="#8fd8ff" stop-opacity="0"/></radialGradient><clipPath id="hzw"><rect x="0" y="-80" width="1200" height="480"/></clipPath></defs><path class="arc-day" d="M270 400A330 330 0 0 1 930 400"/><path class="arc-lit" id="dw-lit" pathLength="1" d="M270 400A330 330 0 0 1 930 400"/><line class="arc-tick" x1="261" y1="400" x2="279" y2="400"/><line class="arc-tick" x1="273.4" y1="325.5" x2="283.1" y2="327.7"/><line class="arc-tick" x1="294.6" y1="252.9" x2="310.8" y2="260.7"/><line class="arc-tick" x1="338.1" y1="191.1" x2="345.9" y2="197.4"/><line class="arc-tick" x1="388.6" y1="135" x2="399.9" y2="149"/><line class="arc-tick" x1="454.6" y1="98.2" x2="459" y2="107.2"/><line class="arc-tick" x1="524.6" y1="69.5" x2="528.6" y2="87"/><line class="arc-tick" x1="600" y1="65" x2="600" y2="75"/><line class="arc-tick cut" data-cutoff="usps" x1="675.4" y1="69.5" x2="671.4" y2="87"/><line class="arc-tick" x1="745.4" y1="98.2" x2="741" y2="107.2"/><line class="arc-tick" x1="811.4" y1="135" x2="800.1" y2="149"/><line class="arc-tick" x1="861.9" y1="191.1" x2="854.1" y2="197.4"/><line class="arc-tick cut" data-cutoff="ups" x1="905.4" y1="252.9" x2="889.2" y2="260.7"/><line class="arc-tick" x1="926.6" y1="325.5" x2="916.9" y2="327.7"/><line class="arc-tick" x1="939" y1="400" x2="921" y2="400"/><text class="arc-h" x="270" y="432" text-anchor="middle">6 AM</text><text class="arc-h" x="261.2" y="240.9" text-anchor="middle">8 AM</text><text class="arc-h" x="365.6" y="110" text-anchor="middle">10 AM</text><text class="arc-h" x="518.1" y="45.2" text-anchor="middle">NOON</text><text class="arc-h" x="834.4" y="110" text-anchor="middle">4 PM</text><text class="arc-h" x="930" y="432" text-anchor="middle">8 PM</text><line class="horizon" x1="210" y1="400" x2="990" y2="400"/><path class="lake-l l1" d="M318 416.4C324.7 416.6 344.9 417.7 358.3 417.4C371.7 417.2 385.1 415.5 398.6 415C412 414.5 425.4 414.2 438.9 414.4C452.3 414.5 465.7 415.9 479.1 416C492.6 416.1 506 415.5 519.4 414.9C532.9 414.4 546.3 412.7 559.7 412.5C573.1 412.3 586.6 413 600 413.6C613.4 414.3 626.9 415.8 640.3 416.1C653.7 416.4 667.1 415.6 680.6 415.3C694 415 707.4 414.1 720.9 414.3C734.3 414.5 747.7 416 761.1 416.5C774.6 417 788 417.7 801.4 417.4C814.9 417.1 828.3 415.3 841.7 414.7C855.1 414 875.3 413.7 882 413.5"/><path class="lake-l l2" d="M352 433.1C357.9 432.7 375.6 431.2 387.4 430.6C399.2 430 411 429.3 422.9 429.5C434.7 429.7 446.5 431.4 458.3 432C470.1 432.5 481.9 433.1 493.7 433C505.5 432.9 517.3 431.6 529.1 431.4C541 431.2 552.8 431.5 564.6 432C576.4 432.5 588.2 434.2 600 434.4C611.8 434.6 623.6 434 635.4 433.4C647.2 432.8 659 431.1 670.9 430.7C682.7 430.4 694.5 431 706.3 431.3C718.1 431.6 729.9 432.7 741.7 432.6C753.5 432.5 765.3 431.2 777.1 430.7C789 430.3 800.8 429.4 812.6 429.7C824.4 430 842.1 431.9 848 432.4"/><path class="lake-l l3" d="M388 448.2C393 448.1 408.2 447 418.3 447.1C428.4 447.3 438.5 448.7 448.6 449.2C458.7 449.8 468.8 450.7 478.9 450.5C489 450.3 499 448.7 509.1 448.1C519.2 447.4 529.3 446.6 539.4 446.6C549.5 446.7 559.6 448 569.7 448.2C579.8 448.5 589.9 448.5 600 448.1C610.1 447.6 620.2 446 630.3 445.8C640.4 445.5 650.5 446 660.6 446.6C670.7 447.2 680.8 449 690.9 449.4C701 449.9 711 449.4 721.1 449.1C731.2 448.8 741.3 447.6 751.4 447.5C761.5 447.5 771.6 448.5 781.7 449C791.8 449.4 807 449.9 812 450.1"/><line class="drop" data-cutoff="usps" x1="673.4" y1="92.3" x2="673.4" y2="400"/><circle class="drop-dot" data-cutoff="usps" cx="673.4" cy="400" r="4"/><line class="drop" data-cutoff="ups" x1="897.3" y1="270.8" x2="897.3" y2="400"/><circle class="drop-dot" data-cutoff="ups" cx="897.3" cy="400" r="4"/><g class="cut-m" data-cutoff="usps" transform="translate(673.4 78.3)"><circle class="cm-pulse" r="10"/><circle class="cm-ring" r="10"/><circle class="cm-dot" r="4.5"/></g><g class="cut-m" data-cutoff="ups" transform="translate(897.3 256.8)"><circle class="cm-pulse" r="10"/><circle class="cm-ring" r="10"/><circle class="cm-dot" r="4.5"/></g><g clip-path="url(#hzw)"><g class="sun" id="dw-sun" transform="translate(673.4 78.3)"><circle class="sun-glow" r="46"/><circle class="sun-ring" r="16"/><circle class="sun-core" r="9"/></g></g><text class="arc-note" x="361.3" y="262.9" text-anchor="start">ORDERS FLOW IN</text><text class="arc-note" x="528" y="182" text-anchor="middle">PICK · PACK · LABEL</text><g class="arc-lbl" data-cutoff="usps" data-anchor="x" transform="translate(673.4 0)"><text class="arc-big" x="24" y="273" data-fmt="long">2 PM CT</text><text class="arc-sm" x="24" y="299">USPS cutoff</text></g><g class="arc-lbl" data-cutoff="ups" data-anchor="pt" transform="translate(897.3 256.8)"><line class="arc-lead" x1="14" y1="0" x2="42" y2="0"/><text class="arc-big" x="54" y="16" data-fmt="long">6 PM CT</text><text class="arc-sm" x="54" y="42">UPS cutoff</text></g></svg>
+      <svg class="arc-c" viewBox="0 0 600 360" width="600" height="360" aria-hidden="true" data-cx="300" data-cy="300" data-r="236"><defs><linearGradient id="litc" x1="0" x2="1"><stop offset="0" stop-color="#8fd8ff" stop-opacity=".25"/><stop offset=".55" stop-color="#8fd8ff"/><stop offset="1" stop-color="#4f9dfd"/></linearGradient><radialGradient id="sunc"><stop offset="0" stop-color="#8fd8ff" stop-opacity=".5"/><stop offset=".35" stop-color="#8fd8ff" stop-opacity=".15"/><stop offset="1" stop-color="#8fd8ff" stop-opacity="0"/></radialGradient><clipPath id="hzc"><rect x="0" y="-80" width="600" height="380"/></clipPath></defs><path class="arc-day" d="M64 300A236 236 0 0 1 536 300"/><path class="arc-lit" id="dc-lit" pathLength="1" d="M64 300A236 236 0 0 1 536 300"/><line class="arc-tick" x1="55" y1="300" x2="73" y2="300"/><line class="arc-tick" x1="65" y1="246.4" x2="74.8" y2="248.6"/><line class="arc-tick" x1="79.3" y1="193.7" x2="95.5" y2="201.5"/><line class="arc-tick" x1="111.6" y1="149.7" x2="119.4" y2="156"/><line class="arc-tick" x1="147.2" y1="108.5" x2="158.5" y2="122.5"/><line class="arc-tick" x1="195.4" y1="82.9" x2="199.8" y2="91.9"/><line class="arc-tick" x1="245.5" y1="61.1" x2="249.5" y2="78.7"/><line class="arc-tick" x1="300" y1="59" x2="300" y2="69"/><line class="arc-tick cut" data-cutoff="usps" x1="354.5" y1="61.1" x2="350.5" y2="78.7"/><line class="arc-tick" x1="404.6" y1="82.9" x2="400.2" y2="91.9"/><line class="arc-tick" x1="452.8" y1="108.5" x2="441.5" y2="122.5"/><line class="arc-tick" x1="488.4" y1="149.7" x2="480.6" y2="156"/><line class="arc-tick cut" data-cutoff="ups" x1="520.7" y1="193.7" x2="504.5" y2="201.5"/><line class="arc-tick" x1="535" y1="246.4" x2="525.2" y2="248.6"/><line class="arc-tick" x1="545" y1="300" x2="527" y2="300"/><text class="arc-h" x="64" y="330" text-anchor="middle">6 AM</text><text class="arc-h" x="239.5" y="39.8" text-anchor="middle">NOON</text><text class="arc-h" x="536" y="330" text-anchor="middle">8 PM</text><line class="horizon" x1="4" y1="300" x2="596" y2="300"/><path class="lake-l l1" d="M104 315.2C108.7 315.3 122.7 316.2 132 316C141.3 315.8 150.7 314.4 160 314C169.3 313.6 178.7 313.3 188 313.5C197.3 313.6 206.7 314.7 216 314.8C225.3 314.9 234.7 314.4 244 314C253.3 313.5 262.7 312.1 272 311.9C281.3 311.8 290.7 312.4 300 312.9C309.3 313.4 318.7 314.7 328 314.9C337.3 315.1 346.7 314.5 356 314.2C365.3 314 374.7 313.3 384 313.4C393.3 313.6 402.7 314.8 412 315.2C421.3 315.6 430.7 316.2 440 315.9C449.3 315.7 458.7 314.3 468 313.7C477.3 313.2 491.3 312.9 496 312.8"/><path class="lake-l l2" d="M134 328.9C138 328.5 149.8 327.4 157.7 326.9C165.6 326.4 173.5 325.8 181.4 325.9C189.3 326.1 197.2 327.5 205.1 328C213 328.4 221 328.9 228.9 328.8C236.8 328.8 244.7 327.6 252.6 327.5C260.5 327.4 268.4 327.6 276.3 328C284.2 328.4 292.1 329.8 300 330C307.9 330.2 315.8 329.7 323.7 329.2C331.6 328.7 339.5 327.2 347.4 327C355.3 326.7 363.2 327.2 371.1 327.4C379 327.7 387 328.5 394.9 328.5C402.8 328.4 410.7 327.4 418.6 327C426.5 326.6 434.4 325.9 442.3 326.1C450.2 326.3 462 327.9 466 328.3"/><path class="lake-l l3" d="M166 342.2C169.2 342 178.8 341.1 185.1 341.3C191.5 341.4 197.9 342.5 204.3 343C210.7 343.5 217 344.2 223.4 344.1C229.8 343.9 236.2 342.6 242.6 342C249 341.5 255.3 340.8 261.7 340.9C268.1 340.9 274.5 342 280.9 342.2C287.2 342.4 293.6 342.4 300 342C306.4 341.7 312.8 340.4 319.1 340.2C325.5 340 331.9 340.3 338.3 340.8C344.7 341.3 351 342.8 357.4 343.2C363.8 343.5 370.2 343.2 376.6 342.9C383 342.7 389.3 341.6 395.7 341.6C402.1 341.6 408.5 342.4 414.9 342.8C421.2 343.2 430.8 343.6 434 343.8"/><line class="drop" data-cutoff="usps" x1="352.5" y1="83.9" x2="352.5" y2="300"/><circle class="drop-dot" data-cutoff="usps" cx="352.5" cy="300" r="4"/><line class="drop" data-cutoff="ups" x1="512.6" y1="211.6" x2="512.6" y2="300"/><circle class="drop-dot" data-cutoff="ups" cx="512.6" cy="300" r="4"/><g class="cut-m" data-cutoff="usps" transform="translate(352.5 69.9)"><circle class="cm-pulse" r="10"/><circle class="cm-ring" r="10"/><circle class="cm-dot" r="4.5"/></g><g class="cut-m" data-cutoff="ups" transform="translate(512.6 197.6)"><circle class="cm-pulse" r="10"/><circle class="cm-ring" r="10"/><circle class="cm-dot" r="4.5"/></g><g clip-path="url(#hzc)"><g class="sun" id="dc-sun" transform="translate(352.5 69.9)"><circle class="sun-glow" r="40"/><circle class="sun-ring" r="16"/><circle class="sun-core" r="9"/></g></g><g class="arc-lbl" data-cutoff="usps" data-anchor="x" transform="translate(352.5 0)"><text class="arc-big" x="-16" y="196" text-anchor="end" data-fmt="short">2 PM</text><text class="arc-sm" x="-16" y="220" text-anchor="end">USPS cutoff</text></g><g class="arc-lbl" data-cutoff="ups" data-anchor="x" transform="translate(512.6 0)"><text class="arc-big" x="-16" y="262" text-anchor="end" data-fmt="short">6 PM</text><text class="arc-sm" x="-16" y="284" text-anchor="end">UPS cutoff</text></g></svg>
+      <figcaption id="arc-cap" class="figcap night-cap"><span class="fig-n">Fig. 2</span><span>A weekday at Lakeside, sunrise to sunset: the USPS cutoff at <span data-cutoff="usps">2&nbsp;PM&nbsp;CT</span>, the UPS cutoff at <span data-cutoff="ups">6&nbsp;PM&nbsp;CT</span>.</span></figcaption>
+    </figure>
+    <ol class="day">
+      <li data-fx="rise"><span class="day-t">Morning</span><h3>Orders roll in</h3><p>Your customers check out, and their orders join today’s queue.</p></li>
+      <li data-fx="rise" data-cutoff="usps"><span class="day-t">2 PM CT</span><h3>USPS cutoff</h3><p>USPS orders in by <span data-cutoff="usps">2&nbsp;PM</span> are picked, packed and labeled, and go out with USPS the same day.</p></li>
+      <li data-fx="rise" data-cutoff="ups"><span class="day-t">6 PM CT</span><h3>UPS cutoff</h3><p>UPS orders in by <span data-cutoff="ups">6&nbsp;PM</span> go out with UPS the same day. Orders that miss their carrier’s cutoff, and weekend orders, ship the next business day.</p></li>
+      <li data-fx="rise"><span class="day-t">Days 3–5</span><h3>At their door</h3><p>Delivered across the U.S., tracked in your dashboard the whole way.</p></li>
+    </ol>
+    <figure class="pr-proof" data-fx="rise">
+      <blockquote><p>“…<span>never had a single unit go out a day late</span>…”</p></blockquote>
+      <figcaption>Verified client · Supplement brand</figcaption>
+    </figure>
+    <div class="reach-row">
+      <div class="reach-copy">
+        <p class="pr-num pr-num-s" aria-hidden="true" data-fx="rise"><span class="pr-2">3–5</span><span class="pr-pm"><i>days</i><small>to the door</small></span></p>
+        <h3 class="h3-d" data-fx="rise">From the middle of the map to both coasts.</h3>
+        <p data-fx="rise">Austin sits in the central U.S. Ship from here and your orders reach customers across the country in <span class="nowrap">3–5 days</span>.</p>
+      </div>
+      <figure class="map" data-fx="map" data-play aria-labelledby="map-cap">
+        <svg viewBox="0 0 960 640" width="960" height="640" aria-hidden="true">
+          <defs>
+            <pattern id="mdA" width="11" height="11" patternUnits="userSpaceOnUse"><circle cx="5.5" cy="5.5" r="1.6" fill="rgba(143,216,255,.24)"/></pattern>
+            <pattern id="mdB" width="11" height="11" patternUnits="userSpaceOnUse"><circle cx="5.5" cy="5.5" r="2.1" fill="#8fd8ff"/></pattern>
+            <pattern id="mdAm" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="2.7" fill="rgba(143,216,255,.26)"/></pattern>
+            <pattern id="mdBm" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="3.4" fill="#8fd8ff"/></pattern>
+            <clipPath id="usc"><path d="M65 20L85 32L97 16L503 72L503 63L508 65L511 77L535 80L560 91L587 91L576 98L561 112L551 121L564 118L572 117L583 122L594 116L607 109L614 101L611 111L621 122L636 121L646 115L661 112L671 116L677 125L669 131L671 136L682 139L690 147L692 157L690 165L686 179L694 171L700 168L705 172L712 190L710 200L703 207L703 213L699 222L715 225L728 222L752 204L769 185L765 176L788 172L805 164L807 151L817 129L825 124L875 111L879 103L888 87L887 68L895 49L908 47L918 51L927 80L944 94L929 110L908 130L902 137L899 151L903 159L898 168L908 178L916 169L919 177L911 182L897 188L878 198L864 207L859 217L860 221L862 237L858 247L852 258L850 262L852 273L847 290L843 301L844 307L851 322L860 342L846 360L823 382L806 390L791 413L775 433L769 452L772 470L776 482L794 511L809 541L813 568L810 582L796 585L778 566L769 553L754 533L753 513L744 502L729 487L719 485L706 493L698 496L690 487L660 485L645 486L633 487L624 488L614 492L619 505L625 518L612 512L600 517L582 514L563 509L533 507L515 515L504 525L484 535L466 552L463 570L467 591L461 593L444 587L434 581L420 555L405 537L402 528L394 513L381 503L366 502L353 518L347 517L334 510L327 503L317 479L291 450L259 446L258 456L204 448L139 409L141 405L96 399L95 392L92 378L81 368L79 367L78 361L67 355L59 347L45 342L45 332L44 321L37 304L33 289L34 281L29 273L30 261L23 253L18 230L21 214L16 194L25 182L28 165L30 141L40 130L49 105L57 86L60 69L64 55L64 39ZM664 132L652 129L643 132L631 138L623 153L622 169L624 184L622 200L630 226L637 231L646 223L651 212L650 197L644 177L646 162L655 149L663 141L666 133Z"/></clipPath>
+            <radialGradient id="mrg"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+            <radialGradient id="ag"><stop offset="0" stop-color="#8fd8ff" stop-opacity=".6"/><stop offset="1" stop-color="#8fd8ff" stop-opacity="0"/></radialGradient>
+            <mask id="mmk" maskUnits="userSpaceOnUse" x="0" y="0" width="960" height="611"><rect width="960" height="611" fill="#000"/><circle class="ring" cx="456" cy="494" r="560"/><circle class="ring rg2" cx="456" cy="494" r="560"/><circle cx="456" cy="494" r="190" fill="url(#mrg)"/></mask>
+          </defs>
+          <g clip-path="url(#usc)"><rect class="m-base" width="960" height="611"/><rect class="m-lit" width="960" height="611" mask="url(#mmk)"/></g>
+          <path class="m-edge" d="M65 20L85 32L97 16L503 72L503 63L508 65L511 77L535 80L560 91L587 91L576 98L561 112L551 121L564 118L572 117L583 122L594 116L607 109L614 101L611 111L621 122L636 121L646 115L661 112L671 116L677 125L669 131L671 136L682 139L690 147L692 157L690 165L686 179L694 171L700 168L705 172L712 190L710 200L703 207L703 213L699 222L715 225L728 222L752 204L769 185L765 176L788 172L805 164L807 151L817 129L825 124L875 111L879 103L888 87L887 68L895 49L908 47L918 51L927 80L944 94L929 110L908 130L902 137L899 151L903 159L898 168L908 178L916 169L919 177L911 182L897 188L878 198L864 207L859 217L860 221L862 237L858 247L852 258L850 262L852 273L847 290L843 301L844 307L851 322L860 342L846 360L823 382L806 390L791 413L775 433L769 452L772 470L776 482L794 511L809 541L813 568L810 582L796 585L778 566L769 553L754 533L753 513L744 502L729 487L719 485L706 493L698 496L690 487L660 485L645 486L633 487L624 488L614 492L619 505L625 518L612 512L600 517L582 514L563 509L533 507L515 515L504 525L484 535L466 552L463 570L467 591L461 593L444 587L434 581L420 555L405 537L402 528L394 513L381 503L366 502L353 518L347 517L334 510L327 503L317 479L291 450L259 446L258 456L204 448L139 409L141 405L96 399L95 392L92 378L81 368L79 367L78 361L67 355L59 347L45 342L45 332L44 321L37 304L33 289L34 281L29 273L30 261L23 253L18 230L21 214L16 194L25 182L28 165L30 141L40 130L49 105L57 86L60 69L64 55L64 39ZM664 132L652 129L643 132L631 138L623 153L622 169L624 184L622 200L630 226L637 231L646 223L651 212L650 197L644 177L646 162L655 149L663 141L666 133Z"/>
+          <g class="arcs"><path class="reach" pathLength="1" style="--i:0" d="M456.1 494.4Q373.8 194.4 97 52.4"/><path class="com" pathLength="1" style="--i:0" d="M456.1 494.4Q373.8 194.4 97 52.4"/><path class="reach" pathLength="1" style="--i:1" d="M456.1 494.4Q300.2 347.3 86.4 362.9"/><path class="com" pathLength="1" style="--i:1" d="M456.1 494.4Q300.2 347.3 86.4 362.9"/><path class="reach" pathLength="1" style="--i:2" d="M456.1 494.4Q444.9 358.7 337.4 275.3"/><path class="com" pathLength="1" style="--i:2" d="M456.1 494.4Q444.9 358.7 337.4 275.3"/><path class="reach" pathLength="1" style="--i:3" d="M456.1 494.4Q483 323.9 626.9 228.5"/><path class="com" pathLength="1" style="--i:3" d="M456.1 494.4Q483 323.9 626.9 228.5"/><path class="reach" pathLength="1" style="--i:4" d="M456.1 494.4Q594.3 268.9 853.9 218.4"/><path class="com" pathLength="1" style="--i:4" d="M456.1 494.4Q594.3 268.9 853.9 218.4"/><path class="reach" pathLength="1" style="--i:5" d="M456.1 494.4Q646.2 453.2 805.1 565.4"/><path class="com" pathLength="1" style="--i:5" d="M456.1 494.4Q646.2 453.2 805.1 565.4"/><path class="reach" pathLength="1" style="--i:6" d="M456.1 494.4Q421.7 312.8 532.4 164.6"/><path class="com" pathLength="1" style="--i:6" d="M456.1 494.4Q421.7 312.8 532.4 164.6"/><path class="reach" pathLength="1" style="--i:7" d="M456.1 494.4Q559.2 395.1 702.1 404"/><path class="com" pathLength="1" style="--i:7" d="M456.1 494.4Q559.2 395.1 702.1 404"/></g>
+          <g class="dests"><circle class="dest" style="--i:0" cx="97" cy="52.4" r="4"/><circle class="dest" style="--i:1" cx="86.4" cy="362.9" r="4"/><circle class="dest" style="--i:2" cx="337.4" cy="275.3" r="4"/><circle class="dest" style="--i:3" cx="626.9" cy="228.5" r="4"/><circle class="dest" style="--i:4" cx="853.9" cy="218.4" r="4"/><circle class="dest" style="--i:5" cx="805.1" cy="565.4" r="4"/><circle class="dest" style="--i:6" cx="532.4" cy="164.6" r="4"/><circle class="dest" style="--i:7" cx="702.1" cy="404" r="4"/></g>
+          <g class="cities"><text class="city" style="--i:0" x="112" y="57" text-anchor="start">Seattle</text><text class="city" style="--i:1" x="100" y="390" text-anchor="start">Los Angeles</text><text class="city d-only" style="--i:2" x="322" y="300" text-anchor="end">Denver</text><text class="city d-only" style="--i:3" x="641" y="222" text-anchor="start">Chicago</text><text class="city p-only" style="--i:3" x="612" y="214" text-anchor="end">Chicago</text><text class="city" style="--i:4" x="868" y="246" text-anchor="end">New York</text><text class="city" style="--i:5" x="790" y="590" text-anchor="end">Miami</text><text class="city d-only" style="--i:6" x="518" y="160" text-anchor="end">Minneapolis</text><text class="city d-only" style="--i:7" x="716" y="409" text-anchor="start">Atlanta</text></g>
+          <path class="lead-l" pathLength="1" d="M449 503L404 600H160"/>
+          <text class="map-l" x="160" y="590">Austin, TX</text>
+          <text class="map-s" x="160" y="624" data-cutoff="usps ups">Cutoffs · USPS 2 PM · UPS 6 PM CT</text>
+          <g class="austin" transform="translate(456.1 494.4)"><circle class="pulse" r="10"/><circle class="pulse p2" r="10"/><circle class="a-glow" r="24"/><circle class="a-core" r="6.5"/></g>
+        </svg>
+        <figcaption id="map-cap" class="figcap night-cap"><span class="fig-n">Fig. 3</span> <span>Ships from Austin · <span class="nowrap">3–5 day</span> delivery across the U.S.</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-inner">
-    <div class="section-header reveal">
-      <div class="section-label">Our Services</div>
-      <h2 class="section-title">End-to-End Fulfillment Solutions</h2>
-      <p class="section-sub">Everything you need to scale your ecommerce business without building your own warehouse operation.</p>
+<!-- dawn: night into day -->
+<div class="sky dawn" data-edge=".5" aria-hidden="true" data-play><div class="d-light"></div><div class="d-glow"></div><svg class="d-waves" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false"><g class="w3"><path class="w-drift" d="M-160 88.9C-128.3 86.9 -33.3 79.5 30 76.9C93.3 74.4 156.7 72.5 220 73.8C283.3 75 346.7 80.3 410 84.4C473.3 88.5 536.7 95.5 600 98.4C663.3 101.2 726.7 102.6 790 101.5C853.3 100.5 916.7 95.3 980 92.1C1043.3 88.9 1106.7 83.7 1170 82.2C1233.3 80.7 1296.7 81.5 1360 83.2C1423.3 84.9 1518.3 90.9 1550 92.4L1550 -20H-160Z"/></g><g class="w2"><path class="w-drift" d="M-160 77C-131.7 75.9 -46.7 73.8 10 70.5C66.7 67.2 123.3 60.5 180 57.2C236.7 53.9 293.3 50.7 350 50.6C406.7 50.5 463.3 53.9 520 56.7C576.7 59.6 633.3 65.2 690 67.5C746.7 69.8 803.3 71.1 860 70.5C916.7 69.8 973.3 65.8 1030 63.5C1086.7 61.2 1143.3 57.4 1200 56.9C1256.7 56.4 1313.3 58.1 1370 60.6C1426.7 63.1 1511.7 69.9 1540 71.8L1540 -20H-160Z"/></g><g class="w1"><path d="M-160 43.1C-135 44.6 -60 50.9 -10 51.9C40 53 90 51.5 140 49.4C190 47.3 240 42 290 39.3C340 36.6 390 33.7 440 33.3C490 33 540 35.4 590 37.3C640 39.1 690 43.4 740 44.6C790 45.9 840 46.2 890 44.8C940 43.4 990 38.9 1040 36.2C1090 33.5 1140 29.3 1190 28.5C1240 27.7 1290 29 1340 31.4C1390 33.8 1465 41 1490 43L1490 -20H-160Z"/><path class="w-foam" d="M-160 43.1C-135 44.6 -60 50.9 -10 51.9C40 53 90 51.5 140 49.4C190 47.3 240 42 290 39.3C340 36.6 390 33.7 440 33.3C490 33 540 35.4 590 37.3C640 39.1 690 43.4 740 44.6C790 45.9 840 46.2 890 44.8C940 43.4 990 38.9 1040 36.2C1090 33.5 1140 29.3 1190 28.5C1240 27.7 1290 29 1340 31.4C1390 33.8 1465 41 1490 43"/></g></svg></div>
+
+<!-- ============================================================ HOW IT WORKS -->
+<section class="sec how" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="runhead" data-fx="rule"><span>02</span><span>How it works</span><span class="rh-r">Receive → Track</span></div>
+    <div class="sec-head">
+      <h2 id="how-h" class="display" data-fx="title"><span class="ln"><span>From your dock to their</span></span> <span class="ln"><span>doorstep, <em>in five moves.</em></span></span></h2>
+      <p class="lede" data-fx="rise">Simple onboarding, then a routine that runs every weekday: your inventory comes in once, and orders that make their carrier’s cutoff go out the same day.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">📦</div>
-        <h3>DTC Fulfillment</h3>
-        <p>Direct-to-consumer order fulfillment with same-day processing, custom packaging, and real-time tracking.</p>
-        <div class="service-tags"><span class="service-tag">Same-Day Processing</span><span class="service-tag">Custom Packaging</span><span class="service-tag">Branded Inserts</span></div>
-      </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon">🏬</div>
-        <h3>B2B & Wholesale</h3>
-        <p>Bulk order fulfillment with retail-compliant packaging and routing guide adherence.</p>
-        <div class="service-tags"><span class="service-tag">Retail Palletization</span><span class="service-tag">Compliance Labels</span><span class="service-tag">Bulk Shipping</span></div>
-      </div>
-      <div class="service-card reveal reveal-delay-3">
-        <div class="service-icon">📋</div>
-        <h3>Inventory Management</h3>
-        <p>Cloud-based inventory platform with real-time tracking, reorder alerts, and demand forecasting through your client dashboard.</p>
-        <div class="service-tags"><span class="service-tag">Live Stock Levels</span><span class="service-tag">Reorder Alerts</span><span class="service-tag">Demand Forecast</span></div>
-      </div>
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">🔄</div>
-        <h3>Returns Processing</h3>
-        <p>Hassle-free returns management with quality inspection and restocking workflows.</p>
-        <div class="service-tags"><span class="service-tag">Quality Inspection</span><span class="service-tag">Restock Workflows</span><span class="service-tag">Return Tracking</span></div>
-      </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon">🎁</div>
-        <h3>Subscription Boxes</h3>
-        <p>Kitting, assembly, and subscription fulfillment with flexible configurations and recurring scheduling.</p>
-        <div class="service-tags"><span class="service-tag">Custom Kitting</span><span class="service-tag">Flexible Cadences</span><span class="service-tag">Gift Messaging</span></div>
-      </div>
-      <div class="service-card reveal reveal-delay-3">
-        <div class="service-icon">🌎</div>
-        <h3>Freight & Receiving</h3>
-        <p>Inbound container receiving, drayage coordination, and freight management from port to warehouse shelf.</p>
-        <div class="service-tags"><span class="service-tag">Container Unloading</span><span class="service-tag">Cross-Dock</span><span class="service-tag">Freight Coordination</span></div>
+    <ol class="steps" id="steps">
+      <li data-fx="pop"><span class="st-n">01</span><span class="st-ic"><svg aria-hidden="true"><use href="#i-receive"/></svg></span><h3>Receive</h3><p>Ship your inventory to Austin. We receive it and log it into your dashboard.</p><span class="st-dash"><i></i>Dashboard · inventory</span></li>
+      <li data-fx="pop"><span class="st-n">02</span><span class="st-ic"><svg aria-hidden="true"><use href="#i-store"/></svg></span><h3>Store</h3><p>Stock is organized for fast picking, with expiration-aware rotation for products that need it.</p><span class="st-dash"><i></i>Dashboard · stock levels</span></li>
+      <li data-fx="pop"><span class="st-n">03</span><span class="st-ic"><svg aria-hidden="true"><use href="#i-pack"/></svg></span><h3>Pick &amp; pack</h3><p>Picked with care and packed your way — custom packaging and branded inserts included.</p><span class="st-dash"><i></i>Dashboard · orders</span></li>
+      <li data-fx="pop"><span class="st-n">04</span><span class="st-ic"><svg aria-hidden="true"><use href="#i-truck"/></svg></span><h3>Ship same day</h3><p>USPS orders in by <span data-cutoff="usps">2&nbsp;PM&nbsp;CT</span> and UPS orders by <span data-cutoff="ups">6&nbsp;PM&nbsp;CT</span> leave the same day and land in <span class="nowrap">3–5 days</span>.</p><span class="st-dash"><i></i>Dashboard · shipments</span></li>
+      <li data-fx="pop"><span class="st-n">05</span><span class="st-ic"><svg aria-hidden="true"><use href="#i-track"/></svg></span><h3>Track</h3><p>Inventory, orders and shipments update live in your client dashboard.</p><span class="st-dash"><i></i>Dashboard · tracking</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================ SERVICES -->
+<section class="sec services" id="services" aria-labelledby="svc-h">
+  <div class="wrap">
+    <div class="runhead" data-fx="rule"><span>03</span><span>Services</span><span class="rh-r">Six ways we move product</span></div>
+    <div class="sec-head">
+      <h2 id="svc-h" class="display" data-fx="title"><span class="ln"><span>Everything between</span></span> <span class="ln"><span><em>the cart and the door.</em></span></span></h2>
+      <p class="lede" data-fx="rise">One partner for every way your product moves — direct to consumers, into retail, back from customers and in from your suppliers.</p>
+    </div>
+    <ol class="ix" id="ix">
+      <li class="ix-row" data-fx="slide"><span class="ix-n">01</span><h3>DTC fulfillment</h3><p>Same-day pick, pack and ship for direct-to-consumer orders, with custom packaging and branded inserts that make the unboxing yours.</p><ul class="ix-t"><li>Same-day</li><li>Custom packaging</li><li>Branded inserts</li></ul></li>
+      <li class="ix-row" data-fx="slide"><span class="ix-n">02</span><h3>B2B &amp; wholesale</h3><p>Bulk and retail orders packed to spec — retail-compliant packaging, routing-guide adherence and palletization.</p><ul class="ix-t"><li>Retail-compliant</li><li>Routing guides</li><li>Palletization</li></ul></li>
+      <li class="ix-row" data-fx="slide"><span class="ix-n">03</span><h3>Inventory management</h3><p>Live stock levels and reorder notifications in your client dashboard, so you restock before you run out.</p><ul class="ix-t"><li>Live stock levels</li><li>Reorder notifications</li></ul></li>
+      <li class="ix-row" data-fx="slide"><span class="ix-n">04</span><h3>Returns processing</h3><p>Every return is inspected, and sellable units go back on the shelf.</p><ul class="ix-t"><li>Inspection</li><li>Restock</li></ul></li>
+      <li class="ix-row" data-fx="slide"><span class="ix-n">05</span><h3>Subscription boxes &amp; kitting</h3><p>Custom kitting and assembly for subscription boxes, bundles and multi-item kits.</p><ul class="ix-t"><li>Custom kitting</li><li>Assembly</li></ul></li>
+      <li class="ix-row" data-fx="slide"><span class="ix-n">06</span><h3>Freight &amp; receiving</h3><p>Inbound receiving, cross-dock and freight coordination to get your stock from supplier to shelf.</p><ul class="ix-t"><li>Inbound receiving</li><li>Cross-dock</li><li>Freight coordination</li></ul></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================ INDUSTRIES -->
+<section class="sec industries pre-dusk" id="industries" aria-labelledby="ind-h">
+  <div class="wrap">
+    <div class="runhead" data-fx="rule"><span>04</span><span>Industries</span><span class="rh-r">What’s on our shelves</span></div>
+    <div class="sec-head">
+      <h2 id="ind-h" class="display" data-fx="title"><span class="ln"><span>Built for products that</span></span> <span class="ln"><span>need <em>careful hands.</em></span></span></h2>
+    </div>
+    <div class="ind">
+      <article class="feat" data-fx="clip" data-play aria-labelledby="feat-h">
+        <div class="feat-art" aria-hidden="true">
+          <svg viewBox="0 0 360 250" width="360" height="250">
+            <path class="fa-floor" d="M8 226H352"/>
+            <g class="fa-kit">
+              <path class="fa-in" d="M30 160 44 140H214L200 160Z"/>
+              <g class="fa-b"><rect class="fa-cap" x="55" y="92" width="32" height="15" rx="3"/><rect class="fa-body" x="50" y="106" width="42" height="64" rx="8"/><rect class="fa-label" x="50" y="120" width="42" height="26"/><path class="fa-txt" d="M57 129H85M57 137H77"/></g>
+              <g class="fa-b"><rect class="fa-cap alt" x="103" y="114" width="44" height="12" rx="3"/><rect class="fa-jar" x="100" y="125" width="50" height="45" rx="8"/><rect class="fa-label" x="100" y="136" width="50" height="18"/><path class="fa-txt" d="M108 145H136"/></g>
+              <g class="fa-b"><path class="fa-pouch" d="M158 100H198L202 170H154Z"/><path class="fa-zip" d="M159 109H197"/><rect class="fa-label" x="165" y="122" width="30" height="22" rx="2"/><path class="fa-txt" d="M170 130H190M170 137H184"/></g>
+              <path class="fa-box" d="M30 160H200V222a4 4 0 0 1-4 4H34a4 4 0 0 1-4-4Z"/>
+              <path class="fa-box2" d="M200 160 214 140V204L200 226Z"/>
+              <rect class="fa-label" x="46" y="176" width="92" height="30" rx="2"/>
+              <path class="fa-txt" d="M54 186H112M54 194H96"/>
+              <path class="fa-bars" d="M150 178v26M154 178v26M157 178v26M162 178v26M165 178v26M170 178v26M174 178v26M177 178v26M182 178v26"/>
+            </g>
+            <g class="fa-tall">
+              <rect class="fa-cap deep" x="239" y="64" width="38" height="20" rx="4"/>
+              <path class="fa-body" d="M242 84H274V90Q284 94 284 104V212A14 14 0 0 1 270 226H246A14 14 0 0 1 232 212V104Q232 94 242 90Z"/>
+              <rect class="fa-label" x="232" y="120" width="52" height="46"/>
+              <path class="fa-txt" d="M240 132H272M240 141H264M240 150H268"/>
+            </g>
+            <g class="fa-snow"><circle class="fa-snow-bg" cx="318" cy="58" r="20"/><svg x="306" y="46" width="24" height="24"><use href="#i-snow"/></svg></g>
+            <g class="fa-ctn"><path class="fa-top" d="M294 196l10-8h40l-10 8z"/><rect class="fa-box" x="294" y="196" width="40" height="30" rx="1"/><path class="fa-box2" d="M334 196l10-8v30l-10 8z"/><path class="fa-txt" d="M301 207H322M301 214H315"/><path class="fa-top" d="M300 172l8-6h30l-8 6z"/><rect class="fa-box" x="300" y="172" width="30" height="24" rx="1"/><path class="fa-box2" d="M330 172l8-6v24l-8 6z"/></g>
+          </svg>
+        </div>
+        <div class="feat-body">
+          <p class="feat-k">Featured industry</p>
+          <h3 id="feat-h">Health &amp; wellness</h3>
+          <p class="feat-sub">Supplements &amp; vitamins</p>
+          <ul class="ticks">
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Product labeling</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Kitting &amp; bundles</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Expiration-date (FEFO) rotation</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Refrigerated storage for products that need it</li>
+          </ul>
+          <a class="tlink" href="/quote/?sell=Supplements%20%26%20vitamins">Quote for supplements &amp; vitamins</a>
+        </div>
+      </article>
+      <div class="others">
+        <p class="others-k" data-fx="rise">Also on our shelves</p>
+        <ol class="ol-ind">
+          <li data-fx="slide"><span>02</span><b>Beauty &amp; personal care</b><i>Serums, creams, kits</i></li>
+          <li data-fx="slide"><span>03</span><b>Food &amp; beverage</b><i>Shelf-stable or chilled</i></li>
+          <li data-fx="slide"><span>04</span><b>Apparel &amp; accessories</b><i>Poly-bagged or boxed</i></li>
+          <li data-fx="slide"><span>05</span><b>Pets</b><i>Treats, supplements, gear</i></li>
+          <li data-fx="slide"><span>06</span><b>Home goods</b><i>Everyday essentials</i></li>
+          <li data-fx="slide"><span>07</span><b>Sports, toys &amp; games</b><i>Gear, games, gifts</i></li>
+          <li data-fx="slide"><span>08</span><b>Books &amp; media</b><i>Books, prints, media</i></li>
+          <li class="ol-more" data-fx="slide"><a href="/quote/?sell=Something%20else"><span>+</span><b>Something else?</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><i>We handle most categories. Ask us.</i></a></li>
+        </ol>
       </div>
     </div>
   </div>
 </section>
 
-<!-- INDUSTRIES -->
-<section id="industries">
-  <div class="section-inner">
-    <div class="section-header reveal">
-      <div class="section-label" style="color:var(--sky)">Industries We Serve</div>
-      <h2 class="section-title">Fulfillment for Every Category</h2>
-      <p class="section-sub">From supplements to skincare, we have the infrastructure and expertise to handle your products right.</p>
-    </div>
-    <div class="industries-grid">
-      <div class="industry-card reveal reveal-delay-1"><div class="industry-icon">💊</div><h3>Health & Wellness</h3><div class="industry-tags"><span class="industry-tag">Supplements & Vitamins</span><span class="industry-tag">FEFO Rotation</span><span class="industry-tag">Expiration Tracking</span><span class="industry-tag">Secure Storage</span></div></div>
-      <div class="industry-card reveal reveal-delay-2"><div class="industry-icon">💄</div><h3>Beauty & Personal Care</h3><div class="industry-tags"><span class="industry-tag">Custom Packaging</span><span class="industry-tag">Fragile Handling</span><span class="industry-tag">Climate Controlled</span><span class="industry-tag">Gift-Ready Options</span></div></div>
-      <div class="industry-card reveal reveal-delay-3"><div class="industry-icon">🍽️</div><h3>Food & Beverage</h3><div class="industry-tags"><span class="industry-tag">Expiration Tracking</span><span class="industry-tag">FEFO Rotation</span><span class="industry-tag">Secure Storage</span><span class="industry-tag">Same-Day Shipping</span></div></div>
-      <div class="industry-card reveal reveal-delay-4"><div class="industry-icon">👕</div><h3>Apparel & Accessories</h3><div class="industry-tags"><span class="industry-tag">SKU Management</span><span class="industry-tag">Poly Bagging</span><span class="industry-tag">Branded Inserts</span><span class="industry-tag">Hanging Storage</span></div></div>
-      <div class="industry-card reveal reveal-delay-1"><div class="industry-icon">🐾</div><h3>Pets</h3><div class="industry-tags"><span class="industry-tag">Subscription Ready</span><span class="industry-tag">Heavy Item Handling</span><span class="industry-tag">Custom Packaging</span><span class="industry-tag">Same-Day Shipping</span></div></div>
-      <div class="industry-card reveal reveal-delay-2"><div class="industry-icon">🏠</div><h3>Home Goods</h3><div class="industry-tags"><span class="industry-tag">Fragile Packaging</span><span class="industry-tag">Oversize Handling</span><span class="industry-tag">Assembly Kitting</span><span class="industry-tag">Freight Options</span></div></div>
-      <div class="industry-card reveal reveal-delay-3"><div class="industry-icon">⚽</div><h3>Sports, Toys & Games</h3><div class="industry-tags"><span class="industry-tag">Peak Season Surge</span><span class="industry-tag">Bundling & Kitting</span><span class="industry-tag">Retail Compliant</span><span class="industry-tag">Gift Wrapping</span></div></div>
-      <div class="industry-card reveal reveal-delay-4"><div class="industry-icon">📚</div><h3>Books & Media</h3><div class="industry-tags"><span class="industry-tag">Multi-Unit Kitting</span><span class="industry-tag">Poly Bagging</span><span class="industry-tag">Branded Inserts</span><span class="industry-tag">Same-Day Shipping</span></div></div>
+<!-- dusk: day into night -->
+<div class="sky dusk flip" data-edge=".1" aria-hidden="true" data-play style="--sx:24%"><div class="s-sky"></div><div class="s-dark"></div><div class="s-glow"></div><svg class="s-stars" viewBox="0 0 1440 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><circle cx="20.1" cy="142.7" r="0.9"/><circle class="st-tw" cx="314.8" cy="107.5" r="1.2"/><circle cx="481" cy="111.6" r="1.4"/><circle class="st-tw" cx="780" cy="99.6" r="1.3"/><circle cx="1163.5" cy="31.7" r="1"/><circle class="st-tw" cx="1011.1" cy="102" r="0.7"/><circle cx="977.5" cy="63.9" r="1.6"/><circle class="st-tw" cx="1150.4" cy="17.8" r="1.2"/><circle cx="1312.4" cy="100.3" r="1.3"/><circle class="st-tw" cx="828.4" cy="141.1" r="1.6"/><circle cx="541.1" cy="44.2" r="1.5"/><circle class="st-tw" cx="485.2" cy="21" r="0.9"/><circle cx="619.9" cy="38.7" r="1.6"/><circle class="st-tw" cx="800.3" cy="107.5" r="1.6"/><circle cx="102.1" cy="35.8" r="1.2"/><circle class="st-tw" cx="732.3" cy="56.8" r="0.8"/><circle cx="1292.6" cy="11.4" r="1"/><circle class="st-tw" cx="501.8" cy="96.2" r="1.6"/><circle cx="740.8" cy="22.5" r="1"/><circle class="st-tw" cx="417" cy="48.4" r="1.1"/><circle cx="485.6" cy="74" r="1.3"/><circle class="st-tw" cx="346.5" cy="140" r="1.1"/><circle cx="1228.2" cy="91.1" r="1.3"/><circle class="st-tw" cx="742.7" cy="69.7" r="1.4"/><circle cx="1335.4" cy="53.1" r="1.4"/><circle class="st-tw" cx="371.6" cy="83" r="1"/><circle cx="482.8" cy="52.3" r="1.5"/><circle class="st-tw" cx="1248.6" cy="16.6" r="1.5"/><circle cx="128.8" cy="54.6" r="0.8"/><circle class="st-tw" cx="129" cy="157.3" r="0.8"/><circle cx="905.3" cy="20.1" r="1.1"/><circle class="st-tw" cx="850.1" cy="19.4" r="1.6"/><circle cx="1258.4" cy="137" r="1.6"/><circle class="st-tw" cx="1290.9" cy="113.2" r="0.9"/></svg><div class="s-sun"></div><svg class="s-hills" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="s-far" d="M-20 42C1.7 40.3 65 35.7 110 32C155 28.3 205 20.8 250 20C295 19.2 335 24.3 380 27C425 29.7 473.3 36.5 520 36C566.7 35.5 613.3 28 660 24C706.7 20 755 12.3 800 12C845 11.7 888.3 18 930 22C971.7 26 1013.3 33 1050 36C1086.7 39 1116.7 41 1150 40C1183.3 39 1216.7 33.5 1250 30C1283.3 26.5 1315 19.3 1350 19C1385 18.7 1441.7 26.5 1460 28L1460 61H-20Z"/><path class="s-near" d="M-20 52C8.3 51 91.7 46.2 150 46C208.3 45.8 268.3 51.2 330 51C391.7 50.8 458.3 45.2 520 45C581.7 44.8 640 49.8 700 50C760 50.2 823.3 45.5 880 46C936.7 46.5 986.7 52.7 1040 53C1093.3 53.3 1130 48.3 1200 48C1270 47.7 1416.7 50.5 1460 51L1460 61H-20Z"/></svg><div class="s-lake"></div><div class="s-ref"></div><svg class="s-rips" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="s-rip" d="M-40 15.6C-24.2 16 23.3 18 55 18.1C86.7 18.1 118.3 16.9 150 15.9C181.7 15 213.3 13 245 12.4C276.7 11.9 308.3 12 340 12.5C371.7 13 403.3 14.9 435 15.5C466.7 16.2 498.3 16.8 530 16.4C561.7 16 593.3 14.2 625 13.1C656.7 12 688.3 10.2 720 9.9C751.7 9.6 783.3 10.4 815 11.3C846.7 12.2 878.3 14.4 910 15.3C941.7 16.1 973.3 16.7 1005 16.5C1036.7 16.2 1068.3 14.6 1100 13.8C1131.7 13 1163.3 11.8 1195 11.9C1226.7 11.9 1258.3 13.2 1290 14.1C1321.7 15.1 1353.3 17.1 1385 17.6C1416.7 18.1 1464.2 17.3 1480 17.2"/><path class="s-rip" d="M-40 51.6C-24.2 50.9 23.3 48.9 55 47.5C86.7 46 118.3 43.4 150 42.8C181.7 42.2 213.3 42.9 245 43.9C276.7 44.9 308.3 47.9 340 49.1C371.7 50.3 403.3 51.4 435 51.2C466.7 51 498.3 48.9 530 47.9C561.7 46.9 593.3 45 625 45C656.7 45 688.3 46.4 720 47.6C751.7 48.9 783.3 51.7 815 52.6C846.7 53.4 878.3 53.6 910 52.8C941.7 51.9 973.3 49.1 1005 47.7C1036.7 46.2 1068.3 44.3 1100 44C1131.7 43.8 1163.3 45.3 1195 46.3C1226.7 47.3 1258.3 49.7 1290 50.1C1321.7 50.6 1353.3 50.2 1385 49.3C1416.7 48.3 1464.2 45.4 1480 44.6"/><path class="s-rip" d="M-40 82.3C-24.2 81.5 23.3 78.1 55 77.7C86.7 77.2 118.3 78 150 79.5C181.7 80.9 213.3 84.6 245 86.2C276.7 87.7 308.3 89.2 340 88.8C371.7 88.5 403.3 85.7 435 83.9C466.7 82.2 498.3 79.1 530 78.4C561.7 77.7 593.3 78.5 625 79.6C656.7 80.6 688.3 83.7 720 84.6C751.7 85.5 783.3 85.9 815 84.9C846.7 84 878.3 80.7 910 79.1C941.7 77.4 973.3 75.1 1005 75.1C1036.7 75.1 1068.3 77.2 1100 78.9C1131.7 80.6 1163.3 84.3 1195 85.5C1226.7 86.8 1258.3 87.1 1290 86.4C1321.7 85.7 1353.3 82.6 1385 81.4C1416.7 80.1 1464.2 79.3 1480 78.9"/></svg></div>
+
+<!-- ============================================================ VISIBILITY (night band 2) -->
+<section class="night vis" id="visibility" aria-labelledby="vis-h">
+  <div class="wrap">
+    <div class="runhead" data-fx="rule"><span>05</span><span>Visibility</span><span class="rh-r">Your client dashboard</span></div>
+    <div class="vis-grid">
+      <div class="vis-copy">
+        <h2 id="vis-h" class="display" data-fx="title"><span class="ln"><span>Every unit,</span></span> <span class="ln"><span>every order,</span></span> <span class="ln"><span><em>in plain sight.</em></span></span></h2>
+        <p class="lede" data-fx="rise">Your live dashboard shows what’s on the shelf, what’s been packed and what’s on its way — so you never have to email anyone for an update.</p>
+        <dl class="vis-list">
+          <div data-fx="slide"><dt>Inventory</dt><dd>Live stock levels by SKU, with reorder notifications before you run low.</dd></div>
+          <div data-fx="slide"><dt>Orders</dt><dd>Every order from received to packed to shipped, in real time.</dd></div>
+          <div data-fx="slide"><dt>Shipments</dt><dd>Tracking for every package that leaves the building.</dd></div>
+        </dl>
+      </div>
+      <figure class="vis-art" aria-labelledby="dash-cap">
+        <div class="dash" aria-hidden="true" data-fx="clip">
+          <div class="d-top"><svg class="mark" width="26" height="17"><use href="#wave"/></svg><b>Lakeside</b><span class="d-tag">Client dashboard</span><span class="d-sample">Sample data</span></div>
+          <div class="d-tabs"><span class="on">Overview</span><span>Inventory</span><span>Orders</span><span>Shipments</span></div>
+          <div class="d-kpis">
+            <div><span>Orders today</span><b>148</b><em>Sample figures</em></div>
+            <div><span>Packed</span><b>131</b><em class="g">Ships today</em></div>
+            <div><span>Low stock</span><b>2</b><em class="a">SKUs to reorder</em></div>
+          </div>
+          <div class="d-chart">
+            <div class="d-ch-h"><span>Orders by hour</span><span class="d-key"><span><i></i>Same day</span><span><i class="win"></i>UPS only</span><span><i class="nd"></i>Next day</span></span></div>
+            <svg viewBox="0 0 560 128" width="560" height="128"><g class="d-bars" id="d-bars"><rect x="5" y="104" width="28" height="12" rx="4"/><rect x="43" y="94" width="28" height="22" rx="4"/><rect x="81" y="78" width="28" height="38" rx="4"/><rect x="119" y="60" width="28" height="56" rx="4"/><rect x="157" y="46" width="28" height="70" rx="4"/><rect x="195" y="52" width="28" height="64" rx="4"/><rect x="233" y="34" width="28" height="82" rx="4"/><rect x="271" y="42" width="28" height="74" rx="4"/><rect class="win" x="323" y="56" width="28" height="60" rx="4"/><rect class="win" x="361" y="64" width="28" height="52" rx="4"/><rect class="win" x="399" y="70" width="28" height="46" rx="4"/><rect class="win" x="437" y="78" width="28" height="38" rx="4"/><rect class="aft" x="489" y="94" width="28" height="22" rx="4"/><rect class="aft" x="527" y="102" width="28" height="14" rx="4"/></g><path class="d-cut" data-cutoff="usps" d="M311 6V120"/><text class="d-cut-t" data-cutoff="usps" x="305" y="14" text-anchor="end">USPS 2 PM</text><path class="d-cut" data-cutoff="ups" d="M477 6V120"/><text class="d-cut-t" data-cutoff="ups" x="471" y="14" text-anchor="end">UPS 6 PM</text><path class="d-axis" d="M0 116.5H560"/></svg>
+          </div>
+          <div class="d-table">
+            <div class="d-row d-hd"><span>SKU</span><span>On hand</span><span></span><span>Status</span></div>
+            <div class="d-row"><span>Gift set · 3 pc</span><span>312</span><span class="d-bar"><i style="width:22%" class="a"></i></span><span class="chip-a">Reorder</span></div>
+            <div class="d-row"><span>Daily vitamins · 60 ct</span><span>1,240</span><span class="d-bar"><i style="width:78%"></i></span><span class="chip-g">In stock</span></div>
+            <div class="d-row"><span>Candle · 8 oz</span><span>860</span><span class="d-bar"><i style="width:56%"></i></span><span class="chip-g">In stock</span></div>
+            <div class="d-row"><span>Mailer box · S</span><span>2,400</span><span class="d-bar"><i style="width:90%"></i></span><span class="chip-g">In stock</span></div>
+          </div>
+        </div>
+        <figcaption id="dash-cap" class="figcap night-cap"><span class="fig-n">Fig. 4</span> The client dashboard: an illustrative view with sample data.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section-inner">
-    <div class="section-header reveal">
-      <div class="section-label">Client Reviews</div>
-      <h2 class="section-title">What Our Clients Say</h2>
+<!-- dawn: night into day -->
+<div class="sky dawn" data-edge=".5" aria-hidden="true" data-play style="--day:var(--paper-2);--gx:26%"><div class="d-light"></div><div class="d-glow"></div><svg class="d-waves" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false"><g class="w3"><path class="w-drift" d="M-160 88.9C-128.3 86.9 -33.3 79.5 30 76.9C93.3 74.4 156.7 72.5 220 73.8C283.3 75 346.7 80.3 410 84.4C473.3 88.5 536.7 95.5 600 98.4C663.3 101.2 726.7 102.6 790 101.5C853.3 100.5 916.7 95.3 980 92.1C1043.3 88.9 1106.7 83.7 1170 82.2C1233.3 80.7 1296.7 81.5 1360 83.2C1423.3 84.9 1518.3 90.9 1550 92.4L1550 -20H-160Z"/></g><g class="w2"><path class="w-drift" d="M-160 77C-131.7 75.9 -46.7 73.8 10 70.5C66.7 67.2 123.3 60.5 180 57.2C236.7 53.9 293.3 50.7 350 50.6C406.7 50.5 463.3 53.9 520 56.7C576.7 59.6 633.3 65.2 690 67.5C746.7 69.8 803.3 71.1 860 70.5C916.7 69.8 973.3 65.8 1030 63.5C1086.7 61.2 1143.3 57.4 1200 56.9C1256.7 56.4 1313.3 58.1 1370 60.6C1426.7 63.1 1511.7 69.9 1540 71.8L1540 -20H-160Z"/></g><g class="w1"><path d="M-160 43.1C-135 44.6 -60 50.9 -10 51.9C40 53 90 51.5 140 49.4C190 47.3 240 42 290 39.3C340 36.6 390 33.7 440 33.3C490 33 540 35.4 590 37.3C640 39.1 690 43.4 740 44.6C790 45.9 840 46.2 890 44.8C940 43.4 990 38.9 1040 36.2C1090 33.5 1140 29.3 1190 28.5C1240 27.7 1290 29 1340 31.4C1390 33.8 1465 41 1490 43L1490 -20H-160Z"/><path class="w-foam" d="M-160 43.1C-135 44.6 -60 50.9 -10 51.9C40 53 90 51.5 140 49.4C190 47.3 240 42 290 39.3C340 36.6 390 33.7 440 33.3C490 33 540 35.4 590 37.3C640 39.1 690 43.4 740 44.6C790 45.9 840 46.2 890 44.8C940 43.4 990 38.9 1040 36.2C1090 33.5 1140 29.3 1190 28.5C1240 27.7 1290 29 1340 31.4C1390 33.8 1465 41 1490 43"/></g></svg></div>
+
+<!-- ============================================================ REVIEWS -->
+<section class="sec reviews" id="reviews" aria-labelledby="rev-h">
+  <div class="wrap">
+    <div class="runhead" id="testimonials" data-fx="rule"><span>06</span><span>Reviews</span><span class="rh-r">In our clients’ words</span></div>
+    <h2 id="rev-h" class="sr">What clients say</h2>
+    <figure class="pull" data-fx="rise">
+      <span class="qmark" aria-hidden="true">“</span>
+      <blockquote><p>Working with Lakeside has been the easiest fulfillment company I have ever worked with. Very competitive rates, <mark>never had a single unit go out a day late — everything ships same day.</mark> They handle our logistics, help us forecast inventory, and anything that comes up they get it handled fast.</p></blockquote>
+      <figcaption><span class="rule-s"></span>Verified client · Supplement brand</figcaption>
+    </figure>
+    <div class="rev-row">
+      <figure class="pull pull-s" data-fx="rise">
+        <blockquote><p>“Very convenient plug and play setup. Have had no issues so far! Shipping and handling is very streamlined and they are very helpful with any questions or concerns I have.”</p></blockquote>
+        <figcaption><span class="rule-s"></span>Verified client · Supplement brand</figcaption>
+      </figure>
+      <aside class="letter" data-fx="rise" aria-labelledby="letter-h">
+        <p class="feat-k">Letters</p>
+        <h3 id="letter-h">Ship with us? Tell us how we’re doing.</h3>
+        <p>Your review helps other brands find a fulfillment partner they can trust.</p>
+        <a class="tlink" href="https://docs.google.com/forms/d/e/1FAIpQLSenGO7fmb72tJkM8x6o81GaAl1Ic8IctPUCqahVb4ky-nECEw/viewform" target="_blank" rel="noopener">Leave a review<svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg><span class="sr"> (opens in a new tab)</span></a>
+      </aside>
     </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal reveal-delay-1">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-quote">"Very convenient plug and play setup. Have had no issues so far! Shipping and handling is very streamlined and they are very helpful with any questions or concerns I have."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar" style="background:var(--navy2);">★</div>
-          <div><div class="author-name">Verified Client</div><div class="author-title">Supplement Brand</div></div>
-        </div>
+  </div>
+</section>
+
+<!-- ============================================================ FAQ -->
+<section class="sec faq pre-dusk" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="runhead" data-fx="rule"><span>07</span><span>FAQ</span><span class="rh-r">Straight answers</span></div>
+    <div class="faq-grid">
+      <div class="faq-head">
+        <h2 id="faq-h" class="display" data-fx="title"><span class="ln"><span>Questions,</span></span> <span class="ln"><span><em>answered.</em></span></span></h2>
+        <p data-fx="rise">Something we didn’t cover? Call <a href="tel:+17373432348">(737) 343-2348</a> or email <a href="mailto:inboundleads@lakesidefulfillment.com">inboundleads@<wbr>lakesidefulfillment.com</a>.</p>
       </div>
-      <div class="testimonial-card reveal reveal-delay-2">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-quote">"Working with Lakeside has been the easiest fulfillment company I have ever worked with. Very competitive rates, never had a single unit go out a day late — everything ships same day. They handle our logistics, help us forecast inventory, and anything that comes up they get it handled fast."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar" style="background:var(--navy2);">★</div>
-          <div><div class="author-name">Verified Client</div><div class="author-title">Supplement Brand</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card placeholder reveal reveal-delay-3">
-        <div class="review-placeholder">
-          <div style="font-size:32px;margin-bottom:16px">⭐</div>
-          <p>Working with Lakeside? We'd love to feature your experience here.</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSenGO7fmb72tJkM8x6o81GaAl1Ic8IctPUCqahVb4ky-nECEw/viewform" target="_blank" class="review-btn">Leave a Review</a>
-        </div>
+      <div class="qa">
+        <details data-fx="slide"><summary><span>What are your same-day shipping cutoffs?</span><svg class="ic pm" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans"><p>Monday to Friday, USPS orders in by <span data-cutoff="usps">2&nbsp;PM&nbsp;CT</span> and UPS orders in by <span data-cutoff="ups">6&nbsp;PM&nbsp;CT</span> ship the same day. Which cutoff applies depends on the carrier your order ships with. Same-day orders are picked, packed, labeled and handed to the carrier from our warehouse in Austin, Texas.</p></div></details>
+        <details data-fx="slide"><summary><span>What happens to orders placed after the cutoff?</span><svg class="ic pm" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans"><p>They ship the next business day, with one exception: on weekdays, UPS orders placed between <span data-cutoff="usps">2&nbsp;PM</span> and <span data-cutoff="ups">6&nbsp;PM&nbsp;CT</span> still ship the same day. USPS orders placed after <span data-cutoff="usps">2&nbsp;PM&nbsp;CT</span>, and any order placed after <span data-cutoff="ups">6&nbsp;PM&nbsp;CT</span>, ship the next business day.</p></div></details>
+        <details data-fx="slide"><summary><span>Do you ship on weekends?</span><svg class="ic pm" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans"><p>No. We ship Monday to Friday. Orders placed on Saturday or Sunday ship the next business day.</p></div></details>
+        <details data-fx="slide"><summary><span>Where do you ship from, and how long does delivery take?</span><svg class="ic pm" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans"><p>We ship from our warehouse in Austin, Texas, a central U.S. location. Delivery takes <span class="nowrap">3–5 days</span> across the U.S., so both coasts are within reach.</p></div></details>
+        <details data-fx="slide"><summary><span>What kinds of products do you ship?</span><svg class="ic pm" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans"><p>We’re a DTC-specialized 3PL for many categories: health and wellness, including supplements and vitamins; beauty and personal care; food and beverage; apparel and accessories; pets; home goods; sports, toys and games; and books and media. We offer product labeling, kitting and bundles, expiration-date (FEFO) rotation, and refrigerated storage for products that need it.</p></div></details>
+        <details data-fx="slide"><summary><span>Can I see my inventory and orders in real time?</span><svg class="ic pm" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans"><p>Yes. Your client dashboard shows inventory, orders and shipments live, with stock levels and reorder notifications.</p></div></details>
+        <details data-fx="slide"><summary><span>How is pricing set, and how fast can we start?</span><svg class="ic pm" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans"><p>Pricing is custom and based on your volume. Tell us what you sell and roughly how many orders you ship a month, and we’ll send a custom quote within 24&nbsp;hours, with no commitment. Onboarding can take as little as 2&nbsp;weeks.</p></div></details>
+        <details data-fx="slide"><summary><span>What services do you offer besides DTC fulfillment?</span><svg class="ic pm" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans"><p>B2B and wholesale (retail-compliant packaging, routing guides, palletization), returns processing with inspection and restock, subscription boxes and kitting, and freight and receiving: inbound receiving, cross-dock and freight coordination. Custom packaging and branded inserts are available too.</p></div></details>
       </div>
     </div>
   </div>
 </section>
 
-<!-- QUOTE FORM -->
-<section id="quote">
-  <div class="section-inner">
-    <div class="quote-wrap">
-      <div class="quote-left reveal">
-        <div class="section-label">Get Started</div>
-        <h2>Get Your Free Fulfillment Quote</h2>
-        <p>Tell us about your business and we'll put together a custom pricing plan within 24 hours.</p>
-        <div class="quote-promise">
-          <div class="promise-item"><span class="promise-check">✓</span>Same-day fulfillment on all orders</div>
-          <div class="promise-item"><span class="promise-check">✓</span>Custom pricing based on your volume</div>
-          <div class="promise-item"><span class="promise-check">✓</span>Response within 24 hours</div>
-          <div class="promise-item"><span class="promise-check">✓</span>No commitment required</div>
-          <div class="promise-item"><span class="promise-check">✓</span>Onboarding in as little as 2 weeks</div>
-        </div>
+<!-- dusk: day into night -->
+<div class="sky dusk" data-edge=".1" aria-hidden="true" data-play style="--sx:56%"><div class="s-sky"></div><div class="s-dark"></div><div class="s-glow"></div><svg class="s-stars" viewBox="0 0 1440 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><circle cx="20.1" cy="142.7" r="0.9"/><circle class="st-tw" cx="314.8" cy="107.5" r="1.2"/><circle cx="481" cy="111.6" r="1.4"/><circle class="st-tw" cx="780" cy="99.6" r="1.3"/><circle cx="1163.5" cy="31.7" r="1"/><circle class="st-tw" cx="1011.1" cy="102" r="0.7"/><circle cx="977.5" cy="63.9" r="1.6"/><circle class="st-tw" cx="1150.4" cy="17.8" r="1.2"/><circle cx="1312.4" cy="100.3" r="1.3"/><circle class="st-tw" cx="828.4" cy="141.1" r="1.6"/><circle cx="541.1" cy="44.2" r="1.5"/><circle class="st-tw" cx="485.2" cy="21" r="0.9"/><circle cx="619.9" cy="38.7" r="1.6"/><circle class="st-tw" cx="800.3" cy="107.5" r="1.6"/><circle cx="102.1" cy="35.8" r="1.2"/><circle class="st-tw" cx="732.3" cy="56.8" r="0.8"/><circle cx="1292.6" cy="11.4" r="1"/><circle class="st-tw" cx="501.8" cy="96.2" r="1.6"/><circle cx="740.8" cy="22.5" r="1"/><circle class="st-tw" cx="417" cy="48.4" r="1.1"/><circle cx="485.6" cy="74" r="1.3"/><circle class="st-tw" cx="346.5" cy="140" r="1.1"/><circle cx="1228.2" cy="91.1" r="1.3"/><circle class="st-tw" cx="742.7" cy="69.7" r="1.4"/><circle cx="1335.4" cy="53.1" r="1.4"/><circle class="st-tw" cx="371.6" cy="83" r="1"/><circle cx="482.8" cy="52.3" r="1.5"/><circle class="st-tw" cx="1248.6" cy="16.6" r="1.5"/><circle cx="128.8" cy="54.6" r="0.8"/><circle class="st-tw" cx="129" cy="157.3" r="0.8"/><circle cx="905.3" cy="20.1" r="1.1"/><circle class="st-tw" cx="850.1" cy="19.4" r="1.6"/><circle cx="1258.4" cy="137" r="1.6"/><circle class="st-tw" cx="1290.9" cy="113.2" r="0.9"/></svg><div class="s-sun"></div><svg class="s-hills" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="s-far" d="M-20 42C1.7 40.3 65 35.7 110 32C155 28.3 205 20.8 250 20C295 19.2 335 24.3 380 27C425 29.7 473.3 36.5 520 36C566.7 35.5 613.3 28 660 24C706.7 20 755 12.3 800 12C845 11.7 888.3 18 930 22C971.7 26 1013.3 33 1050 36C1086.7 39 1116.7 41 1150 40C1183.3 39 1216.7 33.5 1250 30C1283.3 26.5 1315 19.3 1350 19C1385 18.7 1441.7 26.5 1460 28L1460 61H-20Z"/><path class="s-near" d="M-20 52C8.3 51 91.7 46.2 150 46C208.3 45.8 268.3 51.2 330 51C391.7 50.8 458.3 45.2 520 45C581.7 44.8 640 49.8 700 50C760 50.2 823.3 45.5 880 46C936.7 46.5 986.7 52.7 1040 53C1093.3 53.3 1130 48.3 1200 48C1270 47.7 1416.7 50.5 1460 51L1460 61H-20Z"/></svg><div class="s-lake"></div><div class="s-ref"></div><svg class="s-rips" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="s-rip" d="M-40 15.6C-24.2 16 23.3 18 55 18.1C86.7 18.1 118.3 16.9 150 15.9C181.7 15 213.3 13 245 12.4C276.7 11.9 308.3 12 340 12.5C371.7 13 403.3 14.9 435 15.5C466.7 16.2 498.3 16.8 530 16.4C561.7 16 593.3 14.2 625 13.1C656.7 12 688.3 10.2 720 9.9C751.7 9.6 783.3 10.4 815 11.3C846.7 12.2 878.3 14.4 910 15.3C941.7 16.1 973.3 16.7 1005 16.5C1036.7 16.2 1068.3 14.6 1100 13.8C1131.7 13 1163.3 11.8 1195 11.9C1226.7 11.9 1258.3 13.2 1290 14.1C1321.7 15.1 1353.3 17.1 1385 17.6C1416.7 18.1 1464.2 17.3 1480 17.2"/><path class="s-rip" d="M-40 51.6C-24.2 50.9 23.3 48.9 55 47.5C86.7 46 118.3 43.4 150 42.8C181.7 42.2 213.3 42.9 245 43.9C276.7 44.9 308.3 47.9 340 49.1C371.7 50.3 403.3 51.4 435 51.2C466.7 51 498.3 48.9 530 47.9C561.7 46.9 593.3 45 625 45C656.7 45 688.3 46.4 720 47.6C751.7 48.9 783.3 51.7 815 52.6C846.7 53.4 878.3 53.6 910 52.8C941.7 51.9 973.3 49.1 1005 47.7C1036.7 46.2 1068.3 44.3 1100 44C1131.7 43.8 1163.3 45.3 1195 46.3C1226.7 47.3 1258.3 49.7 1290 50.1C1321.7 50.6 1353.3 50.2 1385 49.3C1416.7 48.3 1464.2 45.4 1480 44.6"/><path class="s-rip" d="M-40 82.3C-24.2 81.5 23.3 78.1 55 77.7C86.7 77.2 118.3 78 150 79.5C181.7 80.9 213.3 84.6 245 86.2C276.7 87.7 308.3 89.2 340 88.8C371.7 88.5 403.3 85.7 435 83.9C466.7 82.2 498.3 79.1 530 78.4C561.7 77.7 593.3 78.5 625 79.6C656.7 80.6 688.3 83.7 720 84.6C751.7 85.5 783.3 85.9 815 84.9C846.7 84 878.3 80.7 910 79.1C941.7 77.4 973.3 75.1 1005 75.1C1036.7 75.1 1068.3 77.2 1100 78.9C1131.7 80.6 1163.3 84.3 1195 85.5C1226.7 86.8 1258.3 87.1 1290 86.4C1321.7 85.7 1353.3 82.6 1385 81.4C1416.7 80.1 1464.2 79.3 1480 78.9"/></svg></div>
+
+<!-- ============================================================ QUOTE (night band 3) -->
+<section class="night quote" id="quote" aria-labelledby="quote-h">
+  <div class="wrap">
+    <div class="runhead" data-fx="rule"><span>08</span><span>Get a quote</span><span class="rh-r">About 20 seconds</span></div>
+    <div class="q-grid">
+      <div class="q-head">
+        <h2 id="quote-h" class="display" data-fx="title"><span class="ln"><span>Tell us what you ship.</span></span> <span class="ln"><span><em>We’ll price it</em></span></span> <span class="ln"><span><em>in 24 hours.</em></span></span></h2>
       </div>
-      <div class="reveal reveal-delay-2">
-        <form class="quote-form" id="quote-form" name="quote-request" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="submitForm(event)">
+      <div class="q-card" id="q-card">
+        <form class="qf" id="quote-form" name="quote-request" method="POST" action="/thank-you/" data-netlify="true" data-netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="quote-request">
-          <p style="display:none"><input name="bot-field"></p>
-
-          <div class="qf-rail"><div class="qf-rail-fill" id="qf-rail"></div></div>
-          <div class="qf-meta"><span id="qf-stepno">Question 1 of 3</span><span id="qf-time">About 20 seconds</span></div>
-
-          <!-- Hidden carriers: Netlify reads these field names, same as before -->
-          <input type="hidden" name="what-you-sell" id="qf-sell">
-          <input type="hidden" name="monthly-orders" id="qf-vol">
+          <p class="hp" hidden><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <input type="hidden" name="what-you-sell" id="qf-sell" value="">
+          <input type="hidden" name="monthly-orders" id="qf-vol" value="">
           <input type="hidden" name="last-name" value="">
           <input type="hidden" name="company-name" value="">
           <input type="hidden" name="fulfillment-type" value="">
 
-          <!-- 1 -->
-          <div class="qf-step on" id="qf-1">
-            <h3 class="qf-q">What do you sell?</h3>
-            <p class="qf-sub">This sets your handling profile — how it picks, how fragile it is, whether it needs cold chain.</p>
-            <div class="qf-choices two">
-              <button type="button" class="qf-choice" data-cat="supplements" data-sell="Supplements &amp; peptides"><span class="qf-ic">&#129514;</span><span class="qf-lbl">Supplements<small>Vials, capsules, powders</small></span></button>
-              <button type="button" class="qf-choice" data-cat="beauty" data-sell="Beauty &amp; skincare"><span class="qf-ic">&#129524;</span><span class="qf-lbl">Beauty<small>Serums, creams, kits</small></span></button>
-              <button type="button" class="qf-choice" data-cat="food" data-sell="Food &amp; beverage"><span class="qf-ic">&#129387;</span><span class="qf-lbl">Food &amp; bev<small>Shelf-stable or chilled</small></span></button>
-              <button type="button" class="qf-choice" data-cat="apparel" data-sell="Apparel &amp; accessories"><span class="qf-ic">&#128085;</span><span class="qf-lbl">Apparel<small>Poly-bagged or boxed</small></span></button>
-              <button type="button" class="qf-choice" data-cat="pet" data-sell="Pet products"><span class="qf-ic">&#128062;</span><span class="qf-lbl">Pet<small>Treats, supplements, gear</small></span></button>
-              <button type="button" class="qf-choice" data-cat="other" data-sell="Something else"><span class="qf-ic">&#128230;</span><span class="qf-lbl">Something else<small>We handle most categories</small></span></button>
-            </div>
-            <p class="qf-hint">Tap an answer to continue.</p>
+          <div class="qf-head">
+            <div class="qf-rail" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="qf-meta"><span id="qf-stepno">Question 1 of 3</span><span id="qf-time">About 20 seconds</span></div>
           </div>
+          <p class="sr" id="qf-live" aria-live="polite"></p>
 
-          <!-- 2 -->
-          <div class="qf-step" id="qf-2">
-            <h3 class="qf-q">How many orders a month?</h3>
-            <p class="qf-sub">Your best estimate is fine. This is the single biggest driver of your rate.</p>
-            <div class="qf-choices">
-              <button type="button" class="qf-choice" data-vol="0 &#8211; 500"><span class="qf-ic">&#9675;</span><span class="qf-lbl">Under 500<small>Starting out or seasonal</small></span></button>
-              <button type="button" class="qf-choice" data-vol="500 &#8211; 2,000"><span class="qf-ic">&#9684;</span><span class="qf-lbl">500 &#8211; 2,000<small>Growing brand</small></span></button>
-              <button type="button" class="qf-choice" data-vol="2,000 &#8211; 10,000"><span class="qf-ic">&#9685;</span><span class="qf-lbl">2,000 &#8211; 10,000<small>Established volume</small></span></button>
-              <button type="button" class="qf-choice" data-vol="10,000+"><span class="qf-ic">&#9679;</span><span class="qf-lbl">10,000+<small>High volume &#8212; custom pricing</small></span></button>
+          <fieldset class="qf-step on" id="qf-1" data-step="1">
+            <legend class="qf-q" tabindex="-1">What do you sell?</legend>
+            <noscript><p class="qf-ns">JavaScript is off, so the answer buttons won’t respond. Add your name and email below and we’ll ask about your products and volume when we reply, or call <a href="tel:+17373432348">(737) 343-2348</a>.</p></noscript>
+            <p class="qf-sub">This sets your handling profile — how it picks, how it packs, whether it needs cold storage.</p>
+            <div class="qf-choices two" role="group" aria-label="What do you sell?">
+              <button type="button" class="qf-choice" aria-pressed="false" data-sell="Supplements &amp; vitamins"><span class="qf-ic"><svg aria-hidden="true"><use href="#c-bottle"/></svg></span><span class="qf-lbl">Supplements<small>Capsules, powders, gummies</small></span></button>
+              <button type="button" class="qf-choice" aria-pressed="false" data-sell="Beauty &amp; skincare"><span class="qf-ic"><svg aria-hidden="true"><use href="#c-beauty"/></svg></span><span class="qf-lbl">Beauty<small>Serums, creams, kits</small></span></button>
+              <button type="button" class="qf-choice" aria-pressed="false" data-sell="Food &amp; beverage"><span class="qf-ic"><svg aria-hidden="true"><use href="#c-food"/></svg></span><span class="qf-lbl">Food &amp; bev<small>Shelf-stable or chilled</small></span></button>
+              <button type="button" class="qf-choice" aria-pressed="false" data-sell="Apparel &amp; accessories"><span class="qf-ic"><svg aria-hidden="true"><use href="#c-apparel"/></svg></span><span class="qf-lbl">Apparel<small>Poly-bagged or boxed</small></span></button>
+              <button type="button" class="qf-choice" aria-pressed="false" data-sell="Pet products"><span class="qf-ic"><svg aria-hidden="true"><use href="#c-pet"/></svg></span><span class="qf-lbl">Pet<small>Treats, supplements, gear</small></span></button>
+              <button type="button" class="qf-choice" aria-pressed="false" data-sell="Something else"><span class="qf-ic"><svg aria-hidden="true"><use href="#c-other"/></svg></span><span class="qf-lbl">Something else<small>We handle most categories</small></span></button>
             </div>
-            <button type="button" class="qf-back" onclick="qfGo(1)">&#8592; Back</button>
-          </div>
+            <p class="qf-hint" id="qf-hint1">Tap an answer to continue<span class="kb"> · Arrow keys work too</span></p>
+          </fieldset>
 
-          <!-- 3 -->
-          <div class="qf-step" id="qf-3">
-            <h3 class="qf-q">Where do we send it?</h3>
-            <p class="qf-sub">Last one. We put together your custom pricing and send it over within 24 hours.</p>
-            <div class="form-grid">
-              <div class="form-group"><label class="form-label" for="qf-fn">First Name</label><input type="text" id="qf-fn" name="first-name" class="form-input" placeholder="Jake" required></div>
-              <div class="form-group"><label class="form-label" for="qf-ph">Phone <span class="qf-opt">optional</span></label><input type="tel" id="qf-ph" name="phone" class="form-input" placeholder="(512) 555-0123"></div>
-              <div class="form-group full"><label class="form-label" for="qf-em">Business Email</label><input type="email" id="qf-em" name="business-email" class="form-input" placeholder="jake@yourbrand.com" required></div>
+          <fieldset class="qf-step" id="qf-2" data-step="2">
+            <legend class="qf-q" tabindex="-1">How many orders a month?</legend>
+            <div class="qf-picked" id="qf-picked2" hidden><button type="button" class="qf-edit" data-go="1" aria-label="Change what you sell"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-show="sell"></span><em>Change</em></button></div>
+            <p class="qf-sub">Your best estimate is fine. Volume is the single biggest driver of your rate.</p>
+            <div class="qf-choices" role="group" aria-label="How many orders a month?">
+              <button type="button" class="qf-choice" aria-pressed="false" data-vol="0 &#8211; 500"><span class="qf-ic vol" data-n="1"><i></i><i></i><i></i><i></i></span><span class="qf-lbl">Under 500<small>Starting out or seasonal</small></span></button>
+              <button type="button" class="qf-choice" aria-pressed="false" data-vol="500 &#8211; 2,000"><span class="qf-ic vol" data-n="2"><i></i><i></i><i></i><i></i></span><span class="qf-lbl">500 – 2,000<small>Growing brand</small></span></button>
+              <button type="button" class="qf-choice" aria-pressed="false" data-vol="2,000 &#8211; 10,000"><span class="qf-ic vol" data-n="3"><i></i><i></i><i></i><i></i></span><span class="qf-lbl">2,000 – 10,000<small>Established volume</small></span></button>
+              <button type="button" class="qf-choice" aria-pressed="false" data-vol="10,000+"><span class="qf-ic vol" data-n="4"><i></i><i></i><i></i><i></i></span><span class="qf-lbl">10,000+<small>High volume — custom pricing</small></span></button>
             </div>
-            <button type="submit" class="form-submit" id="submit-btn">Get My Free Quote &#8594;</button>
-            <button type="button" class="qf-back" onclick="qfGo(2)">&#8592; Back</button>
-            <p class="form-note">No spam. No commitment. A firm quote follows within 24 hours.</p>
-          </div>
+            <p class="qf-hint" id="qf-hint2" hidden></p>
+            <button type="button" class="qf-back" data-go="1">← Back</button>
+          </fieldset>
+
+          <fieldset class="qf-step" id="qf-3" data-step="3">
+            <legend class="qf-q" tabindex="-1">Where do we send it?</legend>
+            <p class="qf-sub">Last one. We’ll put together your custom pricing and send it within 24 hours.</p>
+            <div class="qf-picked" id="qf-picked3" hidden><button type="button" class="qf-edit" data-go="1" aria-label="Change what you sell"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-show="sell"></span><em>Edit</em></button><button type="button" class="qf-edit" data-go="2" aria-label="Change monthly orders"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-show="vol"></span><em>Edit</em></button></div>
+            <div class="qf-fields">
+              <div class="fld"><label for="qf-fn">First name</label><input type="text" id="qf-fn" name="first-name" autocomplete="given-name" placeholder="e.g. Jake" required></div>
+              <div class="fld"><label for="qf-ph">Phone <span class="opt">optional</span></label><input type="tel" id="qf-ph" name="phone" autocomplete="tel" placeholder="e.g. (512) 555-0123"></div>
+              <div class="fld full"><label for="qf-em">Business email</label><input type="email" id="qf-em" name="business-email" autocomplete="email" placeholder="you@yourbrand.com" required></div>
+            </div>
+            <div class="qf-err" id="qf-err" role="alert" hidden></div>
+            <button type="submit" class="btn btn-ink btn-block" id="submit-btn"><span class="btn-t">Get my custom quote</span><span class="chip" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span></button>
+            <div class="qf-foot"><button type="button" class="qf-back" data-go="2">← Back</button><p class="qf-note">No spam. No commitment.</p></div>
+          </fieldset>
         </form>
-        <div class="form-success" id="form-success">
-          <div class="success-icon">&#9989;</div>
-          <h3>We're On It!</h3>
-          <p>Our team will review your details and send a custom fulfillment quote within 24 hours. Check your email soon!</p>
+      </div>
+      <div class="q-aside">
+        <ul class="ticks ticks-n" data-fx="rise">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Custom pricing based on your volume</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>A response within 24&nbsp;hours</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>No commitment</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Onboarding in as little as 2&nbsp;weeks</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Same-day shipping <span class="nowrap">Mon–Fri</span>: <span class="nowrap">USPS by <span data-cutoff="usps">2&nbsp;PM&nbsp;CT</span></span>, <span class="nowrap">UPS by <span data-cutoff="ups">6&nbsp;PM&nbsp;CT</span></span></span></li>
+        </ul>
+        <div class="q-contact" data-fx="rise">
+          <p>Rather talk it through?</p>
+          <a href="tel:+17373432348"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>(737) 343-2348</a>
+          <a href="mailto:inboundleads@lakesidefulfillment.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>inboundleads@<wbr>lakesidefulfillment.com</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="nav-logo" style="color:white;">
-          <div class="nav-logo-mark"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
-          Lakeside Fulfillment
-        </a>
-        <p>Austin, Texas based 3PL fulfillment center specializing in same-day DTC fulfillment. Orders in by 2 PM CST ship today.</p>
+<!-- dawn: night into day -->
+<div class="sky dawn" data-edge=".5" aria-hidden="true" data-play><div class="d-light"></div><div class="d-glow"></div><svg class="d-waves" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false"><g class="w3"><path class="w-drift" d="M-160 88.9C-128.3 86.9 -33.3 79.5 30 76.9C93.3 74.4 156.7 72.5 220 73.8C283.3 75 346.7 80.3 410 84.4C473.3 88.5 536.7 95.5 600 98.4C663.3 101.2 726.7 102.6 790 101.5C853.3 100.5 916.7 95.3 980 92.1C1043.3 88.9 1106.7 83.7 1170 82.2C1233.3 80.7 1296.7 81.5 1360 83.2C1423.3 84.9 1518.3 90.9 1550 92.4L1550 -20H-160Z"/></g><g class="w2"><path class="w-drift" d="M-160 77C-131.7 75.9 -46.7 73.8 10 70.5C66.7 67.2 123.3 60.5 180 57.2C236.7 53.9 293.3 50.7 350 50.6C406.7 50.5 463.3 53.9 520 56.7C576.7 59.6 633.3 65.2 690 67.5C746.7 69.8 803.3 71.1 860 70.5C916.7 69.8 973.3 65.8 1030 63.5C1086.7 61.2 1143.3 57.4 1200 56.9C1256.7 56.4 1313.3 58.1 1370 60.6C1426.7 63.1 1511.7 69.9 1540 71.8L1540 -20H-160Z"/></g><g class="w1"><path d="M-160 43.1C-135 44.6 -60 50.9 -10 51.9C40 53 90 51.5 140 49.4C190 47.3 240 42 290 39.3C340 36.6 390 33.7 440 33.3C490 33 540 35.4 590 37.3C640 39.1 690 43.4 740 44.6C790 45.9 840 46.2 890 44.8C940 43.4 990 38.9 1040 36.2C1090 33.5 1140 29.3 1190 28.5C1240 27.7 1290 29 1340 31.4C1390 33.8 1465 41 1490 43L1490 -20H-160Z"/><path class="w-foam" d="M-160 43.1C-135 44.6 -60 50.9 -10 51.9C40 53 90 51.5 140 49.4C190 47.3 240 42 290 39.3C340 36.6 390 33.7 440 33.3C490 33 540 35.4 590 37.3C640 39.1 690 43.4 740 44.6C790 45.9 840 46.2 890 44.8C940 43.4 990 38.9 1040 36.2C1090 33.5 1140 29.3 1190 28.5C1240 27.7 1290 29 1340 31.4C1390 33.8 1465 41 1490 43"/></g></svg></div>
+
+</main>
+
+<!-- ============================================================ FOOTER -->
+<footer class="foot" id="site-map">
+  <div class="wrap">
+    <div class="foot-mark" aria-hidden="true" data-fx="clip"><svg class="mark" width="160" height="105"><use href="#wave"/></svg><span><i style="--k:0">L</i><i style="--k:1">a</i><i style="--k:2">k</i><i style="--k:3">e</i><i style="--k:4">s</i><i style="--k:5">i</i><i style="--k:6">d</i><i style="--k:7">e</i></span></div>
+    <svg data-play class="foot-lake" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10Q50 4 100 10T200 10T300 10T400 10T500 10T600 10T700 10T800 10T900 10T1000 10T1100 10T1200 10"/><path d="M0 22Q50 16 100 22T200 22T300 22T400 22T500 22T600 22T700 22T800 22T900 22T1000 22T1100 22T1200 22"/><path d="M0 34Q50 28 100 34T200 34T300 34T400 34T500 34T600 34T700 34T800 34T900 34T1000 34T1100 34T1200 34"/></svg>
+    <div class="foot-grid">
+      <div class="f-nap">
+        <h2 class="f-h">Lakeside Fulfillment</h2>
+        <address>
+          <span>Same-day 3PL fulfillment</span>
+          <span>Austin, Texas</span>
+          <a href="tel:+17373432348">(737) 343-2348</a>
+          <a href="mailto:inboundleads@lakesidefulfillment.com">inboundleads@<wbr>lakesidefulfillment.com</a>
+        </address>
       </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="#services">DTC Fulfillment</a>
-        <a href="#services">B2B & Wholesale</a>
-        <a href="/kitting-assembly/">Kitting & Assembly</a>
-        <a href="#services">Returns Processing</a>
-        <a href="#services">Inventory Management</a>
+      <nav class="f-col" aria-label="Sections">
+        <h2 class="f-h">Sections</h2>
+        <ul><li><a href="#promise">Same-day promise</a></li><li><a href="#how">How it works</a></li><li><a href="#services">Services</a></li><li><a href="#industries">Industries</a></li><li><a href="#visibility">Dashboard</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/austin-3pl/">Austin 3PL</a></li></ul>
+      </nav>
+      <div class="f-col">
+        <h2 class="f-h">Services</h2>
+        <ul><li>DTC fulfillment</li><li>B2B &amp; wholesale</li><li>Inventory management</li><li>Returns processing</li><li><a href="/kitting-assembly/">Subscription boxes &amp; kitting</a></li><li><a href="/supplement-fulfillment/">Supplement fulfillment</a></li><li><a href="/peptide-fulfillment/">Peptide fulfillment</a></li><li>Freight &amp; receiving</li></ul>
       </div>
-      <div class="footer-col">
-        <h4>Industries</h4>
-        <a href="/peptide-fulfillment/">Peptide Fulfillment</a>
-        <a href="/supplement-fulfillment/">Supplement Fulfillment</a>
-        <a href="#industries">Beauty & Personal Care</a>
-        <a href="#industries">Food & Beverage</a>
-        <a href="#industries">Apparel</a>
-        <a href="#industries">Pets</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="/austin-3pl/">Austin 3PL</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="#quote">Get a Quote</a>
-        <a href="/cdn-cgi/l/email-protection#ed8e8283998c8e99ad818c86889e8489888b98818b84818180888399c38e8280">Contact</a>
-        <a href="#">Privacy Policy</a>
+      <div class="f-cta">
+        <p class="f-big">In by the cutoff, <em>out the same&nbsp;day.</em></p>
+        <p class="f-cuts"><span class="nowrap">USPS <span data-cutoff="usps">2&nbsp;PM&nbsp;CT</span></span> · <span class="nowrap">UPS <span data-cutoff="ups">6&nbsp;PM&nbsp;CT</span></span> · <span class="nowrap">Mon–Fri</span></p>
+        <a class="btn btn-ink" href="/quote/">Get a custom quote<span class="chip" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span></a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Lakeside Fulfillment. All rights reserved. · Austin, TX</span>
-      <span>(737) 343-2348 · <a href="#quote" style="color:rgba(255,255,255,.35);text-decoration:none;">Get a Quote</a></span>
+    <div class="foot-bot">
+      <p>© 2026 Lakeside Fulfillment. All rights reserved.</p>
+      <p>Austin, Texas</p>
+      <a href="#top">Back to top ↑</a>
     </div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => {
-  el.classList.add('hidden');
-  observer.observe(el);
-});
+<nav class="mbar" id="mbar" aria-label="Quick actions">
+  <a class="mbar-call" href="tel:+17373432348" aria-label="Call Lakeside Fulfillment at (737) 343-2348"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></a>
+  <a class="btn btn-paper mbar-cta" href="/quote/">Get a quote<span class="chip" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span></a>
+</nav>
 
-/* --- Quote flow: three questions, then the contact details ------------- */
-const QF_STEPS = 3;
+<script>
+(function () {
+var root = document.documentElement, W = window;
+var $ = function (s, c) { return (c || document).querySelector(s); };
+var $$ = function (s, c) { return [].slice.call((c || document).querySelectorAll(s)); };
+var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+var motionOK = !!(W.matchMedia && matchMedia('screen and (prefers-reduced-motion: no-preference)').matches);
+/* Carrier cutoffs in Central Time (24 h), confirmed 11-13. They drive the countdowns, the day-arc markers, ticks,
+   drop lines and labels, the hero clock and the dashboard chart. Copy that states them carries data-cutoff="<key>". */
+var CUTOFFS = [{ carrier: 'USPS', key: 'usps', h: 14 }, { carrier: 'UPS', key: 'ups', h: 18 }];
+/* Shipping days, 0 = Sunday: Monday to Friday. Weekend orders ship the next business day. */
+var SHIP_DAYS = [1, 2, 3, 4, 5];
+/* Austin dates with no carrier pickup, 'YYYY-MM-DD' (e.g. carrier holidays). Empty until Nick confirms them; a listed date
+   is skipped by both countdowns exactly like a weekend day. */
+var CLOSED = [];
+CUTOFFS.sort(function (a, b) { return a.h - b.h; });
+var byKey = function (k) { return CUTOFFS.filter(function (c) { return c.key === k; })[0]; };
+var hm = function (h) { return (h % 12 || 12) + (h < 12 ? '\u00a0AM' : '\u00a0PM'); }; /* no-break space: a time never splits from its unit */
+var setHands = function () {};
+var MH_STATIC = ($('#austin-now') || {}).innerHTML; /* the no-JS masthead line, restored for print */
+var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+var WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+var fmtCT = null;
+try { fmtCT = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hourCycle: 'h23' }); } catch (e) {}
+/* Austin wall-clock time, whatever the viewer's own timezone is */
+var ct = function () {
+var d = new Date(), o = {};
+if (!fmtCT) return { wd: d.getDay(), y: d.getFullYear(), mo: d.getMonth() + 1, d: d.getDate(), h: d.getHours(), m: d.getMinutes(), s: d.getSeconds() };
+fmtCT.formatToParts(d).forEach(function (x) { o[x.type] = x.value; });
+return { wd: WD.indexOf(o.weekday), y: +o.year, mo: +o.month, d: +o.day, h: +o.hour % 24, m: +o.minute, s: +o.second };
+};
+var p2 = function (n) { return (n < 10 ? '0' : '') + n; };
+var clock12 = function (t) { return (t.h % 12 || 12) + ':' + p2(t.m) + (t.h < 12 ? ' AM' : ' PM'); };
+/* is the Austin day `add` days after t a shipping day? (a ship weekday and not a CLOSED date) */
+var isoDay = function (t, add) { return new Date(Date.UTC(t.y, t.mo - 1, t.d + add)).toISOString().slice(0, 10); };
+var isShip = function (t, add) { return SHIP_DAYS.indexOf((t.wd + add) % 7) >= 0 && (!CLOSED.length || CLOSED.indexOf(isoDay(t, add)) < 0); };
+/* The next cutoff: today's next carrier cutoff on a shipping day; otherwise the first cutoff of the next shipping day. */
+var nextCut = function (t) {
+var sec = t.h * 3600 + t.m * 60 + t.s, i;
+if (isShip(t, 0)) for (i = 0; i < CUTOFFS.length; i++) if (sec < CUTOFFS[i].h * 3600) return { c: CUTOFFS[i], i: i, add: 0, wd: t.wd, rem: CUTOFFS[i].h * 3600 - sec };
+var add = 1;
+while (!isShip(t, add) && add < 21) add++;
+var nd = (t.wd + add) % 7;
+return { c: CUTOFFS[0], i: 0, add: add, wd: nd, rem: 86400 - sec + (add - 1) * 86400 + CUTOFFS[0].h * 3600 };
+};
+var arcAng = function (h) { return Math.PI - ((h - 6) / 14) * Math.PI; };
 
-function qfGo(n){
-  for (let i = 1; i <= QF_STEPS; i++){
-    document.getElementById('qf-' + i).classList.toggle('on', i === n);
-  }
-  document.getElementById('qf-rail').style.width = ((n - 1) / QF_STEPS * 100) + '%';
-  document.getElementById('qf-stepno').textContent = 'Question ' + n + ' of ' + QF_STEPS;
-  document.getElementById('qf-time').textContent = n === QF_STEPS ? 'Last one' : 'About ' + (20 - (n - 1) * 6) + ' seconds';
-  if (n === QF_STEPS) setTimeout(() => document.getElementById('qf-fn').focus(), 220);
+/* ---------- cutoff-driven geometry: day-arc markers and labels, hero clock, dashboard chart ---------- */
+try {
+$$('.arc svg').forEach(function (svg) {
+var cx = +svg.dataset.cx, cy = +svg.dataset.cy, r = +svg.dataset.r;
+CUTOFFS.forEach(function (c) {
+var a = arcAng(c.h), co = Math.cos(a), sn = Math.sin(a), x = cx + r * co, y = cy - r * sn, q = '[data-cutoff="' + c.key + '"]';
+var tk = $('.arc-tick.cut' + q, svg);
+if (tk) { tk.setAttribute('x1', (cx + (r + 9) * co).toFixed(1)); tk.setAttribute('y1', (cy - (r + 9) * sn).toFixed(1)); tk.setAttribute('x2', (cx + (r - 9) * co).toFixed(1)); tk.setAttribute('y2', (cy - (r - 9) * sn).toFixed(1)); }
+var m = $('.cut-m' + q, svg); if (m) m.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')');
+var dl = $('.drop' + q, svg); if (dl) { dl.setAttribute('x1', x.toFixed(1)); dl.setAttribute('x2', x.toFixed(1)); dl.setAttribute('y1', (y + 14).toFixed(1)); }
+var dd = $('.drop-dot' + q, svg); if (dd) dd.setAttribute('cx', x.toFixed(1));
+var lb = $('.arc-lbl' + q, svg);
+if (lb) {
+lb.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + (lb.dataset.anchor === 'pt' ? y.toFixed(1) : 0) + ')');
+var big = $('.arc-big', lb); big.textContent = hm(c.h) + (big.dataset.fmt === 'short' ? '' : ' CT');
+$('.arc-sm', lb).textContent = c.carrier + ' cutoff';
 }
-
-document.querySelectorAll('#qf-1 .qf-choice').forEach(b => b.addEventListener('click', () => {
-  document.getElementById('qf-sell').value = b.dataset.sell;
-  document.querySelectorAll('#qf-1 .qf-choice').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
-  qfGo(2);
-}));
-
-document.querySelectorAll('#qf-2 .qf-choice').forEach(b => b.addEventListener('click', () => {
-  document.getElementById('qf-vol').value = b.dataset.vol;
-  document.querySelectorAll('#qf-2 .qf-choice').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
-  qfGo(3);
-}));
-
-async function submitForm(e) {
-  e.preventDefault();
-  const form = document.getElementById('quote-form');
-  const btn = document.getElementById('submit-btn');
-  btn.disabled = true;
-  btn.textContent = 'Sending...';
-  try {
-    const data = new FormData(form);
-    await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() });
-    if (window.gtag) gtag('event', 'generate_lead', { form_name: 'quote-request', product_category: data.get('what-you-sell'), monthly_orders: data.get('monthly-orders') });
-    form.style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-    document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } catch(err) {
-    btn.disabled = false;
-    btn.textContent = 'Get My Free Quote →';
-    alert('Something went wrong. Please try again or email us directly.');
-  }
-}
-
-const sections = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  sections.forEach(s => {
-    const offset = s.offsetTop - 100;
-    const height = s.offsetHeight;
-    const id = s.getAttribute('id');
-    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
-    if(link) {
-      if(scrollY >= offset && scrollY < offset + height) {
-        link.style.color = 'var(--navy)';
-        link.style.fontWeight = '600';
-      } else {
-        link.style.color = '';
-        link.style.fontWeight = '';
-      }
-    }
-  });
 });
+});
+/* hero clock: live Austin time. Its two azure dots mark the carrier cutoffs; the hands never sit on a fixed 'pickup' time. */
+var hH = $('.ha .hand-h line'), hMn = $('.ha .hand-m line');
+setHands = function (t) {
+var a = ((t.h % 12) + t.m / 60) / 6 * Math.PI, b = t.m / 30 * Math.PI;
+if (hH) { hH.setAttribute('x2', (471.1 + 13 * Math.sin(a)).toFixed(1)); hH.setAttribute('y2', (225 - 13 * Math.cos(a)).toFixed(1)); }
+if (hMn) { hMn.setAttribute('x2', (471.1 + 19 * Math.sin(b)).toFixed(1)); hMn.setAttribute('y2', (225 - 19 * Math.cos(b)).toFixed(1)); }
+};
+setHands(ct());
+$$('.ha .cut-dot').forEach(function (d) {
+var c = byKey(d.dataset.cutoff); if (!c) return;
+var g = (c.h % 12) / 12 * 2 * Math.PI;
+d.setAttribute('cx', (471.1 + 22 * Math.sin(g)).toFixed(1)); d.setAttribute('cy', (225 - 22 * Math.cos(g)).toFixed(1));
+});
+/* chart: one bar per hour from 6 AM, a gap and a labelled line at each cutoff */
+var START = 6, SLOT = 38, GAP = 14, BW = 28;
+$$('#d-bars rect').forEach(function (b, i) {
+var k = CUTOFFS.filter(function (c) { return c.h <= START + i; }).length;
+b.setAttribute('x', 5 + SLOT * i + GAP * k);
+b.setAttribute('class', k === 0 ? '' : k < CUTOFFS.length ? 'win' : 'aft');
+});
+CUTOFFS.forEach(function (c, j) {
+var bi = c.h - START, lx = (5 + SLOT * (bi - 1) + GAP * j + BW + 5 + SLOT * bi + GAP * (j + 1)) / 2;
+var ln = $('.d-cut[data-cutoff="' + c.key + '"]'), tx = $('.d-cut-t[data-cutoff="' + c.key + '"]');
+if (ln) ln.setAttribute('d', 'M' + lx + ' 6V120');
+if (tx) { tx.setAttribute('x', lx - 6); tx.textContent = c.carrier + ' ' + hm(c.h).toUpperCase(); }
+});
+} catch (e) { if (W.console) console.warn('cutoff geometry:', e); }
+
+/* ---------- menu sheet ---------- */
+try {
+var sheet = $('#sheet'), mbtn = $('#menu-btn'), lastFocus = null;
+mbtn.setAttribute('role', 'button');
+var openMenu = function () {
+lastFocus = document.activeElement;
+sheet.hidden = false; root.classList.add('menu-open'); mbtn.setAttribute('aria-expanded', 'true');
+setTimeout(function () { $('.sheet-x', sheet).focus(); }, 30);
+};
+var closeMenu = function (restore) {
+if (sheet.hidden) return;
+sheet.hidden = true; root.classList.remove('menu-open'); mbtn.setAttribute('aria-expanded', 'false');
+if (restore && lastFocus) lastFocus.focus();
+};
+mbtn.addEventListener('click', function (e) { e.preventDefault(); openMenu(); });
+mbtn.addEventListener('keydown', function (e) { if (e.key === ' ') { e.preventDefault(); openMenu(); } });
+$$('[data-close]', sheet).forEach(function (el) { el.addEventListener('click', function () { closeMenu(el.tagName === 'BUTTON'); }); });
+document.addEventListener('keydown', function (e) {
+if (sheet.hidden) return;
+if (e.key === 'Escape') { closeMenu(true); return; }
+if (e.key === 'Tab') {
+var f = $$('a,button', sheet), a = f[0], z = f[f.length - 1];
+if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+}
+});
+addEventListener('resize', function () { if (innerWidth > 1060) closeMenu(false); });
+} catch (e) { if (W.console) console.warn('menu:', e); }
+
+/* ---------- Austin clock: masthead line + the next-cutoff countdown ---------- */
+try {
+var mh = $('#austin-now'), cd = $('#cd'), cdT = $('#cd-t'), cdL = $('#cd-l'), cdS = $('#cd-sub'), cdC = $$('#cd-cuts > span');
+var printing = false, lastMin = -1, lastState = '', lastS = -1, built = false, H = null, M, S;
+var put = function (el, s) { if (el.textContent !== s) el.textContent = s; };
+var cutTag = function (c) { return '<span data-cutoff="' + c.key + '">' + c.carrier + '\u00a0' + hm(c.h) + '</span>'; };
+var tick = function () {
+if (document.hidden || printing) return;
+var t = ct(), n = nextCut(t), c = n.c, today = n.add === 0, state = c.key + n.add + n.wd;
+if (t.m !== lastMin || state !== lastState) {
+lastMin = t.m; setHands(t);
+var left = Math.ceil(n.rem / 60), lh = Math.floor(left / 60);
+mh.innerHTML = '<i>Austin ' + clock12(t) + ' CT · </i>' + (today
+? '<b>' + (lh ? lh + 'h ' : '') + (left % 60) + 'm</b> to the ' + cutTag(c) + ' cutoff'
+: 'Next cutoff <b>' + WD[n.wd] + '</b> · ' + cutTag(c));
+}
+if (state !== lastState) {
+lastState = state;
+cdC.forEach(function (s) {
+var k = byKey(s.dataset.cutoff), ki = CUTOFFS.indexOf(k);
+s.classList.toggle('now', k === c);
+s.classList.toggle('past', today && ki < n.i);
+});
+}
+if (!cd || (built && !cd.classList.contains('play'))) return;
+if (n.rem < 86400) {
+if (!H) { cdT.innerHTML = '<b>00</b><i>:</i><b>00</b><i>:</i><b>00</b>'; var bs = $$('b', cdT); H = bs[0]; M = bs[1]; S = bs[2]; }
+H.textContent = p2(Math.floor(n.rem / 3600)); M.textContent = p2(Math.floor(n.rem % 3600 / 60)); S.textContent = p2(n.rem % 60);
+if (motionOK && built && lastS !== n.rem % 60 && S.animate) S.animate([{ transform: 'translateY(-34%)' }, { transform: 'none' }], { duration: 420, easing: 'cubic-bezier(.16,1,.3,1)' }); /* motion only: the digit never fades, so it stays AA mid-flip */
+lastS = n.rem % 60;
+put(cdL, today ? c.carrier + ' cutoff in' : 'Next cutoff in · ' + c.carrier);
+put(cdS, today ? 'In by ' + hm(c.h) + '\u00a0CT, ' + c.carrier + ' orders ship today' : DAYS[n.wd] + ' ' + hm(c.h) + '\u00a0CT · Orders placed now ship ' + (n.add === 1 ? 'tomorrow' : DAYS[n.wd]));
+} else {
+H = null;
+put(cdL, 'Next cutoff · ' + c.carrier);
+var far = WD[n.wd] + ' ' + hm(c.h).replace('\u00a0', '&nbsp;') + ' <small>CT</small>';
+if (cdT.innerHTML !== far) cdT.innerHTML = far;
+put(cdS, 'Orders placed now ship ' + DAYS[n.wd]);
+}
+built = true;
+};
+(function loop() { tick(); setTimeout(loop, 1015 - Date.now() % 1000); })();
+} catch (e) { if (W.console) console.warn('clock:', e); }
+
+/* ---------- nav spy and ambient-animation pausing ---------- */
+try {
+if ('IntersectionObserver' in W) {
+var links = $$('.nav a');
+var spy = new IntersectionObserver(function (es) {
+es.forEach(function (en) {
+if (en.isIntersecting) links.forEach(function (l) { l.setAttribute('aria-current', l.getAttribute('href') === '#' + en.target.id ? 'true' : 'false'); });
+});
+}, { rootMargin: '-45% 0px -50% 0px' });
+links.forEach(function (l) { var s = $(l.getAttribute('href')); if (s) spy.observe(s); });
+['#top', '#reviews', '#quote', '#site-map'].forEach(function (id) { var s = $(id); if (s) spy.observe(s); }); /* sections with no nav link clear the highlight */
+var pio = new IntersectionObserver(function (es) { es.forEach(function (en) { en.target.classList.toggle('play', en.isIntersecting); }); }, { rootMargin: '120px 0px' });
+$$('[data-play]').forEach(function (el) { pio.observe(el); });
+} else $$('[data-play]').forEach(function (el) { el.classList.add('play'); });
+addEventListener('beforeprint', function () { $$('.qa details').forEach(function (d) { d.open = true; }); printing = true; var m = $('#austin-now'); if (m && MH_STATIC) m.innerHTML = MH_STATIC; });
+addEventListener('afterprint', function () { printing = false; lastMin = -1; lastState = ''; });
+} catch (e) {}
+
+/* ---------- scroll layer: one rAF loop that reads every rect first, then writes ----------
+   Always on: header tighten, header tone (night only while a dark stretch is under the header), phone bar.
+   Motion only: progress line, parallax, dusk/dawn progress (--k), the day-arc sun, scrubbed figures, reveals. */
+try {
+var hero = $('.hero'), mbar = $('#mbar'), quote = $('#quote'), fgrid = $('.foot-grid'), hdr = $('#hdr'), meta = $('meta[name="theme-color"]');
+var ticking = false, fx = null, night = null;
+var zones = $$('.sky').map(function (el) { return { el: el, edge: +el.dataset.edge || 0.5, k: -1 }; });
+/* each dark stretch runs from a dusk zone's horizon to the next dawn zone's wave edge */
+var spans = [];
+zones.forEach(function (z, i) { if (z.el.classList.contains('dusk') && zones[i + 1] && zones[i + 1].el.classList.contains('dawn')) spans.push([i, i + 1]); });
+var frame = function () {
+ticking = false;
+/* read */
+var y = scrollY, vh = innerHeight, hb = hero.getBoundingClientRect().bottom, q = quote.getBoundingClientRect(), ft = fgrid.getBoundingClientRect().top, mid = hdr.offsetHeight / 2;
+var zr = zones.map(function (z) { return z.el.getBoundingClientRect(); });
+var st = fx ? fx.read(vh) : null;
+/* write */
+root.classList.toggle('scrolled', y > 12);
+var on = spans.some(function (p) { var a = zr[p[0]], b = zr[p[1]]; return a.top + a.height * zones[p[0]].edge <= mid && b.top + b.height * zones[p[1]].edge > mid; });
+if (on !== night) {
+night = on; root.classList.add('tone-snap'); root.classList.toggle('on-night', on); if (meta) meta.setAttribute('content', on ? '#0a111d' : '#f4f2ec');
+requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove('tone-snap'); }); });
+}
+mbar.classList.toggle('show', hb < vh * 0.35 && (q.top > vh * 0.8 || q.bottom < 0) && ft > vh * 0.9 && !root.classList.contains('menu-open'));
+if (fx) fx.write(st, y, vh, hb, zr);
+};
+var moving = false, still = 0;
+var settle = function () { moving = false; root.classList.remove('scrolling'); };
+var onScroll = function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } if (!moving) { moving = true; root.classList.add('scrolling'); } clearTimeout(still); still = setTimeout(settle, 180); };
+addEventListener('scroll', onScroll, { passive: true });
+addEventListener('resize', onScroll, { passive: true });
+frame();
+if (!motionOK) return;
+var targets = $$('[data-fx]');
+$$('[data-fx=title]').forEach(function (t) { $$('.ln', t).forEach(function (l, i) { l.style.setProperty('--li', i); }); });
+$$('#d-bars rect').forEach(function (r, i) { r.style.setProperty('--i', i); });
+var reveal = function (els) {
+var count = new Map();
+els.forEach(function (el) {
+if (el.classList.contains('in')) return;
+var g = el.parentElement, n = count.get(g) || 0;
+count.set(g, n + 1);
+el.style.setProperty('--d', Math.min(n, 7) * 80 + 'ms');
+el.classList.add('in');
+});
+};
+var sweep = function () {
+var late = targets.filter(function (el) { return !el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight; });
+if (late.length) reveal(late);
+};
+if (!('IntersectionObserver' in W)) reveal(targets);
+else {
+var io = new IntersectionObserver(function (es) {
+var show = es.filter(function (e) { return e.isIntersecting; }).map(function (e) { io.unobserve(e.target); return e.target; });
+if (show.length) reveal(show);
+}, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+targets.forEach(function (t) { io.observe(t); });
+document.addEventListener('focusin', function (e) {
+var late = targets.filter(function (t) { return !t.classList.contains('in') && t.contains(e.target); });
+if (late.length) reveal(late);
+}, true);
+addEventListener('load', function () { setTimeout(sweep, 1200); });
+var idle; addEventListener('scroll', function () { clearTimeout(idle); idle = setTimeout(sweep, 160); }, { passive: true });
+}
+if (W.matchMedia && matchMedia('(hover:hover)').matches) {
+$('#ix').addEventListener('pointermove', function (e) {
+var row = e.target.closest('.ix-row'); if (!row) return;
+var r = row.getBoundingClientRect();
+row.style.setProperty('--mx', (e.clientX - r.left + 18).toFixed(0) + 'px'); row.style.setProperty('--my', (e.clientY - r.top).toFixed(0) + 'px');
+}, { passive: true });
+}
+var bar = document.createElement('div');
+bar.setAttribute('aria-hidden', 'true');
+bar.style.cssText = 'position:fixed;top:0;left:0;right:0;height:2px;z-index:60;pointer-events:none;background:linear-gradient(90deg,#8fd8ff,#2a6fd4);box-shadow:0 0 10px rgba(79,157,253,.5);transform-origin:0 50%;transform:scaleX(0)';
+document.body.appendChild(bar);
+var stage = $('#art-stage'), prNum = $('.pr-top .pr-num'), fm = $('.foot-mark'), arcFig = $('#arc'), stepsEl = $('#steps'), lis = $$('#steps > li'), dash = $('.dash');
+var suns = $$('.arc svg').map(function (svg) {
+return { svg: svg, cx: +svg.dataset.cx, cy: +svg.dataset.cy, r: +svg.dataset.r, sun: $('.sun', svg), lit: $('.arc-lit', svg),
+marks: CUTOFFS.map(function (c) { return { h: c.h, el: $('.cut-m[data-cutoff="' + c.key + '"]', svg), hit: null }; }).filter(function (m) { return m.el; }) };
+});
+var near = function (r, vh, m) { return r.bottom > -m && r.top < vh + m; };
+fx = {
+read: function (vh) {
+var w = innerWidth, sr = stepsEl.getBoundingClientRect(), vert = w <= 1060, stepsNear = near(sr, vh, 60);
+return {
+w: w, max: root.scrollHeight - vh, pr: prNum.getBoundingClientRect(), ar: arcFig.getBoundingClientRect(), sr: sr, vert: vert, stepsNear: stepsNear,
+dr: dash.getBoundingClientRect(), fr: fm.getBoundingClientRect(),
+lr: stepsNear && vert ? lis.map(function (li) { return li.getBoundingClientRect(); }) : null,
+sunW: suns.map(function (s) { return s.svg.getBoundingClientRect().width; })
+};
+},
+write: function (s, y, vh, hb, zr) {
+var w = s.w;
+bar.style.transform = 'scaleX(' + (s.max > 0 ? Math.min(1, y / s.max) : 0) + ')';
+if (s.max - y < 4) setTimeout(sweep, 0);
+/* dusk builds as a zone rises through the viewport; dawn the same way */
+zones.forEach(function (z, i) {
+var r = zr[i];
+if (r.bottom < -40 || r.top > vh + 40) return;
+var k = clamp((vh - r.top) / (vh * 0.9), 0, 1);
+if (Math.abs(k - z.k) > 0.008 || (k !== z.k && (k === 0 || k === 1))) { z.k = k; z.el.style.setProperty('--k', k.toFixed(3)); }
+});
+if (hb > 0 && w > 1060) { stage.style.setProperty('--hp', (y * -0.07).toFixed(1) + 'px'); stage.style.setProperty('--hp2', (y * -0.06).toFixed(1) + 'px'); }
+var pr = s.pr;
+var pnMax = w > 1060 ? 36 : 16; /* stacked layouts: never drift up into the button above */
+if (near(pr, vh, 100)) prNum.style.setProperty('--pn', clamp(((pr.top + pr.height / 2) - vh / 2) * 0.12, -pnMax, pnMax).toFixed(1) + 'px');
+/* the sun crosses the whole day, 6 AM to 8 PM, passing each carrier cutoff */
+if (near(s.ar, vh, 50)) {
+var p = clamp((vh * 0.92 - s.ar.top) / (vh * 0.85), 0, 1), hour = 6 + p * 14, a = arcAng(hour);
+suns.forEach(function (o, i) {
+if (!s.sunW[i]) return;
+o.sun.setAttribute('transform', 'translate(' + (o.cx + o.r * Math.cos(a)).toFixed(1) + ' ' + (o.cy - o.r * Math.sin(a)).toFixed(1) + ')');
+o.lit.style.strokeDasharray = ((hour - 6) / 14).toFixed(4) + ' 1';
+o.marks.forEach(function (m) { var hit = hour >= m.h - 0.02; if (hit !== m.hit) { m.hit = hit; m.el.classList.toggle('hit', hit); } });
+});
+}
+if (s.stepsNear) {
+if (!s.vert) {
+var sp = clamp((vh * 0.84 - s.sr.top) / (vh * 0.46), 0, 1);
+stepsEl.style.setProperty('--sp', sp.toFixed(3));
+lis.forEach(function (li, i) { li.classList.toggle('lit', sp >= i / 5 + 0.03); });
+} else {
+var line = vh * 0.64, ih = w <= 760 ? 56 : 64;
+lis.forEach(function (li, i) {
+var r = s.lr[i];
+li.style.setProperty('--f', clamp((line - r.top - ih) / Math.max(1, r.height - ih), 0, 1).toFixed(3));
+li.classList.toggle('lit', line > r.top + ih * 0.4);
+});
+}
+}
+var dr = s.dr;
+if (near(dr, vh, 0)) {
+var e = clamp((vh - dr.top) / (vh * 0.75), 0, 1), k = (1 - e) * (1 - e);
+dash.style.setProperty('--tx', ((w > 760 ? 18 : 10) * k).toFixed(2) + 'deg');
+dash.style.setProperty('--ty', ((w > 1060 ? -9 : 0) * k).toFixed(2) + 'deg');
+dash.style.setProperty('--ts', (1 - 0.06 * k).toFixed(4));
+}
+if (s.fr.top < vh) fm.style.setProperty('--fm', Math.max(0, (s.fr.top - vh * 0.55) * 0.18).toFixed(1) + 'px');
+}
+};
+frame();
+root.classList.add('fx'); // LAST: if anything above threw, nothing was ever hidden
+var rm = matchMedia('(prefers-reduced-motion: reduce)'), rmOff = function () { if (rm.matches) root.classList.remove('fx'); }; /* not the screen query: print must not switch motion off */
+if (rm.addEventListener) rm.addEventListener('change', rmOff); else if (rm.addListener) rm.addListener(rmOff);
+} catch (e) {
+root.classList.remove('fx');
+if (W.console) console.warn('motion layer off:', e);
+}
+})();
 </script>
+<script src="assets/quote-form.js"></script>
 </body>
 </html>
