@@ -1,0 +1,45 @@
+# Lakeside Fulfillment
+
+> Lakeside Fulfillment is a DTC-specialized third-party logistics (3PL) warehouse in Austin, Texas. Orders ship the same day, Monday to Friday, when they are in by the carrier cutoff: USPS 2 PM CT, UPS 6 PM CT. Delivery across the U.S. takes 3-5 days.
+
+Lakeside receives, stores, picks, packs and ships orders for direct-to-consumer brands. Orders reach Lakeside through ShipStation, which connects to Shopify, WooCommerce and most other carts. Every client gets a live dashboard for inventory, orders and shipments, with reorder notifications. Pricing ranges are published on the pricing page. A custom quote arrives within 24 hours with no commitment, and onboarding can take as little as 2 weeks.
+
+## Key facts
+
+- Name: Lakeside Fulfillment
+- What it is: a DTC-specialized 3PL (third-party logistics) and fulfillment warehouse
+- Location: Austin, Texas, United States
+- Phone: (737) 343-2348
+- Email: inboundleads@lakesidefulfillment.com
+- Same-day shipping, Monday to Friday: USPS orders in by 2 PM CT and UPS orders in by 6 PM CT ship the same day. USPS orders after 2 PM CT, any order after 6 PM CT, and weekend orders ship the next business day. There is no weekend shipping.
+- Delivery: 3-5 days across the U.S. from Austin, Texas
+- Services: DTC fulfillment; B2B and wholesale; inventory management; returns processing; subscription boxes and kitting; freight and receiving; Amazon FBA prep; product labeling
+- Client dashboard: live inventory, orders and shipments, with reorder notifications
+- Store connections: ShipStation, which connects to Shopify, WooCommerce and most carts
+- Warehouse: 5,500 sq ft in Austin; your contact is the owner
+- Getting started: custom quote within 24 hours, no commitment; onboarding in as little as 2 weeks
+
+## Published pricing (USD)
+
+- Pick and pack, light (under 8 oz, poly mailer): $1.50-$2.50 per order
+- Pick and pack, medium (8 oz to 1.5 lb, boxed): $3.00-$3.75 per order
+- Pick and pack, heavy or fragile (over 1.5 lb, or needs a sturdy box and protective fill): $3.95-$5.25 per order
+- Each additional item in an order: $0.50-$0.75
+- Storage: $45.00 per pallet per month, flat
+- Inbound receiving: $15.00 per carton, $25.00 per pallet
+- Product labeling: $0.50-$0.75 per unit
+- Amazon FBA prep: $1.25-$1.50 per unit
+- Onboarding: $150.00-$250.00, one time
+- Monthly minimum for smaller accounts: $300.00-$350.00
+- The standard mailer or box is included in pick and pack. Postage is billed separately. Amazon FBM orders are billed at the same rate as DTC orders.
+
+## Pages
+
+- [Home](https://lakesidefulfillment.com/): what Lakeside does, the same-day cutoffs, services, industries served, the client dashboard and an FAQ
+- [Pricing](https://lakesidefulfillment.com/pricing/): the published rate card and pricing FAQ
+- [Austin 3PL](https://lakesidefulfillment.com/austin-3pl/): the Austin warehouse and working directly with the owner
+- [Supplement fulfillment](https://lakesidefulfillment.com/supplement-fulfillment/): same-day DTC shipping, expiration-date rotation, Amazon FBA prep, subscriptions and wholesale for supplement brands
+- [Kitting, assembly and labeling](https://lakesidefulfillment.com/kitting-assembly/): bundles, subscription boxes, product labeling, inserts, Amazon FBA prep and retail prep
+- [Get a quote](https://lakesidefulfillment.com/quote/): three questions; custom pricing within 24 hours, no commitment
+
+<!-- TODO(Nick): add business hours, holiday shipping days and the Google Business Profile link once confirmed; add the street address under Key facts only if it is public on Maps. -->
