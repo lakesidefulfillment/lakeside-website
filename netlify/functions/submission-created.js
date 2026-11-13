@@ -1,11 +1,27 @@
-exports.handler = async function(event) {
-  const payload = JSON.parse(event.body);
-  const data = payload.payload.data;
+// Runs on every verified Netlify Forms submission. Two separate jobs, each on
+// its own so one failing never stops the other:
+//   1. the lead's auto-reply email (Resend), the same email as before
+//   2. hand the lead to the Lakeside OS (the Leads tab), new
+// Netlify's own email to inboundleads@ is a form notification set in the
+// Netlify UI; this file does not send or change it.
+// The OS hand-off needs two env vars on this site: OS_LEADS_URL and
+// LEADS_INTAKE_TOKEN. If either is missing it is skipped and nothing breaks.
+// It never sends the visitor's IP or browser, and nothing here logs a name,
+// email or answer: only the submission id.
 
-  const firstName = data['first-name'] || 'there';
+// The form fields the OS stores, by the form's own names (index.html).
+const OS_FIELDS = ['first-name', 'last-name', 'company-name', 'business-email',
+  'phone', 'what-you-sell', 'monthly-orders', 'fulfillment-type'];
+
+// The name is typed by the visitor and goes into an email's HTML, so it is
+// escaped: nobody can send their own HTML or links from our address.
+const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+// 1. The auto-reply. Returns true when Resend accepted it.
+async function sendAutoReply(data) {
+  const firstName = escapeHtml(String(data['first-name'] || 'there').trim().slice(0, 80) || 'there');
   const email = data['business-email'];
-
-  if (!email) return { statusCode: 400, body: 'No email' };
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -44,5 +60,52 @@ exports.handler = async function(event) {
     })
   });
 
-  return { statusCode: res.ok ? 200 : 500, body: res.ok ? 'sent' : 'error' };
+  return res.ok;
+}
+
+// 2. The OS hand-off. Returns 'sent' or 'skipped'; throws if the OS said no.
+// The token only ever goes over https: a mistyped http:// URL sends nothing.
+async function sendToOS(sub) {
+  const url = process.env.OS_LEADS_URL;
+  const token = process.env.LEADS_INTAKE_TOKEN;
+  if (!url || !token || sub.form_name !== 'quote-request') return 'skipped';
+  if (!/^https:\/\//i.test(url)) throw new Error('OS_LEADS_URL is not https, nothing sent');
+
+  const data = sub.data || {};
+  const fields = {};
+  for (const k of OS_FIELDS) fields[k] = data[k] == null ? '' : String(data[k]);
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-leads-token': token },
+    body: JSON.stringify({
+      v: 1,
+      source: 'website',
+      submission_id: sub.id,
+      form_name: sub.form_name,
+      submitted_at: sub.created_at,
+      referrer: data.referrer || null,
+      fields
+    }),
+    signal: AbortSignal.timeout(8000)
+  });
+  await res.text().catch(() => null);
+  if (!res.ok) throw new Error(`OS answered ${res.status}`);
+  return 'sent';
+}
+
+exports.handler = async function(event) {
+  const sub = JSON.parse(event.body).payload;
+  const data = sub.data || {};
+
+  if (!data['business-email']) return { statusCode: 400, body: 'No email' };
+
+  const [reply, os] = await Promise.allSettled([sendAutoReply(data), sendToOS(sub)]);
+  if (os.status === 'rejected') {
+    console.error(`[lakeside-os] lead ${sub.id} not delivered: ${os.reason && os.reason.message}`);
+  }
+
+  // The answer reflects the auto-reply alone, the same as before.
+  const replied = reply.status === 'fulfilled' && reply.value === true;
+  return { statusCode: replied ? 200 : 500, body: replied ? 'sent' : 'error' };
 };
