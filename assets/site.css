@@ -946,6 +946,11 @@ details .ans{display:block}
 .lp-card h3{margin:0 0 10px;font:600 19px/1.3 var(--sans);color:var(--ink)}
 .lp-card p{margin:0;font-size:15.5px;line-height:1.6;color:var(--soft)}
 .lp-card a,.lp-prose a,.lp-note a,.lp-sec .ans a{color:var(--deep);font-weight:600;text-underline-offset:3px}
+.faq .ans a,.ix-row p a,.lp-table td a{color:var(--deep);font-weight:600;text-underline-offset:3px}
+.lp-table td a{font-weight:inherit}
+.night .reach-copy a{color:var(--ice);text-underline-offset:3px}
+.feat-body .tlink{margin-right:18px}
+.q-rates{margin-top:14px}
 .lp-prose{max-width:40em}
 .lp-prose p{margin:0 0 18px;font-size:18px;line-height:1.7;color:var(--soft)}
 .lp-table-wrap{border:1px solid var(--line);border-radius:18px;background:var(--paper-2);overflow:hidden}
