@@ -873,6 +873,7 @@ details .ans{display:block}
 .ty-wrap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:clamp(40px,4.6vw,64px)}
 .ty-card{grid-column:1/10}
 .ty .done-mark{width:58px;height:58px;margin-bottom:24px}
+.ty .nf-mark{width:74px;height:auto;margin-bottom:26px}
 .ty .done-mark circle{fill:rgba(143,216,255,.08);stroke:var(--ice)}
 .ty .done-mark path{stroke:var(--ice)}
 .ty-k{display:block;margin:0 0 16px;font:500 12px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--ice)}
