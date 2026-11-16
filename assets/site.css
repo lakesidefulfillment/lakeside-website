@@ -953,7 +953,6 @@ details .ans{display:block}
 .lp-table td a{font-weight:inherit}
 .night .reach-copy a{color:var(--ice);text-underline-offset:3px}
 .feat-body .tlink{margin-right:18px}
-.q-rates{margin-top:14px}
 .lp-prose{max-width:40em}
 .lp-prose p{margin:0 0 18px;font-size:18px;line-height:1.7;color:var(--soft)}
 .lp-table-wrap{border:1px solid var(--line);border-radius:18px;background:var(--paper-2);overflow:hidden}
