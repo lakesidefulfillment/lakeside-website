@@ -995,3 +995,21 @@ details .ans{display:block}
   .lp-table td:last-child{align-self:baseline;color:var(--soft);font-size:14.5px}
   .lp-quote blockquote p{font-size:19px}
 }
+
+/* footer Guides row (11-17): the answer pages, linked from every page */
+.f-guides{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 28px;margin-top:40px;padding-top:20px;border-top:1px solid var(--line)}
+.f-guides .f-h{margin:0;color:var(--ink)}
+.f-guides ul{display:flex;flex-wrap:wrap;gap:0 26px;margin:0;padding:0;list-style:none}
+.f-guides a{display:inline-flex;align-items:center;min-height:44px;font-size:15px;text-decoration:none;color:var(--ink)}
+.f-guides a:hover{color:var(--deep)}
+.f-guides + .foot-bot{margin-top:20px}
+/* comparison table (11-17): three text columns; on a phone each row stacks, with its column name above each answer */
+.lp-table.cmp td{width:33.33%;font-weight:400}
+.lp-table.cmp td:first-child{font-weight:600}
+@media (max-width:760px){
+  .lp-table.cmp tr{grid-template-columns:1fr}
+  .lp-table.cmp td{width:auto}
+  .lp-table.cmp td:first-child{margin-bottom:2px;font-size:17px}
+  .lp-table.cmp td[data-l]{margin-top:12px;color:var(--ink);font-size:16px}
+  .lp-table.cmp td[data-l]::before{content:attr(data-l);display:block;margin-bottom:3px;font:500 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--soft)}
+}

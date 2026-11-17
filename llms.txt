@@ -42,4 +42,8 @@ Lakeside receives, stores, picks, packs and ships orders for direct-to-consumer 
 - [Austin 3PL](https://lakesidefulfillment.com/austin-3pl/): the Austin warehouse and working directly with the owner
 - [Supplement fulfillment](https://lakesidefulfillment.com/supplement-fulfillment/): same-day DTC shipping, expiration-date rotation, Amazon FBA prep, subscriptions and wholesale for supplement brands
 - [Kitting, assembly and labeling](https://lakesidefulfillment.com/kitting-assembly/): bundles, subscription boxes, product labeling, inserts, Amazon FBA prep and retail prep
+- [Same-day shipping](https://lakesidefulfillment.com/same-day-shipping/): the USPS 2 PM CT and UPS 6 PM CT cutoffs, what ships when, weekends and holiday closures
+- [How much a 3PL costs](https://lakesidefulfillment.com/3pl-cost/): the six lines on a 3PL bill with Lakeside's rates, and a worked example for 500 orders a month
+- [3PL for small brands](https://lakesidefulfillment.com/small-business-3pl/): the monthly minimum, setup fee, onboarding time and when a small brand should hire a 3PL
+- [Small vs. large 3PL](https://lakesidefulfillment.com/small-vs-large-3pl/): a single-warehouse 3PL compared with a national fulfillment network, and when each fits
 - [Get a quote](https://lakesidefulfillment.com/quote/): three questions; custom pricing within 24 hours, no commitment
