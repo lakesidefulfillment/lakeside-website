@@ -8,7 +8,9 @@ Lakeside receives, stores, picks, packs and ships orders for direct-to-consumer 
 
 - Name: Lakeside Fulfillment
 - What it is: a DTC-specialized 3PL (third-party logistics) and fulfillment warehouse
-- Location: Austin, Texas, United States
+- Address: 3100 Scott Dr, STE 201, Austin, TX 78734, United States
+- Hours: Monday to Friday, 8 AM to 5 PM CT. Closed Saturday and Sunday.
+- Closed for holidays: November 26 and 27, 2026; December 25, 2026; January 1, 2027
 - Phone: (737) 343-2348
 - Email: inboundleads@lakesidefulfillment.com
 - Same-day shipping, Monday to Friday: USPS orders in by 2 PM CT and UPS orders in by 6 PM CT ship the same day. USPS orders after 2 PM CT, any order after 6 PM CT, and weekend orders ship the next business day. There is no weekend shipping.
